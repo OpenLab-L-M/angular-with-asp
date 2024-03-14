@@ -11,10 +11,10 @@ namespace AspNetCoreAPI.Registration
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly JwtHandler _jwtHandler;
 
-        public UserController(UserManager<User> userManager, JwtHandler jwtHandler)
+        public UserController(UserManager<ApplicationUser> userManager, JwtHandler jwtHandler)
         {
             _userManager = userManager;
             _jwtHandler = jwtHandler;
@@ -26,7 +26,7 @@ namespace AspNetCoreAPI.Registration
             if (userRegistrationDto == null || !ModelState.IsValid)
                 return BadRequest();
 
-            var user = new User { UserName = userRegistrationDto.Email,  Email = userRegistrationDto.Email };
+            var user = new ApplicationUser { UserName = userRegistrationDto.Email,  Email = userRegistrationDto.Email };
             var result = await _userManager.CreateAsync(user, userRegistrationDto.Password);
             if (!result.Succeeded)
             {

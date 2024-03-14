@@ -2,7 +2,8 @@
 
 namespace AspNetCoreAPI.Models
 {
-    public class User : IdentityUser
+    public class ApplicationUser : IdentityUser
     {
+
     }
 }
