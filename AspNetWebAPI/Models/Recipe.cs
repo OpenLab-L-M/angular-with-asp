@@ -1,4 +1,4 @@
-﻿using Duende.IdentityServer.EntityFramework.Entities;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
