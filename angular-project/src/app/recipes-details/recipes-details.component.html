@@ -1,0 +1,14 @@
+<body>
+  <div>
+    <p class="detail_title">
+      {{recipe().name}}
+    </p>
+    <p class="detail_difficulty">
+      Difficulty: {{recipe().difficulty}}
+    </p>
+    <img class="detail_image" [src]="recipe().imageURL" />
+    <p class="detail_description">
+      Description: <br> {{recipe().description}}
+    </p>
+  </div>
+</body>

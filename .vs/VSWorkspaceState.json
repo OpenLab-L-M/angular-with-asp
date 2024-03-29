@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\AspNetWebAPI",
+    "\\AspNetWebAPI\\Authentication",
     "\\AspNetWebAPI\\Controllers"
   ],
-  "SelectedNode": "\\AspNetWebAPI\\Controllers\\RecipesController.cs",
+  "SelectedNode": "\\AspNetWebAPI\\AspNetWebAPI.sln",
   "PreviewInSolutionExplorer": false
 }

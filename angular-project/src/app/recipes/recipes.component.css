@@ -1,0 +1,82 @@
+.recipes-container {
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.recipes-items {
+    width: 290px;
+    background-color:darkgray;
+    margin: 10px 10px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: #efefef 2px solid;
+}
+
+.recipes-items:hover {
+    border: #efefef 2px solid;
+    box-shadow: 10px 10px 18px #cccccc;
+    transform: scale(1.00);
+    cursor: pointer;
+}
+
+.recipes-images {
+    width: 265px;
+    height:250px;
+}
+
+
+
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  padding-top: 10%;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: fixed;
+  display: inline-block;
+  left: 5%;
+  top: 10%;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-filter {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  z-index: 1;
+  cursor: pointer;
+}
+
+  /* Links inside the dropdown */
+  .dropdown-filter a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+    /* Change color of dropdown links on hover */
+    .dropdown-filter a:hover {
+      background-color: #f1f1f1
+    }
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-filter {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}

@@ -1,0 +1,23 @@
+<div class="create">
+    <button [routerLink]="['/create_recipes']">Create a recipe</button>
+  </div>
+  
+  <div class="recipes-container">
+    <div class="recipes-items" *ngFor="let recipe of recipes() | filter : sSearchRecept">
+      <div>
+        <img [src]="recipe.imageURL" class="recipes-images" [routerLink]="['/RecipesDetails', recipe.id]"/>
+      </div>
+      <div class="recipes-name">{{recipe.name}}</div>
+      <div class="recipes-difficulty">{{recipe.difficulty}}</div>
+    </div>
+  </div>
+  
+    <div class="dropdown">
+      <button class="dropbtn">Difficulty</button>
+      <div class="dropdown-filter">
+        <a (click)="filterRecipesByDifficulty('Easy')">Easy</a>
+        <a (click)="filterRecipesByDifficulty('Medium')">Medium</a>
+        <a (click)="filterRecipesByDifficulty('Hard')">Hard</a>
+        <a (click)="clearFilter()">Clear</a>
+      </div>
+    </div>
