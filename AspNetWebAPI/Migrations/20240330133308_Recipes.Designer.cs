@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AspNetCoreAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240328210346_Recipes")]
+    [Migration("20240330133308_Recipes")]
     partial class Recipes
     {
         /// <inheritdoc />

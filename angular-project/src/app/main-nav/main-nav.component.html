@@ -1,12 +1,17 @@
-<mat-toolbar>
-  <span>My web app</span>
+<div>
+  <mat-toolbar>
+  
+    <span>My web app</span>
   <span class="spacer"></span>
   @if (authService.authenticated()) {
     <button mat-button (click)="logout()">Logout</button>
     <button mat-button [routerLink]="['/Recipes']">Recipes</button>
-    <button mat-button [routerLink]="['/create_recipes']">Create Recipe</button>
+    <button mat-button [routerLink]="['/CreateRecipe']">Create Recipe</button>
   } @else {
     <button mat-button [routerLink]="['/login']">Login</button>
     <button mat-button [routerLink]="['/register']">Registration</button>
   }
+  
 </mat-toolbar>
+</div>
+
