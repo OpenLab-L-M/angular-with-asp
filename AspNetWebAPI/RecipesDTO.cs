@@ -7,5 +7,6 @@
         public string? Description { get; set; }
         public string? Difficulty { get; set; }
         public string? ImageURL { get; set; }
+        
     }
 }

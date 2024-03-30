@@ -2,11 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { RecipesService } from 'src/recipes.service';
+import { RecipesDTO } from '../recipes/RecipesDTO';
+import { signal } from '@angular/core';
+import { createRecipe } from './createRecipe';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-create-recipe',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule
+  imports: [RouterLink, ReactiveFormsModule,
     ],
   templateUrl: './create-recipe.component.html',
   styleUrl: './create-recipe.component.css'
@@ -18,13 +23,29 @@ export class CreateRecipeComponent {
     diff: new FormControl(''),
     img: new FormControl(''),
   });
-
+  private destroy$ = new Subject<void>();
+  newRecipe = signal<createRecipe>(undefined);
+  constructor(private httpClient: HttpClient, recipeSercice: RecipesService, private router: Router){}
+  recipeService: RecipesService;
   onSubmit() {
     // TODO: Use EventEmitter with form value
+    this.createRecipe();
     console.warn(this.profileForm.value);
+    
+    
+  }
+  private createRecipe() {
+    this.recipeService.CreateRecipe({
+      name: this.profileForm.controls['name'].value,
+      description: this.profileForm.controls['desc'].value,
+      difficulty: this.profileForm.controls['diff'].value,
+      imageURL: this.profileForm.controls['img'].value
+    }).pipe(takeUntil(this.destroy$))
+    .subscribe(() => this.router.navigate(['/recipes']));
   }
 
-  // constructor(private httpClient: HttpClient){}
+
+   
 
   // uploadedImage: File;
   // dbImage: any;

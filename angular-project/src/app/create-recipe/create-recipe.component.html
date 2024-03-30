@@ -3,7 +3,7 @@
     <div class="tabulka">
       <h1>Create your recipe</h1>
       <div class="formy">
-        <form [formGroup]="profileForm">
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
           <p>
             <input id="name" type="text" formControlName="name">
             <span></span>
@@ -15,7 +15,13 @@
             <span></span>
             <label for="desc">Recipe description: </label>
           </p>
-          
+
+          <p>
+            <input id="img" type="text" formControlName="img">
+            <span></span>
+            <label for="img">imageURL: </label>
+          </p>
+
           <div class="diff_radio">
             <p>
                 <label>Choose a difficulty: </label> <br>
@@ -32,13 +38,14 @@
           </div>
           
   
-          <p>
+          <!-- <p>
             <img id="img">
             <input id="img" type="file" accept="image/*" formControlName="img">
             <span></span>
             <label for="img">Add an image: </label>
-          </p>
-          <button (click)="onSubmit()" type="submit" [disabled]="!profileForm.valid">Create recipe</button>
+          </p> -->
+
+          <button  type="submit" [disabled]="!profileForm.valid">Create recipe</button>
   
         </form>
       </div>

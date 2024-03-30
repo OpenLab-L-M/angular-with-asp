@@ -1,7 +1,9 @@
 ﻿using AspNetCoreAPI.Data;
+using AspNetCoreAPI.Migrations;
 using AspNetCoreAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace AspNetCoreAPI.Controllers
 {
@@ -42,5 +44,27 @@ namespace AspNetCoreAPI.Controllers
             };
 
         }
+        [HttpPost("createRecipe")]
+        public string CreateRecipe(RecipesDTO receptik)
+        {
+            Recipe nReceptik = new Recipe
+            {
+                Name = receptik.Name,
+                Description = receptik.Description,
+                Difficulty = receptik.Difficulty,
+                ImageURL = receptik.ImageURL,
+                CheckID = int.Parse(GetCurrentUser().Id),
+            };
+            _context.Add(nReceptik);
+            _context.SaveChanges();
+            return "Hotovo";
+        }
+        protected ApplicationUser? GetCurrentUser()
+        {
+            var userName = User.FindFirstValue(ClaimTypes.Name);
+
+            return _context.Users.SingleOrDefault(user => user.UserName == userName);
+        }
+
     }
 }

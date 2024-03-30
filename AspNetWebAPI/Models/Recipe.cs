@@ -12,5 +12,6 @@ namespace AspNetCoreAPI.Models
         public string? Description { get; set; }
         public string? ImageURL { get; set; }
         public string? Difficulty { get; set; }
+        public int? CheckID { get; set; }
     }
 }
