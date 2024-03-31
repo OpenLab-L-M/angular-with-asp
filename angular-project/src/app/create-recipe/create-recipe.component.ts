@@ -41,7 +41,7 @@ export class CreateRecipeComponent {
       difficulty: this.profileForm.controls['diff'].value,
       imageURL: this.profileForm.controls['img'].value
     }).pipe(takeUntil(this.destroy$))
-    .subscribe();
+    .subscribe(() => this.router.navigate(['/Recipes']));
   }
 
 

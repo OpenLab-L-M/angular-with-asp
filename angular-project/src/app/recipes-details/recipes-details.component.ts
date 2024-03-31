@@ -23,4 +23,13 @@ export class RecipesDetailsComponent {
        .subscribe(result => this.recipe.set(result));
       
    }
+
+   deleteBtn() {
+    const id = parseInt(this.route.snapshot.paramMap.get('id'));
+  this.recipeService.deleteGuild(id)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(() => {
+      // Redirect or perform any necessary action after deletion
+    });
+  }
   }

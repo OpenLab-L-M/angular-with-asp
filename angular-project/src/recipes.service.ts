@@ -22,4 +22,8 @@ export class RecipesService {
   CreateRecipe(RecipesDTO: createRecipe) {
     return this.http.post<createRecipe>(this.baseUrl + '/CreateRecipe', RecipesDTO)
   }
+  deleteGuild(Id: number) {
+
+    return this.http.delete<RecipesDTO>(this.recipesURL + Id);
+  }
 }

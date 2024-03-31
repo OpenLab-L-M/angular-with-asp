@@ -13,6 +13,7 @@ namespace AspNetCoreAPI.Controllers
     public class RecipesController : Controller
     {
         private readonly ApplicationDbContext _context;
+
         public RecipesController(ApplicationDbContext context) => _context = context;
 
         [HttpGet]
@@ -63,6 +64,21 @@ namespace AspNetCoreAPI.Controllers
             _context.SaveChanges();
             return receptik;
         }
+
+        [HttpDelete("{id:int}")]
+        public IActionResult DeleteRecipe(int id)
+        {
+            var recipe = _context.Recipes.FirstOrDefault(savedId => savedId.Id == id);
+            if (recipe == null)
+            {
+                return NotFound();
+            }
+
+            _context.Recipes.Remove(recipe);
+            _context.SaveChanges();
+            return NoContent();
+        }
+
         protected ApplicationUser? GetCurrentUser()
         {
             var userName = User.FindFirstValue(ClaimTypes.Name);
