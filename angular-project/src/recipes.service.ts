@@ -20,7 +20,6 @@ export class RecipesService {
     return this.http.get<RecipesDTO>(this.recipesURL + Id);
   }
   CreateRecipe(RecipesDTO: createRecipe) {
-    console.log(this.CreateRecipe)
-    return this.http.post<string>(this.baseUrl + 'createRecipe', RecipesDTO)
+    return this.http.post<createRecipe>(this.baseUrl + '/CreateRecipe', RecipesDTO)
   }
 }

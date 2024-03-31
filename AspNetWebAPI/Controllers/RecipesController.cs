@@ -28,6 +28,7 @@ namespace AspNetCoreAPI.Controllers
                     Description = dbRecipe.Description,
                     Difficulty = dbRecipe.Difficulty,
                     ImageURL = dbRecipe.ImageURL,
+                    
                 });
         }
         [HttpGet("{id:int}")]
@@ -44,20 +45,23 @@ namespace AspNetCoreAPI.Controllers
             };
 
         }
-        [HttpPost("createRecipe")]
-        public string CreateRecipe(RecipesDTO receptik)
+        [HttpPost("/CreateRecipe")]
+        public RecipesDTO CreateRecipe(RecipesDTO receptik)
         {
-            Recipe nReceptik = new Recipe
+            var user = GetCurrentUser();
+
+            var nReceptik = new Recipe()
             {
                 Name = receptik.Name,
                 Description = receptik.Description,
                 Difficulty = receptik.Difficulty,
                 ImageURL = receptik.ImageURL,
-                CheckID = int.Parse(GetCurrentUser().Id),
+                
             };
+            nReceptik.CheckID = user?.Id;
             _context.Add(nReceptik);
             _context.SaveChanges();
-            return "Hotovo";
+            return receptik;
         }
         protected ApplicationUser? GetCurrentUser()
         {

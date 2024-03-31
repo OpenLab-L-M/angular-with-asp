@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\AspNetWebAPI",
+    "\\AspNetWebAPI\\Controllers",
+    "\\AspNetWebAPI\\Migrations"
   ],
-  "SelectedNode": "\\AspNetWebAPI.sln",
+  "SelectedNode": "\\AspNetWebAPI\\Migrations\\ApplicationDbContextModelSnapshot.cs",
   "PreviewInSolutionExplorer": false
 }

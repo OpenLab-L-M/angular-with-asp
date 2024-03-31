@@ -25,8 +25,8 @@ export class CreateRecipeComponent {
   });
   private destroy$ = new Subject<void>();
   newRecipe = signal<createRecipe>(undefined);
-  constructor(private httpClient: HttpClient, recipeSercice: RecipesService, private router: Router){}
-  recipeService: RecipesService;
+  constructor(private httpClient: HttpClient, private recipesServíce: RecipesService, private router: Router){}
+
   onSubmit() {
     // TODO: Use EventEmitter with form value
     this.createRecipe();
@@ -35,13 +35,13 @@ export class CreateRecipeComponent {
     
   }
   private createRecipe() {
-    this.recipeService.CreateRecipe({
+    this.recipesServíce.CreateRecipe({
       name: this.profileForm.controls['name'].value,
       description: this.profileForm.controls['desc'].value,
       difficulty: this.profileForm.controls['diff'].value,
       imageURL: this.profileForm.controls['img'].value
     }).pipe(takeUntil(this.destroy$))
-    .subscribe(() => this.router.navigate(['/recipes']));
+    .subscribe();
   }
 
 

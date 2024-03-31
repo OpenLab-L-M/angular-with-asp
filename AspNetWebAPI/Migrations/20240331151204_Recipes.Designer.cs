@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AspNetCoreAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240330214806_Recipes")]
+    [Migration("20240331151204_Recipes")]
     partial class Recipes
     {
         /// <inheritdoc />
@@ -98,8 +98,8 @@ namespace AspNetCoreAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CheckID")
-                        .HasColumnType("int");
+                    b.Property<string>("CheckID")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
