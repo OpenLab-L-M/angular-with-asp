@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\AspNetWebAPI",
-    "\\AspNetWebAPI\\Controllers",
-    "\\AspNetWebAPI\\Migrations"
+    "\\AspNetWebAPI\\Controllers"
   ],
-  "SelectedNode": "\\AspNetWebAPI\\Migrations\\ApplicationDbContextModelSnapshot.cs",
+  "SelectedNode": "\\AspNetWebAPI\\Controllers\\RecipesController.cs",
   "PreviewInSolutionExplorer": false
 }

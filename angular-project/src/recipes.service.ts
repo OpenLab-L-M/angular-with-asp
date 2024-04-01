@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { RecipesDTO } from 'src/app/recipes/RecipesDTO'
 import { createRecipe } from './app/create-recipe/createRecipe';
 import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,8 @@ import { Observable } from 'rxjs';
 export class RecipesService {
   private recipesURL = this.baseUrl + '/recipes/';
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
-
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private route: ActivatedRoute) { }
+   public chRecipe= new  RecipesDTO;
   getRecipesList() {
     return this.http.get<RecipesDTO[]>(this.recipesURL)
   }
@@ -24,6 +25,6 @@ export class RecipesService {
   }
   deleteGuild(Id: number) {
 
-    return this.http.delete<RecipesDTO>(this.recipesURL + Id);
+    return this.http.delete<string>(this.recipesURL + Id);
   }
 }

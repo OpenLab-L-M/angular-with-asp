@@ -1,15 +1,17 @@
 <body>
   <div>
     <p class="detail_title">
-      {{recipe().name}}
+      {{this.recipeService.chRecipe.name}}
     </p>
     <p class="detail_difficulty">
-      Difficulty: {{recipe().difficulty}}
+      Difficulty: {{this.recipeService.chRecipe.difficulty}}
     </p>
-    <img class="detail_image" [src]="recipe().imageURL" />
+    <img class="detail_image" [src]="this.recipeService.chRecipe.imageURL" />
     <p class="detail_description">
-      Description: <br> {{recipe().description}}
+      Description: <br> {{this.recipeService.chRecipe.description}}
     </p>
-    <button class="leave" (click)="deleteBtn()">Delete Guild</button>
+    <div *ngIf="recipeService.chRecipe.checkID == recipeService.chRecipe.userID">
+      <button class="leave" (click)="deleteBtn()">Delete Recipe</button>
+      </div>
   </div>
 </body>

@@ -4,4 +4,6 @@ export class RecipesDTO{
     description: string;
     difficulty: string;
     imageURL: string;
+    checkID: string;
+    userID: string;
   }

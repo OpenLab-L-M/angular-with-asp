@@ -29,7 +29,8 @@ namespace AspNetCoreAPI.Controllers
                     Description = dbRecipe.Description,
                     Difficulty = dbRecipe.Difficulty,
                     ImageURL = dbRecipe.ImageURL,
-                    
+                    CheckID = dbRecipe.CheckID,
+                    userID = GetCurrentUser().Id,
                 });
         }
         [HttpGet("{id:int}")]
@@ -42,7 +43,8 @@ namespace AspNetCoreAPI.Controllers
                 Description = recipe.Description,
                 Difficulty = recipe.Difficulty,
                 ImageURL = recipe.ImageURL,
-
+                CheckID = recipe.CheckID,
+                userID = GetCurrentUser().Id,
             };
 
         }
@@ -64,8 +66,10 @@ namespace AspNetCoreAPI.Controllers
             _context.SaveChanges();
             return receptik;
         }
+        
 
-        [HttpDelete("{id:int}")]
+        [HttpDelete]
+        [Route("{id:int}")]
         public IActionResult DeleteRecipe(int id)
         {
             var recipe = _context.Recipes.FirstOrDefault(savedId => savedId.Id == id);
