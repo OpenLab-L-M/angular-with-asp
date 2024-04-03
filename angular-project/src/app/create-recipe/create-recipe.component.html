@@ -1,52 +1,84 @@
 <body>
     <img src="https://media.istockphoto.com/id/1129153331/photo/food-for-the-family.jpg?s=612x612&w=0&k=20&c=Kf_Oz3ur1ECW3R9qclOYzUXYfyQQ1wzKwnQUA4ZXB-0=" alt=""/>
+    <div class="black">
+      <img src="https://th.bing.com/th/id/R.75b7633177977a276cd781b0e0520a92?rik=EpfN3HQQ7%2fOhcw&riu=http%3a%2f%2fwww.solidbackgrounds.com%2fimages%2f5120x2880%2f5120x2880-black-solid-color-background.jpg&ehk=AqB9SoEXUPu7BGaVH7M32l2%2b1UZ%2foIlkcd8MnplO62E%3d&risl=&pid=ImgRaw&r=0" alt=""/>
+    </div>
     <div class="tabulka">
-      <h1>Create your recipe</h1>
+      
       <div class="formy">
         <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-          <p>
-            <input id="name" type="text" formControlName="name">
-            <span></span>
-            <label for="name">Name of recipe: </label>
-          </p>
-  
-          <p>
-            <input id="desc" type="text" formControlName="desc">
-            <span></span>
-            <label for="desc">Recipe description: </label>
-          </p>
-
-          <p>
-            <input id="img" type="text" formControlName="img">
-            <span></span>
-            <label for="img">imageURL: </label>
-          </p>
-
-          <div class="diff_radio">
-            <p>
-                <label>Choose a difficulty: </label> <br>
-                <input id="diff" type="radio" formControlName="diff" value="Easy" [checked]="true">
-                <!-- <span></span> -->
-                <label for="diff">Easy</label>
-                <input id="diff2" type="radio" formControlName="diff" value="Medium">
-                <!-- <span></span> -->
-                <label for="diff2">Medium</label>
-                <input id="diff3" type="radio" formControlName="diff" value="Hard">
-                <!-- <span></span> -->
-                <label for="diff3">Hard</label>
+          <header>
+            <h1>Create your recipe</h1>
+          <div class="set">
+            <div class="Name_rcp">
+              <p>
+                <label for="name">Name of recipe: </label>
+                <input id="name" type="text" formControlName="name">
+                
               </p>
+            </div>
           </div>
           
+          
+          <div class="set">
+            <div class="Description_rcp">
+              <p>
+                <label for="desc">Recipe description: </label>
+                <input id="desc" type="text" formControlName="desc">
+                
+              </p>
+            </div>
+          </div>
+          
+          
+
+          <div class="set">
+            <div class="Image_rcp">
+              <p>
+                <label for="img">imageURL: </label>
+                <input id="img" type="text" formControlName="img">
+                
+              </p>
+            </div>
+          </div>
+
+          
+
+          
+          <div class="set">
+            <label id="ch_diff">Choose a difficulty: </label> <br>
+            <div class="diff_radio">
+              <p>
+                  
+                  <input id="diff" type="radio" formControlName="diff" value="Easy" [checked]="true">
   
+                  <label for="diff">Easy</label>
+                  <input id="diff2" type="radio" formControlName="diff" value="Medium">
+  
+                  <label for="diff2">Medium</label>
+                  <input id="diff3" type="radio" formControlName="diff" value="Hard">
+  
+                  <label for="diff3">Hard</label>
+                </p>
+            </div>
+          </div>
+        
+            
+      </header>
+      
+          <footer>
+            <div class="set">
+              <button id="make" type="submit" [disabled]="!profileForm.valid">Create</button>
+              <button id="back" [routerLink]="['/Recipes']">Back</button>
+            </div>
+          </footer>
+            
           <!-- <p>
             <img id="img">
             <input id="img" type="file" accept="image/*" formControlName="img">
             <span></span>
             <label for="img">Add an image: </label>
           </p> -->
-
-          <button  type="submit" [disabled]="!profileForm.valid">Create recipe</button>
-  
         </form>
       </div>
     </div>

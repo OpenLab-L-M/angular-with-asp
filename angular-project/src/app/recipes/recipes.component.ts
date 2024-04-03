@@ -26,6 +26,7 @@ export class RecipesComponent {
   recipeService = inject(RecipesService);
   recipes? = signal<RecipesDTO[]>([]);
   private destroy$ = new Subject<void>();
+  guild = signal<RecipesDTO>(undefined);
 
   sSearchRecept: string = '';
   constructor() { }
