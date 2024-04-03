@@ -1,19 +1,39 @@
+.background img {
+  position:fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+
+/* .background .black {
+position:fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 50%;
+  z-index: -1;
+} */
+
 .recipes-container {
     margin: 20px auto;
     display: flex;
     flex-wrap: wrap;
-
+    z-index: 2;
 }
 
 .recipes-items {
     width: 290px;
-    background-color:darkgray;
+    background-color:transparent;
+    backdrop-filter: blur(10px);
     margin: 10px 10px;
     padding-top: 10px;
     padding-bottom: 20px;
     padding-left: 10px;
     padding-right: 10px;
-    border: #efefef 2px solid;
+    border: transparent;
 }
 
 .recipes-items:hover {
@@ -26,6 +46,10 @@
 .recipes-images {
     width: 265px;
     height:250px;
+}
+
+.recipes-name, .recipes-difficulty {
+  color: white;
 }
 
 
@@ -42,10 +66,9 @@
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
-  position: fixed;
-  display: inline-block;
-  left: 5%;
-  top: 10%;
+  position: absolute;
+  margin-top: 15px;
+  margin-left: 15px;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -83,4 +106,18 @@
 
 .create {
   text-align: center;
+}
+
+#create_link {
+  
+  background: #fff;
+  font-size: 17px;
+    width: 10%;
+    height: 60px;
+    transition: .2s all ease-in-out;
+}
+
+#create_link:hover {
+  background: #171A2B;
+    color: white;
 }

@@ -1,0 +1,54 @@
+body {
+    padding-left: 30px;
+}
+
+.detail_title {
+  font-size: 40px;
+  text-align: center;
+  font-weight: bold;
+  padding-bottom: 20px;
+
+}
+
+.detail_description {
+    font-size: 30px;
+    line-height: 1.5;
+}
+
+.detail_difficulty {
+    font-size: 33px;
+    padding-bottom: 20px;
+}
+
+.detail_image {
+    width: 43%;
+    float: left;
+    padding-right: 20px;
+}
+
+footer #back {
+    background: #fff;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 10%;
+    height: 60px;
+    transition: .2s all ease-in-out;
+  }
+  
+  footer #back:hover {
+    background: #171A2B;
+    color: white;
+    
+  }
+  
+  footer #delete {
+    background: #807182;
+    border: 1px solid transparent;
+    width: 10%;
+    height: 60px;
+    color: #fff;
+  }
+  
+  footer #delete:hover {
+    background: #171A2B;
+  }

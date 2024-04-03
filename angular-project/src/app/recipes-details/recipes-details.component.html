@@ -10,8 +10,18 @@
     <p class="detail_description">
       Description: <br> {{this.recipeService.chRecipe.description}}
     </p>
+    
+    <footer>
+      <button id="back" [routerLink]="['/Recipes']">Back</button>
     <div *ngIf="recipeService.chRecipe.checkID == recipeService.chRecipe.userID">
-      <button class="leave" (click)="deleteBtn()">Delete Recipe</button>
+      
+        
+        <button id="delete" (click)="deleteBtn()">Delete Recipe</button>
+      
+      
       </div>
+    </footer>
+    
+      
   </div>
 </body>

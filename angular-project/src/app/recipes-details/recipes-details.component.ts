@@ -2,13 +2,14 @@ import { Component, inject, signal } from '@angular/core';
 import { RecipesService } from 'src/recipes.service';
 import { RecipesDTO } from '../recipes/RecipesDTO';
 import { Subject, takeUntil } from 'rxjs';
+import { Router, RouterLink } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-recipes-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink], 
   templateUrl: './recipes-details.component.html',
   styleUrl: './recipes-details.component.css'
 })
