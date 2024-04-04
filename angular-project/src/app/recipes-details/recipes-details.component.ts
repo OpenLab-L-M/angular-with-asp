@@ -19,7 +19,7 @@ export class RecipesDetailsComponent {
   recipe= signal<RecipesDTO>(undefined);
 
   
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
   ngOnInit(): void {
     
     const id = parseInt(this.route.snapshot.paramMap.get('id'));
@@ -34,7 +34,7 @@ export class RecipesDetailsComponent {
     const id = parseInt(this.route.snapshot.paramMap.get('id'));
       this.recipeService.deleteGuild(id)
       .pipe(takeUntil(this.destroy$))
-      .subscribe(result => console.log(result));
+      .subscribe(() => this.router.navigate(['/Recipes']));
    
   }
   }

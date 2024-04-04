@@ -27,6 +27,9 @@ position:fixed;
 .recipes-items {
     width: 290px;
     background-color:transparent;
+    border-radius: 10px;
+    border-width: 10px;
+    border-color: white;
     backdrop-filter: blur(10px);
     margin: 10px 10px;
     padding-top: 10px;
@@ -55,7 +58,7 @@ position:fixed;
 
 
 .dropbtn {
-  background-color: #4CAF50;
+  background-color: black;
   color: white;
   padding: 16px;
   padding-top: 10%;
@@ -63,6 +66,7 @@ position:fixed;
   border: none;
   cursor: pointer;
 }
+
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
@@ -91,7 +95,8 @@ position:fixed;
 
     /* Change color of dropdown links on hover */
     .dropdown-filter a:hover {
-      background-color: #f1f1f1
+      background-color: black;
+      color: #f1f1f1;
     }
 
 /* Show the dropdown menu on hover */
@@ -101,7 +106,8 @@ position:fixed;
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
-  background-color: #3e8e41;
+    background: white;
+      color: #171A2B;
 }
 
 .create {
