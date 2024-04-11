@@ -14,6 +14,7 @@ import { jwtInterceptor } from './app/api-authorization/jwt.interceptor';
 import { RecipesComponent } from './app/recipes/recipes.component';
 import { CreateRecipeComponent } from './app/create-recipe/create-recipe.component';
 import { RecipesDetailsComponent } from './app/recipes-details/recipes-details.component';
+import { MainProfileComponent } from './app/main-profile/main-profile.component';
 
 export function getBaseUrl() {
   return 'https://localhost:7186/api';
@@ -45,6 +46,7 @@ bootstrapApplication(AppComponent, {
         { path: 'register', component: RegistrationComponent},
         { path: 'Recipes', component: RecipesComponent},
         { path: 'CreateRecipe', component: CreateRecipeComponent},
+        { path: 'MainProfile', component: MainProfileComponent},
         { path: 'RecipesDetails/:id', component: RecipesDetailsComponent }
       ])
     ]
