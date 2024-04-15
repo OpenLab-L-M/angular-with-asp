@@ -4,7 +4,7 @@ import { NgIf } from '@angular/common';
 import { NgFor } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { RecipesDTO } from './RecipesDTO';
-import { RecipesService } from 'src/recipes.service';
+import { RecipesService } from 'src/services/recipes.service';
 import { FilterPipe } from 'src/pipes/filter-pipe.pipe';
 import { NgModule } from '@angular/core';
 import { createRecipe } from '../create-recipe/createRecipe';

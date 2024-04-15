@@ -46,7 +46,7 @@ namespace AspNetCoreAPI.Controllers
                 CheckID = recipe.CheckID,
                 userID = GetCurrentUser().Id,
             };
-
+            
         }
         [HttpPost("/CreateRecipe")]
         public RecipesDTO CreateRecipe(RecipesDTO receptik)

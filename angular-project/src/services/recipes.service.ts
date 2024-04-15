@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { RecipesDTO } from 'src/app/recipes/RecipesDTO'
-import { createRecipe } from './app/create-recipe/createRecipe';
+import { createRecipe } from '../app/create-recipe/createRecipe';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 

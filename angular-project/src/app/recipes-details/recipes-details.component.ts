@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { RecipesService } from 'src/recipes.service';
+import { RecipesService } from 'src/services/recipes.service';
 import { RecipesDTO } from '../recipes/RecipesDTO';
 import { Subject, takeUntil } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
