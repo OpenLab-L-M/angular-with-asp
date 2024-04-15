@@ -40,13 +40,19 @@ export class RecipesComponent {
     this.destroy$.next();
     this.destroy$.complete();
   }
-
+  join: String = "";
 
   filterRecipesByDifficulty(difficulty: string): void {
-    this.sSearchRecept = difficulty.toLowerCase();
+    this.join += difficulty + " ";
+  }
+
+  call(){
+    console.log(this.join);
+    this.sSearchRecept = this.join.toLowerCase();
   }
 
   clearFilter(): void {
     this.sSearchRecept = '';
+    this.join = '';
   }
 }
