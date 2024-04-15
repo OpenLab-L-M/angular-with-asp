@@ -8,12 +8,24 @@
 <div class="dropdown">
   <button class="dropbtn">Difficulty</button>
   <div class="dropdown-filter">
-    <a (click)="filterRecipesByDifficulty('Easy')">Easy</a>
+    <input id="diff" type="checkbox" value="Easy" (click)="filterRecipesByDifficulty('Easy')">
+  
+    <label for="diff">Easy</label>
+    <input id="diff2" type="checkbox" value="Medium" (click)="filterRecipesByDifficulty('Medium')">
+  
+    <label for="diff2">Medium</label>
+    <input id="diff3" type="checkbox" value="Hard" (click)="filterRecipesByDifficulty('Hard')">
+  
+    <label for="diff3">Hard</label>
+    <!-- <a (click)="filterRecipesByDifficulty('Easy')">Easy</a>
     <a (click)="filterRecipesByDifficulty('Medium')">Medium</a>
     <a (click)="filterRecipesByDifficulty('Hard')">Hard</a>
-    <a (click)="clearFilter()">Clear</a>
+    <a (click)="clearFilter()">Clear</a> -->
   </div>
 </div>
+
+<button (click) = "call()">filter</button>
+<button (click) = "clearFilter()">Clear</button>
 
 <div class="create">
     <button id="create_link" [routerLink]="['/CreateRecipe']">Create a recipe</button>
@@ -28,5 +40,3 @@
       <div class="recipes-difficulty">{{recipe.difficulty}}</div>
     </div>
   </div>
-  
-    
