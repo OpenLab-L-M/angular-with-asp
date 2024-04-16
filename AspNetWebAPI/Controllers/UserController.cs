@@ -19,9 +19,17 @@ namespace AspNetCoreAPI.Controllers
         public UserController(ApplicationDbContext context) => _context = context;
 
         [HttpGet("/userProfile")]
-        public string? ReturnUserInfo()
+        public GetUserDTO? ReturnUserInfo()
         {
-            return "funguje";
+            var user = GetCurrentUser();
+            GetUserDTO userik = new GetUserDTO();
+            {
+                userik.UserName = user.UserName;
+                userik.PictureURL = user.PictureURL;
+
+            }
+            return userik;
+            
         }
         [HttpGet("/userProfile/usersRecipes")]
         public IEnumerable<RecipesDTO> UserRecipes()
