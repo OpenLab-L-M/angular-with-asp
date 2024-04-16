@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatButton } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { AuthenticationService } from '../api-authorization/authentication.service';
 import { NgIf } from '@angular/common';
 
@@ -11,6 +12,7 @@ import { NgIf } from '@angular/common';
   imports: [
     RouterLink,
     MatToolbar,
+    MatIconModule,
     MatButton,
     NgIf
   ],

@@ -7,7 +7,7 @@
     <button mat-button (click)="logout()">Logout</button>
     <button mat-button [routerLink]="['/Recipes']">Recipes</button>
     <button mat-button [routerLink]="['/CreateRecipe']">Create Recipe</button>
-    <button mat-button [routerLink]="['/userProfile']">User Profile</button>
+    <button mat-button [routerLink]="['/userProfile']"><mat-icon>account_circle</mat-icon></button>
   } @else {
     <button mat-button [routerLink]="['/login']">Login</button>
     <button mat-button [routerLink]="['/register']">Registration</button>
