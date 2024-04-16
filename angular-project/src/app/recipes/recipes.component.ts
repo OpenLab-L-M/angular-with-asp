@@ -5,6 +5,8 @@ import { NgFor } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { RecipesDTO } from './RecipesDTO';
 import { RecipesService } from 'src/services/recipes.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { FilterPipe } from 'src/pipes/filter-pipe.pipe';
 import { NgModule } from '@angular/core';
 import { createRecipe } from '../create-recipe/createRecipe';
@@ -16,7 +18,9 @@ import { createRecipe } from '../create-recipe/createRecipe';
     RouterLink,
     NgFor,
     NgIf,
-    FilterPipe
+    FilterPipe,
+    MatButtonModule,
+    MatCardModule
   ],
   
   templateUrl: './recipes.component.html',

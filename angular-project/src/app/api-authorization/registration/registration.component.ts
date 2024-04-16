@@ -34,7 +34,8 @@ export class RegistrationComponent implements OnInit {
     this.registerForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', passwordStrengthValidator()),
-      confirmPassword: new FormControl('', equalValuesValidator('password'))
+      confirmPassword: new FormControl('', equalValuesValidator('password')),
+      pictureURL: new FormControl(''),
     });
   }
 
