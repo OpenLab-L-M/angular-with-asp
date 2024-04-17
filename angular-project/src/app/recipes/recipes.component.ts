@@ -8,6 +8,9 @@ import { RecipesService } from 'src/services/recipes.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { FilterPipe } from 'src/pipes/filter-pipe.pipe';
+import { FormsModule } from '@angular/forms';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { ElementRef, ViewChild } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { createRecipe } from '../create-recipe/createRecipe';
 
@@ -20,7 +23,9 @@ import { createRecipe } from '../create-recipe/createRecipe';
     NgIf,
     FilterPipe,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatSidenavModule,
+    FormsModule
   ],
   
   templateUrl: './recipes.component.html',
@@ -31,6 +36,10 @@ export class RecipesComponent {
   recipes? = signal<RecipesDTO[]>([]);
   private destroy$ = new Subject<void>();
   guild = signal<RecipesDTO>(undefined);
+
+  easyChecked: boolean = false;
+  mediumChecked: boolean = false;
+  hardChecked: boolean = false;
 
   sSearchRecept: string = '';
   constructor() { }
@@ -47,16 +56,31 @@ export class RecipesComponent {
   join: String = "";
 
   filterRecipesByDifficulty(difficulty: string): void {
-    this.join += difficulty + " ";
+    // Toggle the difficulty in the search string
+    if (this.join.includes(difficulty)) {
+      // Remove the difficulty if it's already in the search string
+      this.join = this.join.replace(difficulty + " ", "");
+    } else {
+      // Add the difficulty if it's not in the search string
+      this.join += difficulty + " ";
+    }
   }
-
-  call(){
+  
+  call() {
     console.log(this.join);
-    this.sSearchRecept = this.join.toLowerCase();
+    // Split the search string by space to get individual difficulties
+    const difficultiesArray = this.join.trim().split(" ");
+    // Join the difficulties with a space and convert to lowercase
+    this.sSearchRecept = difficultiesArray.join(" ").toLowerCase();
   }
-
+  
   clearFilter(): void {
+    // Clear both the join and the search string
     this.sSearchRecept = '';
     this.join = '';
+
+    this.easyChecked = false;
+    this.mediumChecked = false;
+    this.hardChecked = false;
   }
 }

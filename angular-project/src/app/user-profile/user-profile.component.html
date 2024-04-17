@@ -1,5 +1,21 @@
 <h1>Profile</h1>
-<img [src]="this.user().pictureURL"/>
 <div>{{this.user().userName}}</div>
 <!-- <div>{{this.user().userProfilePicture}}</div> -->
 <mat-icon>account_circle</mat-icon>
+<div class="form-group">
+    <input type="file" (change)="onImageUpload($event)">
+    <input type="button" (click)="imageUploadAction()" value="Upload Image" class="btn1">
+</div>
+<div class="recipes-container">
+    <mat-card class="recipes-items" *ngFor="let ourRecipe of ourListOfRecipes()">
+      <mat-card-header>
+        <mat-card-title class="recipes-name">{{ourRecipe.name}}</mat-card-title>
+        <mat-card-subtitle class="recipes-difficulty">{{ourRecipe.difficulty}}</mat-card-subtitle>
+      </mat-card-header>
+      
+        <img mat-card-image [src]="ourRecipe.imageURL" class="recipes-images"/>
+      
+      
+      
+    </mat-card>
+  </div>

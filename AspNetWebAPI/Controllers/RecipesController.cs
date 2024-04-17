@@ -14,7 +14,15 @@ namespace AspNetCoreAPI.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        public RecipesController(ApplicationDbContext context) => _context = context;
+        private readonly IWebHostEnvironment _environment;
+
+    
+
+        public RecipesController(ApplicationDbContext context, IWebHostEnvironment environment)
+        {
+            _context = context;
+            _environment = environment;
+        }
 
         [HttpGet]
         public IEnumerable<RecipesDTO> GetRecipesList()
@@ -88,6 +96,42 @@ namespace AspNetCoreAPI.Controllers
             var userName = User.FindFirstValue(ClaimTypes.Name);
 
             return _context.Users.SingleOrDefault(user => user.UserName == userName);
+        }
+
+
+        /*   [HttpPost("upload")]
+           public IActionResult UploadImage()
+           {
+               return Ok(new { message = "Image uploaded successfully" });
+           }
+           */
+
+   
+
+        [Route("upload")]
+        [HttpPost]
+        public JsonResult SaveFile()
+        {
+            try
+            {
+                var httpRequest = Request.Form;
+                var postedFile = httpRequest.Files[0];
+                string filename = postedFile.FileName;
+                var physicalPath = _environment.ContentRootPath + "/Photos/" + filename;
+
+                 using (var stream = new FileStream(physicalPath, FileMode.Create))
+                      {
+                          postedFile.CopyTo(stream);
+                      }
+                
+                
+                return new JsonResult(filename);
+            }
+            catch (Exception)
+            {
+
+                return new JsonResult("anonymous.png");
+            }
         }
 
     }
