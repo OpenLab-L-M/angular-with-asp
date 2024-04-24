@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { Router, RouterLink } from '@angular/router';
 import { RecipesService } from 'src/services/recipes.service';
 import { RecipesDTO } from '../recipes/RecipesDTO';
@@ -11,7 +14,7 @@ import { Subject, takeUntil } from 'rxjs';
 @Component({
   selector: 'app-create-recipe',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule,
+  imports: [RouterLink, ReactiveFormsModule, MatSelectModule, MatInputModule, MatFormFieldModule,
     ],
   templateUrl: './create-recipe.component.html',
   styleUrl: './create-recipe.component.css'

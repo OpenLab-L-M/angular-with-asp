@@ -8,6 +8,13 @@ body {
   background-color: #ece9e9;
 }
 
+form {
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* img {
     position:fixed;
     left: 0;
@@ -27,17 +34,17 @@ body {
     z-index: -1;
 } */
 
-.tabulka {
+/* .tabulka {
   position: absolute;
-  /* align-items: center; */
+
     color: rgba(0,0,0,.8);
-    /* display: grid; */
+
     font-family: 'Montserrat',sans-serif;
     transform: translate(-50%, -50%);
     background-color: #cc928d;
     font-size: 14px;
     font-weight: 400;
-    /* justify-items: center; */
+
     width: 50%;
     height: 80%;
     margin-top: 3%;
@@ -48,8 +55,8 @@ body {
 
 
 .formy {
-  height: 100%; /* Roztáhne formulář na celou šířku */
-}
+  height: 100%; Roztáhne formulář na celou šířku 
+} */
 
 
 
@@ -101,12 +108,12 @@ h1 {
   margin-bottom: 30px;
 }
 
-.set {
+/* .set {
 
   margin: 30px 0;
-}
+} */
 
-.set input {
+/* .set input {
   border: 1px solid rgba(0,0,0,.1);
   border-radius: 4px;
   height: 38px;
@@ -124,6 +131,12 @@ input {
 
 input, label {
   color: rgba(0,0,0,.8);
+} */
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 
@@ -153,9 +166,9 @@ footer #make:hover {
 /* .Name_rcp, .Description_rcp, .Image_rcp {
   display: block;
 } */
-.Name_rcp label, .Description_rcp label, .Image_rcp label {
+/* .Name_rcp label, .Description_rcp label, .Image_rcp label {
   font-size: 20px;
-}
+} */
 
 .diff_radio {
   display: flex;

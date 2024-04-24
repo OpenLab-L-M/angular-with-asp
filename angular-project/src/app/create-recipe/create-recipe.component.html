@@ -3,31 +3,37 @@
     <div class="black">
       <img src="https://th.bing.com/th/id/R.75b7633177977a276cd781b0e0520a92?rik=EpfN3HQQ7%2fOhcw&riu=http%3a%2f%2fwww.solidbackgrounds.com%2fimages%2f5120x2880%2f5120x2880-black-solid-color-background.jpg&ehk=AqB9SoEXUPu7BGaVH7M32l2%2b1UZ%2foIlkcd8MnplO62E%3d&risl=&pid=ImgRaw&r=0" alt=""/>
     </div> -->
-    <div class="tabulka">
+    
       
-      <div class="formy">
+      
         <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
           <header>
             <h1>Create your recipe</h1>
           <div class="set">
-            <div class="Name_rcp">
-              <p>
-                <label for="name">Name of recipe: </label>
-                <input id="name" type="text" formControlName="name">
-                
-              </p>
-            </div>
+            <mat-form-field class="Name_rcp">
+              
+
+                  <mat-label for="name">Name of recipe: </mat-label>
+                  <input matInput id="name" formControlName="name">
+                  
+
+              
+            </mat-form-field>
+            
           </div>
           
           
           <div class="set">
-            <div class="Description_rcp">
-              <p>
-                <label for="desc">Recipe description: </label>
-                <input id="desc" type="text" formControlName="desc">
-                
-              </p>
-            </div>
+            <mat-form-field class="Description_rcp">
+              
+
+                  <mat-label for="desc">Recipe description: </mat-label>
+                  <textarea matInput id="desc" formControlName="desc"></textarea>
+                  
+
+              
+            </mat-form-field>
+            
           </div>
           
           
@@ -80,6 +86,6 @@
             <label for="img">Add an image: </label>
           </p> -->
         </form>
-      </div>
-    </div>
+      
+    
   </body>
