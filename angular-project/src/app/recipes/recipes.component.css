@@ -121,3 +121,23 @@ body {
   background: #171A2B;
     color: white;
 }
+
+#favourite {
+  position: relative;
+  z-index: 3;
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  opacity: 0;
+}
+
+#like {
+  position: absolute;
+  left: 0;
+  margin-left: 8px;
+}
+
+#favourite:checked + #like {
+  color: red;
+  transition: 0.2s;
+}

@@ -8,6 +8,7 @@ import { RecipesService } from 'src/services/recipes.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { FilterPipe } from 'src/pipes/filter-pipe.pipe';
+import { MatIcon } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ElementRef, ViewChild } from '@angular/core';
@@ -20,6 +21,7 @@ import { createRecipe } from '../create-recipe/createRecipe';
   imports: [
     RouterLink,
     NgFor,
+    MatIcon,
     NgIf,
     FilterPipe,
     MatButtonModule,
