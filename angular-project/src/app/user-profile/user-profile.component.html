@@ -13,7 +13,7 @@
         <mat-card-subtitle class="recipes-difficulty">{{ourRecipe.difficulty}}</mat-card-subtitle>
       </mat-card-header>
       
-        <img mat-card-image [src]="ourRecipe.imageURL" class="recipes-images"/>
+        <img mat-card-image [src]="ourRecipe.imageURL" class="recipes-images" [routerLink]="['/RecipesDetails', ourRecipe.id]"/>
       
         <mat-card-footer>
           <input id="favourite" type="checkbox">

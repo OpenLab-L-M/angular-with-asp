@@ -7,6 +7,10 @@ position:fixed;
   opacity: 50%;
   z-index: -1;
 } */
+/* * {
+  background-color: #ece9e9;
+} */
+
 body {
   background-color: #ece9e9;
 }

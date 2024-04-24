@@ -58,26 +58,20 @@ export class RecipesComponent {
   join: String = "";
 
   filterRecipesByDifficulty(difficulty: string): void {
-    // Toggle the difficulty in the search string
     if (this.join.includes(difficulty)) {
-      // Remove the difficulty if it's already in the search string
       this.join = this.join.replace(difficulty + " ", "");
     } else {
-      // Add the difficulty if it's not in the search string
       this.join += difficulty + " ";
     }
   }
   
   call() {
     console.log(this.join);
-    // Split the search string by space to get individual difficulties
     const difficultiesArray = this.join.trim().split(" ");
-    // Join the difficulties with a space and convert to lowercase
     this.sSearchRecept = difficultiesArray.join(" ").toLowerCase();
   }
   
   clearFilter(): void {
-    // Clear both the join and the search string
     this.sSearchRecept = '';
     this.join = '';
 
