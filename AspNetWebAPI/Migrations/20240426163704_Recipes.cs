@@ -10,6 +10,12 @@ namespace AspNetCoreAPI.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AddColumn<string>(
+                name: "PictureURL",
+                table: "AspNetUsers",
+                type: "nvarchar(max)",
+                nullable: true);
+
             migrationBuilder.CreateTable(
                 name: "Recipes",
                 columns: table => new
@@ -20,7 +26,8 @@ namespace AspNetCoreAPI.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ImageURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Difficulty = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CheckID = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    CheckID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsFavourite = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -33,6 +40,10 @@ namespace AspNetCoreAPI.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Recipes");
+
+            migrationBuilder.DropColumn(
+                name: "PictureURL",
+                table: "AspNetUsers");
         }
     }
 }

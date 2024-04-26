@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AspNetCoreAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240415190707_UserModified")]
+    [Migration("20240426165915_UserModified")]
     partial class UserModified
     {
         /// <inheritdoc />
@@ -112,6 +112,9 @@ namespace AspNetCoreAPI.Migrations
 
                     b.Property<string>("ImageURL")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsFavourite")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
