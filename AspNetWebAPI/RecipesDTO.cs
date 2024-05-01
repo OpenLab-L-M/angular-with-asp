@@ -11,7 +11,7 @@ namespace AspNetCoreAPI
         public string? ImageURL { get; set; }
         public string? CheckID { get; set; }
         public string? userID { get; set; }
-        public bool? Favourite { get; set; }
+       
         
     }
 }

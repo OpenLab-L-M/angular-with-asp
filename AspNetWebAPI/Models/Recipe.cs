@@ -13,6 +13,6 @@ namespace AspNetCoreAPI.Models
         public string? ImageURL { get; set; }
         public string? Difficulty { get; set; }
         public string? CheckID { get; set; }
-        public bool? IsFavourite { get; set; }
+        public ICollection<ApplicationUser>? user { get; set; }
     }
 }

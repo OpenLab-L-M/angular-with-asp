@@ -14,5 +14,6 @@ namespace AspNetCoreAPI.Data
         }
          
     public DbSet<Recipe> Recipes { get; set; } = default!;
+    public DbSet<ApplicationUser> Userik { get; set; } = default!;
 }
 }

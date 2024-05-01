@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AspNetCoreAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240426163704_Recipes")]
-    partial class Recipes
+    [Migration("20240430174659_RecipesAndRelationship")]
+    partial class RecipesAndRelationship
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,21 @@ namespace AspNetCoreAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("ApplicationUserRecipe", b =>
+                {
+                    b.Property<int>("FavouritesId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("userId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("FavouritesId", "userId");
+
+                    b.HasIndex("userId");
+
+                    b.ToTable("ApplicationUserRecipe");
+                });
 
             modelBuilder.Entity("AspNetCoreAPI.Models.ApplicationUser", b =>
                 {
@@ -112,9 +127,6 @@ namespace AspNetCoreAPI.Migrations
 
                     b.Property<string>("ImageURL")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("IsFavourite")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -259,6 +271,21 @@ namespace AspNetCoreAPI.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("ApplicationUserRecipe", b =>
+                {
+                    b.HasOne("AspNetCoreAPI.Models.Recipe", null)
+                        .WithMany()
+                        .HasForeignKey("FavouritesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AspNetCoreAPI.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("userId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
