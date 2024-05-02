@@ -10,10 +10,10 @@ namespace AspNetCoreAPI.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
+            migrationBuilder.AddColumn<byte[]>(
                 name: "PictureURL",
                 table: "AspNetUsers",
-                type: "nvarchar(max)",
+                type: "varbinary(max)",
                 nullable: true);
 
             migrationBuilder.CreateTable(

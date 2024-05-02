@@ -16,7 +16,13 @@ namespace AspNetCoreAPI.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        public UserController(ApplicationDbContext context) => _context = context;
+        private readonly IWebHostEnvironment _environment;
+
+        public UserController(ApplicationDbContext context, IWebHostEnvironment environment)
+        {
+            _context = context;
+            _environment = environment;
+        }
 
         [HttpGet("/userProfile")]
         public GetUserDTO? ReturnUserInfo()
@@ -92,6 +98,48 @@ namespace AspNetCoreAPI.Controllers
             var userName = User.FindFirstValue(ClaimTypes.Name);
 
             return _context.Users.SingleOrDefault(user => user.UserName == userName);
+        }
+
+        [Route("upload")]
+        [HttpPost]
+        public JsonResult SaveFile()
+        {
+            try
+            {
+                var httpRequest = Request.Form;
+                var postedFile = httpRequest.Files[0];
+                string filename = postedFile.FileName;
+                var physicalPath = _environment.ContentRootPath + "/Photos/" + filename;
+
+                using (var stream = new FileStream(physicalPath, FileMode.Create))
+                {
+                    postedFile.CopyTo(stream);
+                }
+
+                var currentUser = GetCurrentUser();
+                if (currentUser != null)
+                {
+                    byte[] fileBytes;
+                    using (var fileStream = new FileStream(physicalPath, FileMode.Open, FileAccess.Read))
+                    {
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            fileStream.CopyTo(memoryStream);
+                            fileBytes = memoryStream.ToArray();
+                        }
+                    }
+                    currentUser.PictureURL = fileBytes;
+                    _context.SaveChanges();
+                }
+
+
+                return new JsonResult(filename);
+            }
+            catch (Exception)
+            {
+
+                return new JsonResult("anonymous.png");
+            }
         }
     }
 

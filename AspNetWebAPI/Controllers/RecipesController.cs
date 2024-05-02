@@ -14,14 +14,12 @@ namespace AspNetCoreAPI.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        private readonly IWebHostEnvironment _environment;
 
     
 
-        public RecipesController(ApplicationDbContext context, IWebHostEnvironment environment)
+        public RecipesController(ApplicationDbContext context)
         {
             _context = context;
-            _environment = environment;
         }
 
         [HttpGet]
@@ -108,31 +106,7 @@ namespace AspNetCoreAPI.Controllers
 
    
 
-        [Route("upload")]
-        [HttpPost]
-        public JsonResult SaveFile()
-        {
-            try
-            {
-                var httpRequest = Request.Form;
-                var postedFile = httpRequest.Files[0];
-                string filename = postedFile.FileName;
-                var physicalPath = _environment.ContentRootPath + "/Photos/" + filename;
-
-                 using (var stream = new FileStream(physicalPath, FileMode.Create))
-                      {
-                          postedFile.CopyTo(stream);
-                      }
-                
-                
-                return new JsonResult(filename);
-            }
-            catch (Exception)
-            {
-
-                return new JsonResult("anonymous.png");
-            }
-        }
+        
 
 
     }

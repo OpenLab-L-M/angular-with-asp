@@ -52,7 +52,7 @@ export class UserProfileComponent {
     imageFormData.append('image', this.uploadedImage, this.uploadedImage.name);
 
 
-    this.httpClient.post('https://localhost:7186/recipes/upload', imageFormData, { observe: 'response' })
+    this.httpClient.post('https://localhost:7186/user/upload', imageFormData, { observe: 'response' })
       .subscribe((response) => {
         if (response.status === 200) {
           this.postResponse = response;
