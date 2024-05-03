@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AspNetCoreAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240502191934_RecipesAndRelationship")]
-    partial class RecipesAndRelationship
+    [Migration("20240503121231_RecipesAndUsersRelationship")]
+    partial class RecipesAndUsersRelationship
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

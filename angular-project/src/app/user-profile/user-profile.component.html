@@ -24,3 +24,19 @@
   </div>
 
 <h2>My Favourite Recipes</h2>
+<div class="recipes-container">
+  <mat-card class="recipes-items" *ngFor="let oursFavRecipe of ourFavRecipes()">
+    <mat-card-header>
+      <mat-card-title class="recipes-name">{{oursFavRecipe.name}}</mat-card-title>
+      <mat-card-subtitle class="recipes-difficulty">{{oursFavRecipe.difficulty}}</mat-card-subtitle>
+    </mat-card-header>
+    
+      <img mat-card-image [src]="oursFavRecipe.imageURL" class="recipes-images" [routerLink]="['/RecipesDetails', oursFavRecipe.id]"/>
+    
+      <mat-card-footer>
+        <input id="favourite" type="checkbox" value="true">
+        <mat-icon id="like">favorite</mat-icon>
+      </mat-card-footer>
+    
+  </mat-card>
+</div>

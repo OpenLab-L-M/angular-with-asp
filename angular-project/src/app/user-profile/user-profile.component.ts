@@ -24,7 +24,7 @@ import { Subject, takeUntil } from 'rxjs';
 export class UserProfileComponent {
 
   ourListOfRecipes = signal<RecipesDTO[]>([]);
-
+  ourFavRecipes = signal<RecipesDTO[]>([]);
   user = signal<UserDTO>(undefined);
   private destroy$ = new Subject<void>();
   constructor(private userService: UserService, private recipesSevice: RecipesService, private httpClient: HttpClient,){}
@@ -34,6 +34,9 @@ export class UserProfileComponent {
     this.userService.usersRecipes()
     .pipe(takeUntil(this.destroy$))
     .subscribe(result => this.ourListOfRecipes.set(result));
+    this.userService.getFavourites()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(result => this.ourFavRecipes.set(result));
   }
   
   uploadedImage: File;

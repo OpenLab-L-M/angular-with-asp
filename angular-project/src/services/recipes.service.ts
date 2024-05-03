@@ -27,4 +27,7 @@ export class RecipesService {
 
     return this.http.delete<string>(this.recipesURL + Id);
   }
+  addToFav(id: number){
+    return this.http.post<void>(this.recipesURL + "AddToFav/" + id, id);
+  }
 }

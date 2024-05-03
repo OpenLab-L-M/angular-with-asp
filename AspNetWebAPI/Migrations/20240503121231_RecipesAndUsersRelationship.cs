@@ -5,7 +5,7 @@
 namespace AspNetCoreAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class RecipesAndRelationship : Migration
+    public partial class RecipesAndUsersRelationship : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

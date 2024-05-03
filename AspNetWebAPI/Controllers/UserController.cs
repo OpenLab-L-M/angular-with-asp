@@ -1,9 +1,11 @@
 ﻿using AspNetCoreAPI.Data;
 using AspNetCoreAPI.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
+using System;
 using System.Security.Claims;
 
 namespace AspNetCoreAPI.Controllers
@@ -17,6 +19,7 @@ namespace AspNetCoreAPI.Controllers
         private readonly ApplicationDbContext _context;
 
         private readonly IWebHostEnvironment _environment;
+        
 
         public UserController(ApplicationDbContext context, IWebHostEnvironment environment)
         {
@@ -54,34 +57,36 @@ namespace AspNetCoreAPI.Controllers
                     userID = GetCurrentUser().Id,
                 });
         }
-        [HttpGet("/recipes/AddToFav/{id:int}")]
-        public bool AddToFav([FromRoute] int id)
+        [HttpPost("/recipes/addtofav/{id:int}")]
+        public IActionResult addtofav([FromRoute] int id)
         {
             var novyOblubenec = _context.Recipes.Where(x => x.Id == id).FirstOrDefault();
-            var userik = GetCurrentUser();
-
-            userik.Favourites.Add(novyOblubenec);
-
+             var userik = GetCurrentUser();
             
-            _context.SaveChanges();
-            if (novyOblubenec != null)
+          
+            if (userik.Favourites.Contains(novyOblubenec))
             {
-                return true;
+                return null;
             }
-            else { return false; }
+            else
+            {
+                userik?.Favourites?.Add(novyOblubenec);
+                novyOblubenec?.user?.Add(userik);
+                _context.SaveChanges();
+                return Ok();
+            }
+
 
         }
+
         [HttpGet("/userProfile/usersFavRecipes")]
         public IEnumerable<RecipesDTO> UserFavRecipes()
         {
+            
             var userik = GetCurrentUser();
+            IEnumerable<Recipe> receptiky = _context.Recipes.Include(favourite => userik.Favourites);
 
-            var favouriteRecipeIds = userik.Favourites.Select(f => f.Id).ToList();
-            IEnumerable<Recipe> dbRecipes = _context.Recipes
-             .Where(recipe => favouriteRecipeIds.Any(id => id == recipe.Id))
-             .ToList();
-
-            return dbRecipes.Select(dbRecipe =>
+            return receptiky.Select(dbRecipe =>
                 new RecipesDTO
                 {
                     Id = dbRecipe.Id,
@@ -140,7 +145,10 @@ namespace AspNetCoreAPI.Controllers
 
                 return new JsonResult("anonymous.png");
             }
+
         }
+        
+
     }
 
 }

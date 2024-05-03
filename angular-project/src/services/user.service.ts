@@ -20,5 +20,8 @@ export class UserService {
   usersRecipes(){
     return this.httpClient.get<RecipesDTO[]>(this.userUrl + '/usersRecipes');
   }
+  getFavourites(){
+    return this.httpClient.get<RecipesDTO[]>(this.userUrl + '/usersFavRecipes');
+  }
 
 }

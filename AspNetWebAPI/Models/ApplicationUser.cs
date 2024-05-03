@@ -6,6 +6,6 @@ namespace AspNetCoreAPI.Models
     {
         public byte[]? PictureURL { get; set; }
 
-        public virtual ICollection<Recipe>? Favourites { get; } = new List<Recipe>();
+        public virtual ICollection<Recipe>? Favourites { get; set; } = new List<Recipe>();
     }
 }

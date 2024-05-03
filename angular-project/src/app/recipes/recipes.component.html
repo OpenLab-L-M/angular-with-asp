@@ -61,8 +61,8 @@
         
           <img mat-card-image [src]="recipe.imageURL" class="recipes-images" [routerLink]="['/RecipesDetails', recipe.id]"/>
         <mat-card-footer>
-          <input id="favourite" type="checkbox">
-          <mat-icon id="like">favorite</mat-icon>
+          <input id="favourite" type="checkbox" (change)="ktoryRecept(recipe.id)">
+          <mat-icon id="like" >favorite</mat-icon>
         </mat-card-footer>
         
         

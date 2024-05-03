@@ -34,6 +34,16 @@ import { createRecipe } from '../create-recipe/createRecipe';
   styleUrl: './recipes.component.css'
 })
 export class RecipesComponent {
+  ktoryRecept(id: number){
+    debugger
+    const checkbox = document.getElementById('favourite') as HTMLInputElement;
+    const isChecked = (event.target as HTMLInputElement).checked;
+    if(isChecked){
+      this.recipeService.addToFav(id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe();
+    }
+    }
   recipeService = inject(RecipesService);
   recipes? = signal<RecipesDTO[]>([]);
   private destroy$ = new Subject<void>();

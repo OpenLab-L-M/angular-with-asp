@@ -1,11 +1,6 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\angular-project",
-    "\\AspNetWebAPI",
-    "\\AspNetWebAPI\\Controllers",
-    "\\AspNetWebAPI\\Models"
+    ""
   ],
-  "SelectedNode": "\\AspNetWebAPI\\Models\\ApplicationUser.cs",
   "PreviewInSolutionExplorer": false
 }
