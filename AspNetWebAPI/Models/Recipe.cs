@@ -13,6 +13,6 @@ namespace AspNetCoreAPI.Models
         public string? ImageURL { get; set; }
         public string? Difficulty { get; set; }
         public string? CheckID { get; set; }
-        public virtual ICollection<ApplicationUser>? user { get; set; } = new List<ApplicationUser>();
+        
     }
 }

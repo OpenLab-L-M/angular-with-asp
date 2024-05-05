@@ -4,8 +4,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Identity.Client;
 using System;
+using System.Linq;
 using System.Security.Claims;
 
 namespace AspNetCoreAPI.Controllers
@@ -58,53 +60,46 @@ namespace AspNetCoreAPI.Controllers
                 });
         }
         [HttpPost("/recipes/addtofav/{id:int}")]
-        public IActionResult addtofav([FromRoute] int id)
-        {
-            var novyOblubenec = _context.Recipes.Where(x => x.Id == id).FirstOrDefault();
+         public IActionResult addtofav([FromRoute] int id)
+         {
+             var novyOblubenec = _context.Recipes.Where(x => x.Id == id).FirstOrDefault();
              var userik = GetCurrentUser();
-            
-          
-            if (userik.Favourites.Contains(novyOblubenec))
+
+            ApplicationUserRecipe pridajOblubeny = new ApplicationUserRecipe()
             {
-                return null;
-            }
-            else
-            {
-                userik?.Favourites?.Add(novyOblubenec);
-                novyOblubenec?.user?.Add(userik);
-                _context.SaveChanges();
-                return Ok();
-            }
+                RecipeId = novyOblubenec.Id,
+                UserId = GetCurrentUser().Id,
+                recept = novyOblubenec,
+                user = GetCurrentUser()
+                
+            };
+            _context.Add(pridajOblubeny);
+            _context.SaveChanges();
+            return Ok();
+             
 
+         }
 
-        }
-
-        [HttpGet("/userProfile/usersFavRecipes")]
-        public IEnumerable<RecipesDTO> UserFavRecipes()
+        [HttpGet("/userprofile/usersfavrecipes")]
+        public IActionResult userfavrecipes()
         {
-            
-            var userik = GetCurrentUser();
-            IEnumerable<Recipe> receptiky = _context.Recipes.Include(favourite => userik.Favourites);
 
-            return receptiky.Select(dbRecipe =>
-                new RecipesDTO
-                {
-                    Id = dbRecipe.Id,
-                    Name = dbRecipe.Name,
-                    Description = dbRecipe.Description,
-                    Difficulty = dbRecipe.Difficulty,
-                    ImageURL = dbRecipe.ImageURL,
-                    CheckID = dbRecipe.CheckID,
-                    userID = GetCurrentUser().Id,
-                });
+            var fav = _context.UserRecipes
+                .Include(f => f.recept)
+                .Where(f => f.UserId == GetCurrentUser().Id && f.RecipeId == f.recept.Id)
+                .ToList();
+
+            return Ok(fav);
+            
         }
+       
         protected ApplicationUser? GetCurrentUser()
         {
             var userName = User.FindFirstValue(ClaimTypes.Name);
 
             return _context.Users.SingleOrDefault(user => user.UserName == userName);
         }
-
+        
         [Route("upload")]
         [HttpPost]
         public JsonResult SaveFile()
