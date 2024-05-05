@@ -1,18 +1,21 @@
 <h1>Profile</h1>
 <div>{{this.user().userName}}</div>
+<img [src]="getImageSrc(this.user().pictureURL)" alt="User Picture" class="profile_img">
+<!-- <img [src]="this.liveDemo" class="profile_img"/> -->
 <!-- <div>{{this.user().userProfilePicture}}</div> -->
-<mat-icon>account_circle</mat-icon>
-<div class="form-group">
+<div class="form-group" *ngIf="!this.user().pictureURL && !imageUploaded">
     <input type="file" (change)="onImageUpload($event)">
-    <input type="button" (click)="imageUploadAction()" value="Upload Image" class="btn1">
+    <input type="button" (click)="imageUploadAction()" value="Add profile picture" class="btn1">
 </div>
+<input *ngIf="this.user().pictureURL" type="button" value="Delete profile picture" (click)="deleteImage()">
+
 <div class="recipes-container">
     <mat-card class="recipes-items" *ngFor="let ourRecipe of ourListOfRecipes()">
       <mat-card-header>
         <mat-card-title class="recipes-name">{{ourRecipe.name}}</mat-card-title>
         <mat-card-subtitle class="recipes-difficulty">{{ourRecipe.difficulty}}</mat-card-subtitle>
       </mat-card-header>
-      
+  
         <img mat-card-image [src]="ourRecipe.imageURL" class="recipes-images" [routerLink]="['/RecipesDetails', ourRecipe.id]"/>
       
         <mat-card-footer>
@@ -32,7 +35,7 @@
     </mat-card-header>
     
       <img mat-card-image [src]="oursFavRecipe.imageURL" class="recipes-images" [routerLink]="['/RecipesDetails', oursFavRecipe.id]"/>
-    
+      
       <mat-card-footer>
         <input id="favourite" type="checkbox" value="true">
         <mat-icon id="like">favorite</mat-icon>

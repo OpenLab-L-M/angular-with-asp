@@ -5,6 +5,11 @@
     z-index: 2;
 }
 
+.profile_img {
+  max-width: 250px;
+  max-height: 250px;
+}
+
 .recipes-items {
     width: 350px;
     background-color:white;

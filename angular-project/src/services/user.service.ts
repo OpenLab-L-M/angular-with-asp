@@ -11,8 +11,11 @@ import { RecipesDTO } from 'src/app/recipes/RecipesDTO';
 })
 export class UserService {
   private httpClient = inject(HttpClient);
+
+
   constructor(@Inject('BASE_URL') private baseUrl: string, private route: ActivatedRoute) { }
   private userUrl = this.baseUrl + '/userProfile';
+  private anotherUserURL = this.baseUrl + '/user';
   getCurrentUser(){
     return this.httpClient.get<UserDTO>(this.userUrl);
   }
@@ -24,4 +27,7 @@ export class UserService {
     return this.httpClient.get<RecipesDTO[]>(this.userUrl + '/usersFavRecipes');
   }
 
+  deleteImage(): Observable<any> {
+    return this.httpClient.delete<any>(this.anotherUserURL + '/deleteImage');
+  }
 }

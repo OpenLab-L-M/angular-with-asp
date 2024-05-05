@@ -147,7 +147,23 @@ namespace AspNetCoreAPI.Controllers
             }
 
         }
-        
+
+
+        [HttpDelete("/user/deleteImage")]
+        public IActionResult DeleteImage()
+        {
+            var user = GetCurrentUser();
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            user.PictureURL = null; // Vymažte URL obrázka
+            _context.SaveChanges(); // Uložte zmeny do databázy
+
+            return Ok();
+        }
+
 
     }
 
