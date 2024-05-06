@@ -3,24 +3,35 @@
     <p class="detail_title">
       {{this.recipeService.chRecipe.name}}
     </p>
-    <p class="detail_difficulty">
+    <!-- <p class="detail_difficulty">
       Difficulty: {{this.recipeService.chRecipe.difficulty}}
-    </p>
-    <img class="detail_image" [src]="this.recipeService.chRecipe.imageURL" />
-    <p class="detail_description">
-      Description: <br> {{this.recipeService.chRecipe.description}}
-    </p>
-    
-    <footer>
-      <button id="back" [routerLink]="['/Recipes']">Back</button>
-    <div *ngIf="recipeService.chRecipe.checkID == recipeService.chRecipe.userID">
+    </p> -->
+    <mat-card>
+      <mat-card-header>
+        <mat-card-subtitle>Difficulty: {{this.recipeService.chRecipe.difficulty}}</mat-card-subtitle>
+        <mat-card-title>Rate this recipe</mat-card-title>
+      </mat-card-header>
+      <mat-card-actions>
+        <input type="radio" name="rating" value="1" id="radio_up">
+        <mat-icon id="thumb_up">thumb_up</mat-icon>
+        <input type="radio" name="rating" value="2" id="radio_down">
+        <mat-icon id="thumb_down">thumb_down</mat-icon>
+      </mat-card-actions>
+      <img class="detail_image" [src]="this.recipeService.chRecipe.imageURL" />
+      <p class="detail_description">
+        Description: <br> {{this.recipeService.chRecipe.description}}
+      </p>
+      <mat-card-footer>
+        <button id="back" [routerLink]="['/Recipes']">Back</button>
+        <div *ngIf="recipeService.chRecipe.checkID == recipeService.chRecipe.userID">
       
         
         <button id="delete" (click)="deleteBtn()">Delete Recipe</button>
       
       
       </div>
-    </footer>
+      </mat-card-footer>
+    </mat-card>
     
       
   </div>

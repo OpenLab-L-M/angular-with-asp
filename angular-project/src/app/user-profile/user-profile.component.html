@@ -1,14 +1,18 @@
 <h1>Profile</h1>
-<div>{{this.user().userName}}</div>
-<img [src]="getImageSrc(this.user().pictureURL)" alt="User Picture" class="profile_img">
-<!-- <img [src]="this.liveDemo" class="profile_img"/> -->
+<h3>Your name: {{this.user().userName}}</h3>
+<h2>Your profile picture</h2>
+<img *ngIf="this.user().pictureURL" [src]="getImageSrc(this.user().pictureURL)" alt="User Picture" class="profile_img">
+
+<img *ngIf="!this.user().pictureURL" src="https://st3.depositphotos.com/9998432/13335/v/450/depositphotos_133352088-stock-illustration-default-placeholder-profile-icon.jpg" alt="" class="profile_img">
 <!-- <div>{{this.user().userProfilePicture}}</div> -->
 <div class="form-group" *ngIf="!this.user().pictureURL && !imageUploaded">
     <input type="file" (change)="onImageUpload($event)">
-    <input type="button" (click)="imageUploadAction()" value="Add profile picture" class="btn1">
+    <input id="add_picture" type="button" (click)="imageUploadAction()" value="Add profile picture" class="btn1">
 </div>
-<input *ngIf="this.user().pictureURL" type="button" value="Delete profile picture" (click)="deleteImage()">
+<input id="delete" *ngIf="this.user().pictureURL" type="button" value="Delete profile picture" (click)="deleteImage()">
+<img [src]="this.liveDemo" class="profile_img"/>
 
+<h2>Your recipes</h2>
 <div class="recipes-container">
     <mat-card class="recipes-items" *ngFor="let ourRecipe of ourListOfRecipes()">
       <mat-card-header>

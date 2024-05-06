@@ -4,12 +4,16 @@ import { RecipesDTO } from '../recipes/RecipesDTO';
 import { Subject, takeUntil } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatIconAnchor } from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-recipes-details',
   standalone: true,
-  imports: [CommonModule, RouterLink], 
+  imports: [CommonModule, RouterLink, MatIconModule, MatIconAnchor, MatButtonModule, MatRadioModule, MatCardModule], 
   templateUrl: './recipes-details.component.html',
   styleUrl: './recipes-details.component.css'
 })

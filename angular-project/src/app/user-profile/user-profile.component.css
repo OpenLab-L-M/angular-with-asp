@@ -10,6 +10,34 @@
   max-height: 250px;
 }
 
+#add_picture {
+  background: #fff;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-color: transparent;
+  width: 8%;
+  height: 50px;
+  transition: .2s all ease-in-out;
+}
+
+#add_picture:hover {
+  background: #171A2B;
+  color: white;
+  
+}
+
+#delete {
+  background: #807182;
+  border: 1px solid transparent;
+  width: 8%;
+  height: 50px;
+  color: #fff;
+}
+
+#delete:hover {
+  background: #171A2B;
+}
+
 .recipes-items {
     width: 350px;
     background-color:white;
