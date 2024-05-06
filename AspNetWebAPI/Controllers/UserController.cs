@@ -69,11 +69,8 @@ namespace AspNetCoreAPI.Controllers
             {
                 RecipeId = novyOblubenec.Id,
                 UserId = GetCurrentUser().Id,
-                recept = novyOblubenec,
-                user = GetCurrentUser()
-                
             };
-            _context.Add(pridajOblubeny);
+            _context.UserRecipes.Add(pridajOblubeny);
             _context.SaveChanges();
             return Ok();
              
@@ -83,11 +80,11 @@ namespace AspNetCoreAPI.Controllers
         [HttpGet("/userprofile/usersfavrecipes")]
         public IActionResult userfavrecipes()
         {
-
+            var favouriteRecipeIds = _context.UserRecipes.Select(f => f.RecipeId).ToList();
             var fav = _context.UserRecipes
-                .Include(f => f.recept)
-                .Where(f => f.UserId == GetCurrentUser().Id && f.RecipeId == f.recept.Id)
-                .ToList();
+              .Include(f => f.recept)
+              .Where(f => f.UserId == GetCurrentUser().Id && favouriteRecipeIds.Contains(f.RecipeId))
+              .ToList();
 
             return Ok(fav);
             

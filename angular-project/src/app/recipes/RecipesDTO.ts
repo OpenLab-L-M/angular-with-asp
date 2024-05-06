@@ -6,4 +6,5 @@ export class RecipesDTO{
     imageURL: string;
     checkID: string;
     userID: string;
+    recipesID?: number;
   }
