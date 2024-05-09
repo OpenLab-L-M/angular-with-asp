@@ -56,9 +56,10 @@ body {
 
 
 .detail_image {
-    width: 43%;
     float: left;
     padding-right: 20px;
+    max-width: 500px;
+    max-height: 500px;
 }
 
 mat-card-footer #back {

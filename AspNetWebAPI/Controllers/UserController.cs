@@ -1,4 +1,5 @@
-﻿using AspNetCoreAPI.Data;
+﻿
+using AspNetCoreAPI.Data;
 using AspNetCoreAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -150,8 +151,8 @@ namespace AspNetCoreAPI.Controllers
                 return NotFound();
             }
 
-            user.PictureURL = null; // Vymažte URL obrázka
-            _context.SaveChanges(); // Uložte zmeny do databázy
+            user.PictureURL = null;
+            _context.SaveChanges();
 
             return Ok();
         }
