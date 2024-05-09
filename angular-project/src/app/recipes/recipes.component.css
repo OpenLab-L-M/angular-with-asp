@@ -110,20 +110,33 @@ body {
 
 .create {
   text-align: center;
+  align-items: center;
+  position: fixed;
+  margin-bottom: 80px;
+  margin-right: 80px;
+  right: 0;
+  bottom: 0;
 }
 
 #create_link {
   
-  background: #fff;
+  background: black;
   font-size: 17px;
-    width: 10%;
-    height: 60px;
+    width: 70px;
+    height: 70px;
+    color: white;
     transition: .2s all ease-in-out;
+    border-radius: 35px;
 }
 
 #create_link:hover {
-  background: #171A2B;
-    color: white;
+  background: white;
+    color: black;
+}
+
+#create_link mat-icon {
+  font-size: 31px;
+  text-align: center;
 }
 
 #favourite {

@@ -48,9 +48,7 @@
 
   
   
-  <div class="create">
-      <button id="create_link" [routerLink]="['/CreateRecipe']">Create a recipe</button>
-    </div>
+  
     
     <div class="recipes-container">
       <mat-card class="recipes-items" *ngFor="let recipe of recipes() | filter : sSearchRecept">
@@ -59,14 +57,18 @@
           <mat-card-subtitle class="recipes-difficulty">{{recipe.difficulty}}</mat-card-subtitle>
         </mat-card-header>
         
-          <img mat-card-image [src]="recipe.imageURL" class="recipes-images" [routerLink]="['/RecipesDetails', recipe.id]"/>
+          <img mat-card-image [src]="recipe.imageURL" class="recipes-images" matTooltip="Details of {{recipe.name}}" [routerLink]="['/RecipesDetails', recipe.id]"/>
         <mat-card-footer>
-          <input id="favourite" type="checkbox" (change)="ktoryRecept(recipe.id)">
+          <input id="favourite" type="checkbox" (change)="ktoryRecept(recipe.id)" matTooltip="Add to favourite">
           <mat-icon id="like" >favorite</mat-icon>
         </mat-card-footer>
         
         
       </mat-card>
+    </div>
+
+    <div class="create">
+      <button id="create_link" [routerLink]="['/CreateRecipe']" matTooltip="Create a new recipe"><mat-icon>add</mat-icon></button>
     </div>
 </body>
 

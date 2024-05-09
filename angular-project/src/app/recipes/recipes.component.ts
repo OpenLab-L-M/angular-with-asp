@@ -11,6 +11,7 @@ import { FilterPipe } from 'src/pipes/filter-pipe.pipe';
 import { MatIcon } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTooltip } from '@angular/material/tooltip';
 import { ElementRef, ViewChild } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { createRecipe } from '../create-recipe/createRecipe';
@@ -25,6 +26,7 @@ import { createRecipe } from '../create-recipe/createRecipe';
     NgIf,
     FilterPipe,
     MatButtonModule,
+    MatTooltip,
     MatCardModule,
     MatSidenavModule,
     FormsModule

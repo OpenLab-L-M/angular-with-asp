@@ -41,7 +41,7 @@ export class UserProfileComponent {
     .subscribe(result => this.ourListOfRecipes.set(result));
     this.userService.getFavourites()
     .pipe(takeUntil(this.destroy$))
-    .subscribe(result => console.log(result));
+    .subscribe(result => this.ourFavRecipes.set(result));
 
     this.getImageSrc(this.user().pictureURL);
   }

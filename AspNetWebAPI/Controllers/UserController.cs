@@ -48,17 +48,7 @@ namespace AspNetCoreAPI.Controllers
         {
             IEnumerable<Recipe> dbRecipes = _context.Recipes.Where(x => x.CheckID == GetCurrentUser().Id).ToList();
 
-            return dbRecipes.Select(dbRecipe => 
-                new RecipesDTO
-                {
-                    Id = dbRecipe.Id,
-                    Name = dbRecipe.Name,
-                    Description = dbRecipe.Description,
-                    Difficulty = dbRecipe.Difficulty,
-                    ImageURL = dbRecipe.ImageURL,
-                    CheckID = dbRecipe.CheckID,
-                    userID = GetCurrentUser().Id,
-                });
+            return dbRecipes.Select(dbRecipe => mapReceptToDto(dbRecipe));
         }
         [HttpPost("/recipes/addtofav/{id:int}")]
          public IActionResult addtofav([FromRoute] int id)
@@ -79,16 +69,30 @@ namespace AspNetCoreAPI.Controllers
          }
 
         [HttpGet("/userprofile/usersfavrecipes")]
-        public IActionResult userfavrecipes()
+        public IEnumerable<RecipesDTO> userfavrecipes()
         {
             var favouriteRecipeIds = _context.UserRecipes.Select(f => f.RecipeId).ToList();
             var fav = _context.UserRecipes
               .Include(f => f.recept)
-              .Where(f => f.UserId == GetCurrentUser().Id && favouriteRecipeIds.Contains(f.RecipeId))
+              .Where(f => f.UserId == GetCurrentUser().Id )
               .ToList();
-
-            return Ok(fav);
+            return fav.Select(f => mapReceptToDto(f.recept));
             
+        }
+
+        private RecipesDTO mapReceptToDto(Recipe dbRecipe)
+        {
+            return
+                new RecipesDTO
+                {
+                    Id = dbRecipe.Id,
+                    Name = dbRecipe.Name,
+                    Description = dbRecipe.Description,
+                    Difficulty = dbRecipe.Difficulty,
+                    ImageURL = dbRecipe.ImageURL,
+                    CheckID = dbRecipe.CheckID,
+                    userID = GetCurrentUser().Id,
+                };
         }
        
         protected ApplicationUser? GetCurrentUser()
