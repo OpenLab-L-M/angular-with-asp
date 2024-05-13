@@ -1,25 +1,35 @@
-import { Component, computed, effect, signal } from '@angular/core';
+import { Component, computed, effect, signal, Inject, Output } from '@angular/core';
 import { UserService } from 'src/services/user.service';
 import { UserDTO } from './UserDTO';
 import { NgIf } from '@angular/common';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgFor } from '@angular/common';
+import { NgModel } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { RecipesService } from 'src/services/recipes.service';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterLink } from '@angular/router';
+import { EventEmitter } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogClose } from '@angular/material/dialog';
 import { MatIconAnchor } from '@angular/material/button';
+import { MatFormField } from '@angular/material/form-field';
 import { RecipesDTO } from '../recipes/RecipesDTO';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subject, takeUntil } from 'rxjs';
+
+export interface DialogData {
+  animal: string;
+  name: string;
+}
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
   imports: [NgFor,
-    NgIf, MatIconModule, MatIconAnchor, MatButtonModule, MatCardModule, RouterLink],
+    NgIf, MatIconModule, MatIconAnchor, MatButtonModule, MatCardModule, RouterLink, MatDialogClose, MatFormField],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
 })
@@ -31,7 +41,25 @@ export class UserProfileComponent {
   imageUploaded = false;
   private destroy$ = new Subject<void>();
 
-  constructor(private userService: UserService, private recipesSevice: RecipesService, private httpClient: HttpClient,){}
+  animal: string;
+  name: string;
+
+  constructor(private userService: UserService, private recipesSevice: RecipesService, private httpClient: HttpClient, public dialog: MatDialog){}
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '500px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+    });
+
+    dialogRef.componentInstance.imageDeleted.subscribe(() => {
+      this.user.update(user => ({...user, pictureURL: undefined}));
+    });
+  }
 
   ngOnInit(): void{
     this.userService.getCurrentUser()
@@ -46,11 +74,48 @@ export class UserProfileComponent {
     this.getImageSrc(this.user().pictureURL);
   }
 
+  public getImageSrc(imageData: string): string {
+    return `data:image/jpeg;base64,${imageData}`;
+  }
+  
+}
+
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: 'dialog-content-example-dialog.html',
+  styleUrl: 'dialog-content-example-dialog.css',
+  standalone: true,
+  imports: [MatDialogClose, NgIf],
+})
+export class DialogOverviewExampleDialog {
+
+  @Output() imageDeleted = new EventEmitter<void>();
+
+  user = signal<UserDTO>(undefined);
+  imageUploaded = false;
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: UserDTO, private userService: UserService, private httpClient: HttpClient,) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  ngOnInit(): void{
+    this.userService.getCurrentUser()
+   .subscribe(result => this.user.set(result));
+
+   this.getImageSrc(this.user().pictureURL);
+  }
+
   deleteImage(): void {
     this.userService.deleteImage().subscribe( 
       () => {
         console.log('Image deleted successfully.');
-        window.location.reload();
+        this.user.update(user => ({...user, pictureURL: undefined}));
+        this.imageDeleted.emit();
+        // window.location.reload();
       },
       (error) => {
         console.error('Error deleting image:', error);
@@ -99,5 +164,4 @@ export class UserProfileComponent {
     public getImageSrc(imageData: string): string {
       return `data:image/jpeg;base64,${imageData}`;
     }
-  
 }

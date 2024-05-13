@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Hi {{this.user().userName}}</h1>
+<div mat-dialog-content>
+  <p>What's your favorite animal?</p>
+</div>
+<div mat-dialog-actions class="form-group" >
+    <input *ngIf="this.user().pictureURL" type="button" value="Change your profile picture" (click)="deleteImage()">
+    <input *ngIf="!this.user().pictureURL" type="file" (change)="onImageUpload($event)">
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button mat-dialog-close (click)="imageUploadAction()" cdkFocusInitial>Ok</button>
+</div>
+<!-- [mat-dialog-close]="data.animal" -->
+<!-- *ngIf="!this.user().pictureURL && !imageUploaded" -->

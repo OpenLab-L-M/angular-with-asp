@@ -110,36 +110,26 @@ namespace AspNetCoreAPI.Controllers
             {
                 var httpRequest = Request.Form;
                 var postedFile = httpRequest.Files[0];
-                string filename = postedFile.FileName;
-                var physicalPath = _environment.ContentRootPath + "/Photos/" + filename;
+                var filename = postedFile.FileName;
 
-                using (var stream = new FileStream(physicalPath, FileMode.Create))
+                byte[] fileBytes;
+                using (var memoryStream = new MemoryStream())
                 {
-                    postedFile.CopyTo(stream);
+                    postedFile.CopyTo(memoryStream);
+                    fileBytes = memoryStream.ToArray();
                 }
 
                 var currentUser = GetCurrentUser();
                 if (currentUser != null)
                 {
-                    byte[] fileBytes;
-                    using (var fileStream = new FileStream(physicalPath, FileMode.Open, FileAccess.Read))
-                    {
-                        using (var memoryStream = new MemoryStream())
-                        {
-                            fileStream.CopyTo(memoryStream);
-                            fileBytes = memoryStream.ToArray();
-                        }
-                    }
                     currentUser.PictureURL = fileBytes;
                     _context.SaveChanges();
                 }
-
 
                 return new JsonResult(filename);
             }
             catch (Exception)
             {
-
                 return new JsonResult("anonymous.png");
             }
 

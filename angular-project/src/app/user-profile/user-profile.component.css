@@ -6,8 +6,9 @@
 }
 
 .profile_img {
-  max-width: 250px;
-  max-height: 250px;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
 }
 
 #add_picture {
@@ -78,13 +79,20 @@
     opacity: 0;
   }
   
-  #like {
+  #like-false {
     position: absolute;
     left: 0;
     margin-left: 8px;
   }
+
+  #like-true {
+    position: absolute;
+    left: 0;
+    margin-left: 8px;
+    color: red;
+  }
   
-  #favourite:checked + #like {
+  /* #favourite:checked + #like {
     color: red;
     transition: 0.2s;
-  }
+  } */
