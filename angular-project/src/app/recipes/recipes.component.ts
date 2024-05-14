@@ -5,6 +5,7 @@ import { NgFor } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { RecipesDTO } from './RecipesDTO';
 import { RecipesService } from 'src/services/recipes.service';
+import { UserService } from 'src/services/user.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { FilterPipe } from 'src/pipes/filter-pipe.pipe';
@@ -15,6 +16,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { ElementRef, ViewChild } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { createRecipe } from '../create-recipe/createRecipe';
+import { UserDTO } from '../user-profile/UserDTO';
 
 @Component({
   selector: 'app-recipes',
@@ -50,17 +52,20 @@ export class RecipesComponent {
   recipes? = signal<RecipesDTO[]>([]);
   private destroy$ = new Subject<void>();
   guild = signal<RecipesDTO>(undefined);
+  user = signal<UserDTO>(undefined);
 
   easyChecked: boolean = false;
   mediumChecked: boolean = false;
   hardChecked: boolean = false;
 
   sSearchRecept: string = '';
-  constructor() { }
+  constructor(private userService: UserService,) { }
   ngOnInit(): void {
     this.recipeService.getRecipesList()
       .pipe(takeUntil(this.destroy$))
       .subscribe(result => this.recipes.set(result));
+      this.userService.getCurrentUser()
+      .subscribe(result => this.user.set(result));
   }
 
   ngOnDestroy(): void {
@@ -90,5 +95,9 @@ export class RecipesComponent {
     this.easyChecked = false;
     this.mediumChecked = false;
     this.hardChecked = false;
+  }
+
+  public getImageSrc(imageData: string): string {
+    return `data:image/jpeg;base64,${imageData}`;
   }
 }

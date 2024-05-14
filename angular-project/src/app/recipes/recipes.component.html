@@ -53,6 +53,7 @@
     <div class="recipes-container">
       <mat-card class="recipes-items" *ngFor="let recipe of recipes() | filter : sSearchRecept">
         <mat-card-header>
+          <img mat-card-avatar class="example-header-image" [src]="getImageSrc(this.user().pictureURL)">
           <mat-card-title class="recipes-name">{{recipe.name}}</mat-card-title>
           <mat-card-subtitle class="recipes-difficulty">{{recipe.difficulty}}</mat-card-subtitle>
         </mat-card-header>
