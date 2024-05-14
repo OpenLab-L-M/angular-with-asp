@@ -1,0 +1,14 @@
+.decide_btn button:first-child {
+    margin-right: 10px; /* Alebo akýkoľvek iný požadovaný odstup */
+}
+
+#cancel {
+    background-color: red;
+    color: white;
+}
+
+h1 {
+    background-color: black;
+    padding: 10px;
+    color: white;
+}

@@ -85,7 +85,7 @@ export class UserProfileComponent {
   templateUrl: 'dialog-content-example-dialog.html',
   styleUrl: 'dialog-content-example-dialog.css',
   standalone: true,
-  imports: [MatDialogClose, NgIf],
+  imports: [MatDialogClose, NgIf, MatFormField, MatButtonModule],
 })
 export class DialogOverviewExampleDialog {
 

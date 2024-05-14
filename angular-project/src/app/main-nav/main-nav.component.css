@@ -2,14 +2,38 @@ div {
   z-index: 2;
 }
 mat-toolbar {
-  
+  background-color: red;
+  color: white;
+
   button {
     margin-left: auto;
-    
   }
+}
+
+button {
+  color: white;
 }
 
 .spacer {
   
   flex: 2 2 auto;
+}
+
+#white {
+  color: white;
+}
+
+img {
+  width: 85px;
+  height: 64px;
+  display: block;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    padding-right: 10px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
 }

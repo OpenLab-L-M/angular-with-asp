@@ -1,14 +1,20 @@
-<h1 mat-dialog-title>Hi {{this.user().userName}}</h1>
-<div mat-dialog-content>
-  <p>What's your favorite animal?</p>
-</div>
-<div mat-dialog-actions class="form-group" >
-    <input *ngIf="this.user().pictureURL" type="button" value="Change your profile picture" (click)="deleteImage()">
-    <input *ngIf="!this.user().pictureURL" type="file" (change)="onImageUpload($event)">
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button mat-dialog-close (click)="imageUploadAction()" cdkFocusInitial>Ok</button>
-</div>
+<mat-form-field>
+  <h1 mat-dialog-title>Hi {{this.user().userName}}</h1>
+  <div mat-dialog-content>
+    <p>Do you want to change your profile picture?</p>
+  </div>
+  <div mat-dialog-actions class="form-group" >
+      <input *ngIf="this.user().pictureURL" type="button" value="Change your profile picture" (click)="deleteImage()">
+      <input *ngIf="!this.user().pictureURL" type="file" (change)="onImageUpload($event)">
+  </div>
+  <div mat-dialog-content>
+    <p></p>
+  </div>
+  <div mat-dialog-actions class="decide_btn">
+    <button id="cancel" mat-raised-button  (click)="onNoClick()">Cancel</button>
+    <button mat-raised-button mat-dialog-close (click)="imageUploadAction()" cdkFocusInitial>Edit</button>
+  </div>
+</mat-form-field>
+
 <!-- [mat-dialog-close]="data.animal" -->
 <!-- *ngIf="!this.user().pictureURL && !imageUploaded" -->

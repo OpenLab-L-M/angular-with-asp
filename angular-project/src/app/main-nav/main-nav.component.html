@@ -1,16 +1,20 @@
 <div>
   <mat-toolbar>
-  
-    <span>My web app</span>
+    <div class="center">
+      <img src="https://dcassetcdn.com/design_img/10150/1680/1680_298517_10150_image.jpg">
+    </div>
+    <span>TOP RECIPES</span>
+    
+    
   <span class="spacer"></span>
   @if (authService.authenticated()) {
-    <button mat-button (click)="logout()">Logout</button>
-    <button mat-button [routerLink]="['/Recipes']">Recipes</button>
-    <button mat-button [routerLink]="['/CreateRecipe']">Create Recipe</button>
-    <button mat-button [routerLink]="['/userProfile']"><mat-icon>account_circle</mat-icon></button>
+    <button id="white" mat-button (click)="logout()">Logout</button>
+    <button id="white" mat-button [routerLink]="['/Recipes']">Recipes</button>
+    <button id="white" mat-button [routerLink]="['/CreateRecipe']">Create Recipe</button>
+    <button id="white" mat-button [routerLink]="['/userProfile']"><mat-icon>account_circle</mat-icon></button>
   } @else {
-    <button mat-button [routerLink]="['/login']">Login</button>
-    <button mat-button [routerLink]="['/register']">Registration</button>
+    <button id="white" mat-button [routerLink]="['/login']">Login</button>
+    <button id="white" mat-button [routerLink]="['/register']">Registration</button>
   }
   
 </mat-toolbar>

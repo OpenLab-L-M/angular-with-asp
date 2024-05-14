@@ -4,6 +4,7 @@ import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angula
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterLink } from '@angular/router';
 import { RecipesService } from 'src/services/recipes.service';
 import { RecipesDTO } from '../recipes/RecipesDTO';
@@ -14,7 +15,7 @@ import { Subject, takeUntil } from 'rxjs';
 @Component({
   selector: 'app-create-recipe',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, MatSelectModule, MatInputModule, MatFormFieldModule,
+  imports: [RouterLink, ReactiveFormsModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatButtonModule
     ],
   templateUrl: './create-recipe.component.html',
   styleUrl: './create-recipe.component.css'
