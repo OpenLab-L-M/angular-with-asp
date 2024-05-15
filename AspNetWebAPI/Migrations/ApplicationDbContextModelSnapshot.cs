@@ -130,11 +130,8 @@ namespace AspNetCoreAPI.Migrations
                     b.Property<string>("Difficulty")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageURL")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("IsFavourite")
-                        .HasColumnType("bit");
+                    b.Property<byte[]>("ImageURL")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");

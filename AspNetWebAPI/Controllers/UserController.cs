@@ -55,18 +55,32 @@ namespace AspNetCoreAPI.Controllers
          {
              var novyOblubenec = _context.Recipes.Where(x => x.Id == id).FirstOrDefault();
              var userik = GetCurrentUser();
-
+            var nachadzaSa = _context.UserRecipes.Any(x => x.RecipeId == id);
+            
+            
             ApplicationUserRecipe pridajOblubeny = new ApplicationUserRecipe()
             {
                 RecipeId = novyOblubenec.Id,
                 UserId = GetCurrentUser().Id,
             };
-            _context.UserRecipes.Add(pridajOblubeny);
-            _context.SaveChanges();
-            return Ok();
-             
+            
+            if (!nachadzaSa)
+            {
+                _context.UserRecipes.Add(pridajOblubeny);
+                _context.SaveChanges();
+                return Ok();
+            }
+            else
+            {
+                var vymaz = _context.UserRecipes.Where(x => x.RecipeId == id).Single<ApplicationUserRecipe>();
+                _context.UserRecipes.Remove(vymaz);
+                _context.SaveChanges();
+                return null;
+            }
 
-         }
+
+
+        }
 
         [HttpGet("/userprofile/usersfavrecipes")]
         public IEnumerable<RecipesDTO> userfavrecipes()
@@ -89,7 +103,7 @@ namespace AspNetCoreAPI.Controllers
                     Name = dbRecipe.Name,
                     Description = dbRecipe.Description,
                     Difficulty = dbRecipe.Difficulty,
-                    ImageURL = dbRecipe.ImageURL,
+                    //ImageURL = dbRecipe.ImageURL,
                     CheckID = dbRecipe.CheckID,
                     userID = GetCurrentUser().Id,
                 };
