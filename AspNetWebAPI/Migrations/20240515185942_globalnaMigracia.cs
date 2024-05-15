@@ -24,7 +24,7 @@ namespace AspNetCoreAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ImageURL = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    ImageURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Difficulty = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CheckID = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },

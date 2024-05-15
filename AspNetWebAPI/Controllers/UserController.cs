@@ -103,7 +103,7 @@ namespace AspNetCoreAPI.Controllers
                     Name = dbRecipe.Name,
                     Description = dbRecipe.Description,
                     Difficulty = dbRecipe.Difficulty,
-                    //ImageURL = dbRecipe.ImageURL,
+                    ImageURL = dbRecipe.ImageURL,
                     CheckID = dbRecipe.CheckID,
                     userID = GetCurrentUser().Id,
                 };

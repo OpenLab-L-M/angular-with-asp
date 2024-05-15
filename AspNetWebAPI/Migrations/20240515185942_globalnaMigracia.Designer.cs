@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AspNetCoreAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240515143731_globalnaMigracia")]
+    [Migration("20240515185942_globalnaMigracia")]
     partial class globalnaMigracia
     {
         /// <inheritdoc />
@@ -133,8 +133,8 @@ namespace AspNetCoreAPI.Migrations
                     b.Property<string>("Difficulty")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("ImageURL")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("ImageURL")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");

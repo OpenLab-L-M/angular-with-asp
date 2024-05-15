@@ -34,7 +34,7 @@ namespace AspNetCoreAPI.Controllers
                     Name = dbRecipe.Name,
                     Description = dbRecipe.Description,
                     Difficulty = dbRecipe.Difficulty,
-                    //ImageURL = dbRecipe.ImageURL,
+                    ImageURL = dbRecipe.ImageURL,
                     CheckID = dbRecipe.CheckID,
                     userID = GetCurrentUser().Id,
                 });
@@ -48,7 +48,7 @@ namespace AspNetCoreAPI.Controllers
                 Name = recipe.Name,
                 Description = recipe.Description,
                 Difficulty = recipe.Difficulty,
-                //ImageURL = recipe.ImageURL,
+                ImageURL = recipe.ImageURL,
                 CheckID = recipe.CheckID,
                 userID = GetCurrentUser().Id,
             };
@@ -64,7 +64,7 @@ namespace AspNetCoreAPI.Controllers
                 Name = receptik.Name,
                 Description = receptik.Description,
                 Difficulty = receptik.Difficulty,
-                //ImageURL = receptik.ImageURL,
+                ImageURL = receptik.ImageURL,
                 
             };
             nReceptik.CheckID = user?.Id;
