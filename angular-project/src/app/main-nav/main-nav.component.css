@@ -2,7 +2,7 @@ div {
   z-index: 2;
 }
 mat-toolbar {
-  background-color: red;
+  background-color: rgb(187, 0, 0);
   color: white;
 
   button {

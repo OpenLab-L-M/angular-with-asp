@@ -1,22 +1,4 @@
 <body>
-  <!-- <div class="dropdown">
-    <button class="dropbtn">Difficulty</button>
-    <div class="dropdown-filter">
-      <input id="diff" type="checkbox" value="Easy" (click)="filterRecipesByDifficulty('Easy')">
-    
-      <label for="diff">Easy</label>
-      <input id="diff2" type="checkbox" value="Medium" (click)="filterRecipesByDifficulty('Medium')">
-    
-      <label for="diff2">Medium</label>
-      <input id="diff3" type="checkbox" value="Hard" (click)="filterRecipesByDifficulty('Hard')">
-    
-      <label for="diff3">Hard</label>
-      <a (click)="filterRecipesByDifficulty('Easy')">Easy</a>
-      <a (click)="filterRecipesByDifficulty('Medium')">Medium</a>
-      <a (click)="filterRecipesByDifficulty('Hard')">Hard</a>
-      <a (click)="clearFilter()">Clear</a>
-    </div>
-  </div> -->
   <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side">
           <input id="diff" type="checkbox" value="Easy" [ngModel]="easyChecked" (ngModelChange)="easyChecked = $event" (click)="filterRecipesByDifficulty('Easy')">
@@ -28,10 +10,7 @@
           <input id="diff3" type="checkbox" value="Hard" [ngModel]="hardChecked" (ngModelChange)="hardChecked = $event" (click)="filterRecipesByDifficulty('Hard')">
         
           <label for="diff3">Hard</label>
-          <!-- <a (click)="filterRecipesByDifficulty('Easy')">Easy</a>
-          <a (click)="filterRecipesByDifficulty('Medium')">Medium</a>
-          <a (click)="filterRecipesByDifficulty('Hard')">Hard</a>
-          <a (click)="clearFilter()">Clear</a> -->
+
 
           <button (click) = "call()">filter</button>
           <button (click) = "clearFilter()">Clear</button>
@@ -53,7 +32,7 @@
     <div class="recipes-container">
       <mat-card class="recipes-items" *ngFor="let recipe of recipes() | filter : sSearchRecept">
         <mat-card-header>
-          <img mat-card-avatar class="example-header-image" [src]="getImageSrc(this.user().pictureURL)">
+          <img mat-card-avatar class="example-header-image" [src]="getImageSrc(this.user().pictureURL)" matTooltip="Creator">
           <mat-card-title class="recipes-name">{{recipe.name}}</mat-card-title>
           <mat-card-subtitle class="recipes-difficulty">{{recipe.difficulty}}</mat-card-subtitle>
         </mat-card-header>

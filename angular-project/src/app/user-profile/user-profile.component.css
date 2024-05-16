@@ -91,6 +91,10 @@
     margin-left: 8px;
     color: red;
   }
+
+  h2 {
+    padding-top: 15px;
+  }
   
   /* #favourite:checked + #like {
     color: red;

@@ -15,6 +15,7 @@ import { RecipesComponent } from './app/recipes/recipes.component';
 import { CreateRecipeComponent } from './app/create-recipe/create-recipe.component';
 import { RecipesDetailsComponent } from './app/recipes-details/recipes-details.component';
 import { UserProfileComponent } from './app/user-profile/user-profile.component';
+import { HomepageComponent } from './app/homepage/homepage.component';
 
 export function getBaseUrl() {
   return 'https://localhost:7186/api';
@@ -44,6 +45,7 @@ bootstrapApplication(AppComponent, {
         { path: '', component: DashboardComponent, canActivate: [authGuard]},
         { path: 'login', component: LoginComponent},
         { path: 'register', component: RegistrationComponent},
+        { path: 'Homepage', component: HomepageComponent},
         { path: 'Recipes', component: RecipesComponent},
         { path: 'CreateRecipe', component: CreateRecipeComponent},
         { path: 'RecipesDetails/:id', component: RecipesDetailsComponent },

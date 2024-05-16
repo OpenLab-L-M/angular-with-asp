@@ -16,9 +16,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogClose } from '@angular/material/dialog';
 import { MatIconAnchor } from '@angular/material/button';
 import { MatFormField } from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { RecipesDTO } from '../recipes/RecipesDTO';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subject, takeUntil } from 'rxjs';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldControl } from '@angular/material/form-field';
 
 export interface DialogData {
   animal: string;
@@ -29,7 +33,7 @@ export interface DialogData {
   selector: 'app-user-profile',
   standalone: true,
   imports: [NgFor,
-    NgIf, MatIconModule, MatIconAnchor, MatButtonModule, MatCardModule, RouterLink, MatDialogClose, MatFormField],
+    NgIf, MatIconModule, MatIconAnchor, MatButtonModule, MatCardModule, RouterLink, MatDialogClose, MatFormField, MatTooltip],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
 })
@@ -85,7 +89,7 @@ export class UserProfileComponent {
   templateUrl: 'dialog-content-example-dialog.html',
   styleUrl: 'dialog-content-example-dialog.css',
   standalone: true,
-  imports: [MatDialogClose, NgIf, MatFormField, MatButtonModule],
+  imports: [MatDialogClose, NgIf, MatFormField, MatButtonModule, MatInputModule, MatFormFieldModule],
 })
 export class DialogOverviewExampleDialog {
 

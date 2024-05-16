@@ -1,7 +1,7 @@
 <h1>Profile</h1>
 <h3>Your name: {{this.user().userName}}</h3>
 <h2>Your profile picture</h2>
-<img *ngIf="this.user().pictureURL" [src]="getImageSrc(this.user().pictureURL)" alt="User Picture" class="profile_img">
+<img *ngIf="this.user().pictureURL" [src]="getImageSrc(this.user().pictureURL)" alt="User Picture" class="profile_img" matTooltip="Your profile picture">
 
 <img *ngIf="!this.user().pictureURL" src="https://st3.depositphotos.com/9998432/13335/v/450/depositphotos_133352088-stock-illustration-default-placeholder-profile-icon.jpg" alt="" class="profile_img">
 <!-- <div>{{this.user().userProfilePicture}}</div> -->
@@ -17,11 +17,12 @@
 <div class="recipes-container">
     <mat-card class="recipes-items" *ngFor="let ourRecipe of ourListOfRecipes()">
       <mat-card-header>
+        <img mat-card-avatar class="example-header-image" [src]="getImageSrc(this.user().pictureURL)" matTooltip="Creator">
         <mat-card-title class="recipes-name">{{ourRecipe.name}}</mat-card-title>
         <mat-card-subtitle class="recipes-difficulty">{{ourRecipe.difficulty}}</mat-card-subtitle>
       </mat-card-header>
   
-        <img mat-card-image [src]="ourRecipe.imageURL" class="recipes-images" [routerLink]="['/RecipesDetails', ourRecipe.id]"/>
+        <img mat-card-image [src]="ourRecipe.imageURL" class="recipes-images" matTooltip="Details of {{ourRecipe.name}}" [routerLink]="['/RecipesDetails', ourRecipe.id]"/>
       
         <mat-card-footer>
           <input id="favourite" type="checkbox">

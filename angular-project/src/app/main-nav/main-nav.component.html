@@ -9,6 +9,7 @@
   <span class="spacer"></span>
   @if (authService.authenticated()) {
     <button id="white" mat-button (click)="logout()">Logout</button>
+    <button id="white" mat-button [routerLink]="['/Homepage']">Home</button>
     <button id="white" mat-button [routerLink]="['/Recipes']">Recipes</button>
     <button id="white" mat-button [routerLink]="['/CreateRecipe']">Create Recipe</button>
     <button id="white" mat-button [routerLink]="['/userProfile']"><mat-icon>account_circle</mat-icon></button>

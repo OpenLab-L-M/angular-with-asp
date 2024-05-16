@@ -37,9 +37,8 @@ body {
 }
 
 .recipes-items:hover {
-    border: #efefef 2px solid;
+
     box-shadow: 10px 10px 18px #cccccc;
-    transform: scale(1.00);
     cursor: pointer;
 }
 
@@ -135,7 +134,7 @@ body {
 }
 
 #create_link mat-icon {
-  font-size: 31px;
+  font-size: 25px;
   text-align: center;
 }
 
