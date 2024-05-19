@@ -1,14 +1,47 @@
-img {
-    width: 70%;
-    height: 600px;
-    display: block;
-      margin: 0 auto;
-      justify-content: center;
-      align-items: center;
-      padding-right: 10px;
+body #backgroundos{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: -2;
+}
+
+#food {
+      width: 700px;
+    height: auto;
+    border-radius: 50%;
+    margin: 0;
+    position: relative;
+
   }
   
   .center {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: center; 
+    width: 100%;
+    height: 100vh;
+  }
+
+  .slogan h2 {
+    color: rgb(255, 255, 255);
+    font-size: 80px;
+    line-height: 1.5;
+    font-family: "Times New Roman", Times, serif;
+    margin-left: 40px;
+    transition: font-size 1s;
+  }
+
+  .slogan {
+    display: flex;
+    align-items: center;
+    height: 100vh; 
+    width: 50%; 
+    top: 0; 
+    left: 0; 
+    z-index: 4;
+    
+  }
+  .slogan h2:hover {
+    font-size: 85px;
   }

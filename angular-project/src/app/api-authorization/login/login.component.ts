@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
       this.authService.loginUser({...this.loginForm.value}).subscribe({
         next: (response) => {
           this.authService.storeToken(response.token);
-          this.router.navigate(['/']);
+          this.router.navigate(['/Homepage']);
         },
         error: (err) => console.log("Oops, something went wrong", err)
       });

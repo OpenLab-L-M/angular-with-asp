@@ -2,7 +2,7 @@ div {
   z-index: 2;
 }
 mat-toolbar {
-  background-color: rgb(187, 0, 0);
+  background-color: transparent;
   color: white;
 
   button {
@@ -21,6 +21,10 @@ button {
 
 #white {
   color: white;
+}
+
+#white:hover {
+  color: red;
 }
 
 img {
