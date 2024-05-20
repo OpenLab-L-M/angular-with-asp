@@ -4,6 +4,8 @@ div {
 mat-toolbar {
   background-color: transparent;
   color: white;
+  font-size: 30px;
+  font-family: Brush Script MT, Brush Script Std, cursive;
 
   button {
     margin-left: auto;
@@ -21,9 +23,33 @@ button {
 
 #white {
   color: white;
+  font-weight: bold;
 }
 
-#white:hover {
+/* #white:hover {
+  color: red;
+  text-decoration: underline;
+} */
+
+#white.active {
+  color: red;
+}
+
+#white:after {    
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: red;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+#white:hover:after { 
+  width: 100%; 
+  left: 0; 
   color: red;
 }
 

@@ -1,4 +1,5 @@
 <body>
+  <img id="backgroundos" src="../../assets/backgroundos_recipes.png">
   <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side">
           <input id="diff" type="checkbox" value="Easy" [ngModel]="easyChecked" (ngModelChange)="easyChecked = $event" (click)="filterRecipesByDifficulty('Easy')">
@@ -32,7 +33,7 @@
     <div class="recipes-container">
       <mat-card class="recipes-items" *ngFor="let recipe of recipes() | filter : sSearchRecept">
         <mat-card-header>
-          <img mat-card-avatar class="example-header-image" [src]="getImageSrc(this.user().pictureURL)" matTooltip="Creator">
+          <img id="avatar" mat-card-avatar class="example-header-image" [src]="getImageSrc(this.user().pictureURL)" matTooltip="Creator">
           <mat-card-title class="recipes-name">{{recipe.name}}</mat-card-title>
           <mat-card-subtitle class="recipes-difficulty">{{recipe.difficulty}}</mat-card-subtitle>
         </mat-card-header>

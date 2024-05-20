@@ -1,3 +1,20 @@
+body #backgroundos{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: -2;
+}
+
+h1, h2, h3 {
+  color: white;
+}
+
+
+#your_img {
+  border:10px solid rgb(255, 255, 255);
+}
+
 .recipes-container {
     margin: 20px auto;
     display: flex;
@@ -41,16 +58,25 @@
 
 .recipes-items {
     width: 350px;
-    background-color:white;
+    background-color:rgb(63, 63, 63);
     border-radius: 10px;
     border-width: 10px;
-    border-color: white;
+    border-color: rgb(63, 63, 63);
+    color: white;
     margin: 10px 10px;
     /* padding-top: 10px;
     padding-bottom: 20px;
     padding-left: 10px;
     padding-right: 10px; */
     border: transparent;
+}
+
+.recipes-items mat-card-title, .recipes-items mat-card-subtitle {
+  color: white;
+}
+
+#avatar {
+  border:3px solid rgb(190, 190, 190);
 }
 
 .recipes-items:hover {

@@ -11,8 +11,12 @@ position:fixed;
   background-color: #ece9e9;
 } */
 
-body {
-  background-color: #ece9e9;
+body #backgroundos{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: -2;
 }
 
 .recipes-container {
@@ -24,16 +28,25 @@ body {
 
 .recipes-items {
     width: 350px;
-    background-color:white;
+    background-color:rgb(63, 63, 63);
     border-radius: 10px;
     border-width: 10px;
-    border-color: white;
+    border-color: rgb(63, 63, 63);
+    color: white;
     margin: 10px 10px;
     /* padding-top: 10px;
     padding-bottom: 20px;
     padding-left: 10px;
     padding-right: 10px; */
     border: transparent;
+}
+
+.recipes-items mat-card-title, .recipes-items mat-card-subtitle {
+  color: white;
+}
+
+#avatar {
+  border:3px solid rgb(190, 190, 190);
 }
 
 .recipes-items:hover {
@@ -119,7 +132,7 @@ body {
 
 #create_link {
   
-  background: black;
+  background: rgb(226, 0, 0);
   font-size: 17px;
     width: 70px;
     height: 70px;
@@ -129,8 +142,21 @@ body {
 }
 
 #create_link:hover {
-  background: white;
-    color: black;
+  background: rgba(226, 0, 0, 0.652);
+    /* color: black; */
+    animation: 1s pulse infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 #create_link mat-icon {
@@ -156,4 +182,20 @@ body {
 #favourite:checked + #like {
   color: red;
   transition: 0.2s;
+}
+
+.example-sidenav-content {
+  background-color: rgb(15, 15, 15);
+}
+
+.example-sidenav-content button {
+  color: white;
+}
+
+.example-sidenav {
+  background-color: rgb(15, 15, 15);
+}
+
+.example-sidenav label {
+  color: white;
 }

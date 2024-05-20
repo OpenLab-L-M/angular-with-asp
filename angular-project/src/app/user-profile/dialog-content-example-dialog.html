@@ -12,7 +12,7 @@
   </div>
   <div mat-dialog-actions class="decide_btn">
     <button id="cancel" mat-raised-button  (click)="onNoClick()">Cancel</button>
-    <button mat-raised-button mat-dialog-close (click)="imageUploadAction()" cdkFocusInitial>Save</button>
+    <button id="save" mat-raised-button mat-dialog-close (click)="imageUploadAction()" cdkFocusInitial>Save</button>
   </div>
 
 <!-- *ngIf="!this.user().pictureURL && !imageUploaded" -->

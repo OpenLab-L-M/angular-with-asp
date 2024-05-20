@@ -2,7 +2,12 @@
     margin-right: 10px; /* Alebo akýkoľvek iný požadovaný odstup */
 }
 
-#cancel {
+/* #cancel {
+    background-color: red;
+    color: white;
+} */
+
+#save {
     background-color: red;
     color: white;
 }
