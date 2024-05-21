@@ -29,14 +29,41 @@
             <mat-form-field class="Description_rcp">
               
 
-                  <mat-label class="centered-label" for="desc">Recipe description: </mat-label>
-                  <textarea matInput id="desc" formControlName="desc"></textarea>
+                  <mat-label class="centered-label" for="postup">Recipe description: </mat-label>
+                  <textarea matInput id="postup" formControlName="postup"></textarea>
                   
 
               
             </mat-form-field>
             
           </div>
+          <div class="set">
+            <mat-form-field class="ingredients_rcp">
+              
+
+                  <mat-label class="centered-label" for="ingr">Recipe ingredients: </mat-label>
+                  <textarea matInput id="ingr" formControlName="ingr"></textarea>
+                  
+
+              
+            </mat-form-field>
+            
+          </div>
+          <div class="set">
+            <mat-form-field class="time_rcp">
+              
+
+                  <mat-label class="centered-label" for="cas">approximate time: </mat-label>
+                  <textarea matInput id="cas" formControlName="cas"></textarea>
+                  
+
+              
+            </mat-form-field>
+            
+          </div>
+          
+
+          
           
           
 
@@ -70,6 +97,36 @@
                 </p>
             </div>
           </div>
+          <div class="set">
+            <label id="veganske">veganske?</label> <br>
+            <div class="diff_radio">
+              <p>
+                
+                  <input id="jVeganske" type="radio" formControlName="veganske" [value]="true">
+                  <label for="jVeganske">veganske</label>
+                </p>
+            </div>
+          </div>
+          <div class="set">
+            <label id="vegetarianske">vegetarianske?</label> <br>
+            <div class="diff_radio">
+              <p>
+                  <input id="jVegetarianske" type="radio" formControlName="vegetarianske" [value]="true">
+                  <label for="jVegetarianske">vegetarianske</label>
+                </p>
+            </div>
+          </div>
+          <div class="set">
+            <label id="nizkoKaloricke">nizkoKaloricke?</label> <br>
+            <div class="diff_radio">
+              <p>
+                  <input id="jnizkoKaloricke" type="radio" formControlName="nizkoKaloricke" [value]="true">
+                  <label for="jnizkoKaloricke">Nízko kalorické</label>
+                </p>
+            </div>
+          </div>
+
+        
         
             
       </header>

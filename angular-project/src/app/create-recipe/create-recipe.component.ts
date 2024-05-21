@@ -23,8 +23,13 @@ import { Subject, takeUntil } from 'rxjs';
 export class CreateRecipeComponent {
   profileForm = new FormGroup({
     name: new FormControl('', Validators.required),
-    desc: new FormControl('', Validators.required),
+    postup: new FormControl('', Validators.required),
+    ingr: new FormControl('', Validators.required),
+    cas: new FormControl(null),
     diff: new FormControl(''),
+    veganske: new FormControl(null),
+    vegetarianske: new FormControl(null),
+    nizkoKaloricke: new FormControl(null),
     img: new FormControl(''),
   });
   private destroy$ = new Subject<void>();
@@ -41,9 +46,14 @@ export class CreateRecipeComponent {
   private createRecipe() {
     this.recipesServíce.CreateRecipe({
       name: this.profileForm.controls['name'].value,
-      description: this.profileForm.controls['desc'].value,
+      postup: this.profileForm.controls['postup'].value,
       difficulty: this.profileForm.controls['diff'].value,
-      imageURL: this.profileForm.controls['img'].value
+      imageURL: this.profileForm.controls['img'].value,
+      ingrediencie: this.profileForm.controls['ingr'].value,
+      cas: this.profileForm.controls['cas'].value,
+      veganske: this.profileForm.get['veganske']?.value,
+      vegetarianske: this.profileForm.get['vegetarianske']?.value,
+      nizkoKaloricke: this.profileForm.get['nizkoKaloricke']?.value,
     }).pipe(takeUntil(this.destroy$))
     .subscribe(() => this.router.navigate(['/Recipes']));
   }

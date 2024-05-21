@@ -101,11 +101,16 @@ namespace AspNetCoreAPI.Controllers
                 {
                     Id = dbRecipe.Id,
                     Name = dbRecipe.Name,
-                    Description = dbRecipe.Description,
+                    Postup = dbRecipe.Postup,
                     Difficulty = dbRecipe.Difficulty,
                     ImageURL = dbRecipe.ImageURL,
                     CheckID = dbRecipe.CheckID,
                     userID = GetCurrentUser().Id,
+                    Ingrediencie = dbRecipe.Ingrediencie,
+                    Veganske = dbRecipe.Veganske,
+                    Vegetarianske = dbRecipe.Vegetarianske,
+                    NizkoKaloricke = dbRecipe.NizkoKaloricke,
+                    Cas = dbRecipe.Cas
                 };
         }
        

@@ -10,9 +10,13 @@
     </p> -->
     <mat-card>
       <mat-card-header>
+        <mat-card-subtitle>time: {{this.recipeService.chRecipe.cas}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-header>
         <mat-card-subtitle>Difficulty: {{this.recipeService.chRecipe.difficulty}}</mat-card-subtitle>
         <mat-card-title>Rate this recipe</mat-card-title>
       </mat-card-header>
+
       <mat-card-actions>
         <input type="radio" name="rating" value="1" id="radio_up">
         <mat-icon id="thumb_up">thumb_up</mat-icon>
@@ -21,8 +25,12 @@
       </mat-card-actions>
       <img class="detail_image" [src]="this.recipeService.chRecipe.imageURL" />
       <p class="detail_description">
-        Description: <br> {{this.recipeService.chRecipe.description}}
+        ingredients: <br> {{this.recipeService.chRecipe.ingrediencie}}
       </p>
+      <p class="detail_description">
+        Description: <br> {{this.recipeService.chRecipe.postup}}
+      </p>
+
       <mat-card-footer>
         <button id="back" [routerLink]="['/Recipes']">Back</button>
         <div *ngIf="recipeService.chRecipe.checkID == recipeService.chRecipe.userID">

@@ -32,11 +32,16 @@ namespace AspNetCoreAPI.Controllers
                 {
                     Id = dbRecipe.Id,
                     Name = dbRecipe.Name,
-                    Description = dbRecipe.Description,
+                    Postup = dbRecipe.Postup,
                     Difficulty = dbRecipe.Difficulty,
                     ImageURL = dbRecipe.ImageURL,
                     CheckID = dbRecipe.CheckID,
                     userID = GetCurrentUser().Id,
+                    Ingrediencie = dbRecipe.Ingrediencie,
+                    Veganske = dbRecipe.Veganske,
+                    Vegetarianske = dbRecipe.Vegetarianske,
+                    NizkoKaloricke = dbRecipe.NizkoKaloricke,
+                    Cas = dbRecipe.Cas
                 });
         }
         [HttpGet("{id:int}")]
@@ -45,12 +50,18 @@ namespace AspNetCoreAPI.Controllers
             var recipe = _context.Recipes.Single(savedId => savedId.Id == id);
             return new RecipesDTO
             {
+                Id = recipe.Id,
                 Name = recipe.Name,
-                Description = recipe.Description,
+                Postup = recipe.Postup,
                 Difficulty = recipe.Difficulty,
                 ImageURL = recipe.ImageURL,
                 CheckID = recipe.CheckID,
                 userID = GetCurrentUser().Id,
+                Ingrediencie = recipe.Ingrediencie,
+                Veganske = recipe.Veganske,
+                Vegetarianske = recipe.Vegetarianske,
+                NizkoKaloricke = recipe.NizkoKaloricke,
+                Cas = recipe.Cas
             };
             
         }
@@ -61,11 +72,19 @@ namespace AspNetCoreAPI.Controllers
 
             var nReceptik = new Recipe()
             {
+                Id = receptik.Id,
                 Name = receptik.Name,
-                Description = receptik.Description,
+                Postup = receptik.Postup,
                 Difficulty = receptik.Difficulty,
                 ImageURL = receptik.ImageURL,
-                
+                CheckID = receptik.CheckID,
+                userID = GetCurrentUser().Id,
+                Ingrediencie = receptik.Ingrediencie,
+                Veganske = receptik.Veganske,
+                Vegetarianske = receptik.Vegetarianske,
+                NizkoKaloricke = receptik.NizkoKaloricke,
+                Cas = receptik.Cas
+
             };
             nReceptik.CheckID = user?.Id;
             _context.Add(nReceptik);
