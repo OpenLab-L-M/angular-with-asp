@@ -12,6 +12,10 @@ mat-toolbar {
   }
 }
 
+span {
+  cursor: pointer;
+}
+
 button {
   color: white;
 }

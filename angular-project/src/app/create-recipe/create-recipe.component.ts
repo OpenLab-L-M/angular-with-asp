@@ -44,6 +44,7 @@ export class CreateRecipeComponent {
     
   }
   private createRecipe() {
+    debugger
     this.recipesServíce.CreateRecipe({
       name: this.profileForm.controls['name'].value,
       postup: this.profileForm.controls['postup'].value,
@@ -51,9 +52,9 @@ export class CreateRecipeComponent {
       imageURL: this.profileForm.controls['img'].value,
       ingrediencie: this.profileForm.controls['ingr'].value,
       cas: this.profileForm.controls['cas'].value,
-      veganske: this.profileForm.get['veganske']?.value,
-      vegetarianske: this.profileForm.get['vegetarianske']?.value,
-      nizkoKaloricke: this.profileForm.get['nizkoKaloricke']?.value,
+      veganske: this.profileForm.controls['veganske']?.value,
+      vegetarianske: this.profileForm.controls['vegetarianske']?.value,
+      nizkoKaloricke: this.profileForm.controls['nizkoKaloricke']?.value,
     }).pipe(takeUntil(this.destroy$))
     .subscribe(() => this.router.navigate(['/Recipes']));
   }

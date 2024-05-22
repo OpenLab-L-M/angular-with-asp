@@ -57,6 +57,9 @@ export class RecipesComponent {
   easyChecked: boolean = false;
   mediumChecked: boolean = false;
   hardChecked: boolean = false;
+  veganChecked: boolean = false;
+  vegetarianChecked: boolean = false;
+  lowCalorieChecked: boolean = false
 
   sSearchRecept: string = '';
   constructor(private userService: UserService,) { }
@@ -95,6 +98,9 @@ export class RecipesComponent {
     this.easyChecked = false;
     this.mediumChecked = false;
     this.hardChecked = false;
+    this.veganChecked = false;
+    this.vegetarianChecked = false;
+    this.lowCalorieChecked = false;
   }
 
   public getImageSrc(imageData: string): string {

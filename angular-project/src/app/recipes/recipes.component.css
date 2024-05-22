@@ -19,11 +19,45 @@ body #backgroundos{
   z-index: -2;
 }
 
+
+.cyberpunk-checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid red;
+  border-radius: 5px;
+  background-color: transparent;
+  display: inline-block;
+  position: relative;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.cyberpunk-checkbox:before {
+  content: "";
+  background-color: red;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+.cyberpunk-checkbox:checked:before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+
 .recipes-container {
     margin: 20px auto;
     display: flex;
     flex-wrap: wrap;
     z-index: 2;
+    overflow: hidden;
 }
 
 .recipes-items {
@@ -39,10 +73,18 @@ body #backgroundos{
     padding-left: 10px;
     padding-right: 10px; */
     border: transparent;
+    transition: transform 0.3s;
 }
 
-.recipes-items mat-card-title, .recipes-items mat-card-subtitle {
+.recipes-items mat-card-subtitle {
   color: white;
+  margin-bottom: 2px;
+}
+
+.recipes-items mat-card-title {
+  color: white;
+  font-style: italic;
+  margin-bottom: 5px;
 }
 
 #avatar {
@@ -51,8 +93,10 @@ body #backgroundos{
 
 .recipes-items:hover {
 
-    box-shadow: 10px 10px 18px #cccccc;
+    box-shadow: 0 8px 12px 0 #474747;
     cursor: pointer;
+    transform: scale(1.03);
+    transform-origin: center;
 }
 
 .recipes-images {
@@ -61,10 +105,13 @@ body #backgroundos{
     padding-top: 5px;
 }
 
-.recipes-name, .recipes-difficulty {
+/* .recipes-name, .recipes-difficulty {
   color: black;
-}
+} */
 
+.recipes-difficulty mat-icon {
+  font-size: 20px;
+}
 
 
 .dropbtn {
@@ -198,4 +245,26 @@ body #backgroundos{
 
 .example-sidenav label {
   color: white;
+}
+
+.mat-card-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-header {
+  display: flex;
+  align-items: center;
+}
+
+.left-header .text-content {
+  margin-left: 10px;
+}
+
+.right-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding-left: 40px;
 }

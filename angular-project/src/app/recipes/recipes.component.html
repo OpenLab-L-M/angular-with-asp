@@ -2,15 +2,23 @@
   <img id="backgroundos" src="../../assets/backgroundos_recipes.png">
   <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side">
-          <input id="diff" type="checkbox" value="Easy" [ngModel]="easyChecked" (ngModelChange)="easyChecked = $event" (click)="filterRecipesByDifficulty('Easy')">
+          <input class="cyberpunk-checkbox" id="diff" type="checkbox" value="Easy" [ngModel]="easyChecked" (ngModelChange)="easyChecked = $event" (click)="filterRecipesByDifficulty('Easy')">
         
           <label for="diff">Easy</label>
-          <input id="diff2" type="checkbox" value="Medium" [ngModel]="mediumChecked" (ngModelChange)="mediumChecked = $event" (click)="filterRecipesByDifficulty('Medium')">
+          <input class="cyberpunk-checkbox" id="diff2" type="checkbox" value="Medium" [ngModel]="mediumChecked" (ngModelChange)="mediumChecked = $event" (click)="filterRecipesByDifficulty('Medium')">
         
           <label for="diff2">Medium</label>
-          <input id="diff3" type="checkbox" value="Hard" [ngModel]="hardChecked" (ngModelChange)="hardChecked = $event" (click)="filterRecipesByDifficulty('Hard')">
+          <input class="cyberpunk-checkbox" id="diff3" type="checkbox" value="Hard" [ngModel]="hardChecked" (ngModelChange)="hardChecked = $event" (click)="filterRecipesByDifficulty('Hard')">
         
           <label for="diff3">Hard</label>
+
+
+          <input class="cyberpunk-checkbox" id="diff4" type="checkbox" value="Vegan" [ngModel]="veganChecked" (ngModelChange)="veganChecked = $event" (click)="filterRecipesByDifficulty('Vegan')">
+          <label for="diff4">Vegan</label>
+          <input class="cyberpunk-checkbox" id="diff5" type="checkbox" value="Vegetarian" [ngModel]="vegetarianChecked" (ngModelChange)="vegetarianChecked = $event" (click)="filterRecipesByDifficulty('Vegetarian')">
+          <label for="diff5">Vegetarian</label>
+          <input class="cyberpunk-checkbox" id="diff6" type="checkbox" value="LowCalorie" [ngModel]="lowCalorieChecked" (ngModelChange)="lowCalorieChecked = $event" (click)="filterRecipesByDifficulty('LowCalorie')">
+          <label for="diff6">Low Calorie</label>
 
 
           <button (click) = "call()">filter</button>
@@ -33,9 +41,20 @@
     <div class="recipes-container">
       <mat-card class="recipes-items" *ngFor="let recipe of recipes() | filter : sSearchRecept">
         <mat-card-header>
-          <img id="avatar" mat-card-avatar class="example-header-image" [src]="getImageSrc(this.user().pictureURL)" matTooltip="Creator">
-          <mat-card-title class="recipes-name">{{recipe.name}}</mat-card-title>
-          <mat-card-subtitle class="recipes-difficulty">{{recipe.difficulty}}</mat-card-subtitle>
+          <div class="left-header">
+            <img *ngIf="this.user().pictureURL" id="avatar" mat-card-avatar class="example-header-image" [src]="getImageSrc(this.user().pictureURL)" matTooltip="Creator">
+            <img *ngIf="!this.user().pictureURL" id="avatar" mat-card-avatar class="example-header-image" src="../../assets/Whithout_profile_picture.jpg" matTooltip="Creator">
+            <div class="text-content">
+              <mat-card-title class="recipes-name">{{recipe.name}}</mat-card-title>
+              <mat-card-subtitle class="recipes-difficulty">{{recipe.difficulty}}</mat-card-subtitle>
+              <mat-card-subtitle class="recipes-difficulty"><mat-icon>query_builder</mat-icon> {{recipe.cas}} min</mat-card-subtitle>
+            </div>
+          </div>
+          <div class="right-header">
+            <mat-card-subtitle *ngIf="recipe.veganske">Vegan</mat-card-subtitle>
+            <mat-card-subtitle *ngIf="recipe.vegetarianske">Vegetarian</mat-card-subtitle>
+            <mat-card-subtitle *ngIf="recipe.nizkoKaloricke">Low calorie</mat-card-subtitle>
+          </div>
         </mat-card-header>
         
           <img mat-card-image [src]="recipe.imageURL" class="recipes-images" matTooltip="Details of {{recipe.name}}" [routerLink]="['/RecipesDetails', recipe.id]"/>

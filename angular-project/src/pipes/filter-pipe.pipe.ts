@@ -19,10 +19,17 @@ export class FilterPipe implements PipeTransform {
     const difficultiesArray = sSearchRecept.split(" ");
     const difficulty1 = difficultiesArray[0];
     const difficulty2 = difficultiesArray[1];
+    const difficulty3 = difficultiesArray[2];
+
 
     return items.filter(item => {
       if (item && item.difficulty) {
-        return item.difficulty.toLowerCase().includes(difficulty1) || item.difficulty.toLowerCase().includes(difficulty2);
+        const difficultyMatches = difficultiesArray.includes(item.difficulty.toLowerCase());
+                                  const veganskeMatches = difficultiesArray.includes('vegan') && item.veganske === true;
+                                  const vegetarianskeMatches = difficultiesArray.includes('vegetarian') && item.vegetarianske === true;
+                                  const nizkoKalorickeMatches = difficultiesArray.includes('lowcalorie') && item.nizkoKaloricke === true;
+    
+        return difficultyMatches || veganskeMatches || vegetarianskeMatches || nizkoKalorickeMatches;
       }
       return false;
     });
