@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { MatSliderModule } from '@angular/material/slider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterLink } from '@angular/router';
@@ -11,16 +12,27 @@ import { RecipesDTO } from '../recipes/RecipesDTO';
 import { signal } from '@angular/core';
 import { createRecipe } from './createRecipe';
 import { Subject, takeUntil } from 'rxjs';
+import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-create-recipe',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatButtonModule
+  imports: [RouterLink, ReactiveFormsModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatCardModule, MatButtonModule, MatSliderModule, FormsModule,
     ],
   templateUrl: './create-recipe.component.html',
   styleUrl: './create-recipe.component.css'
 })
 export class CreateRecipeComponent {
+  
+  disabled = false;
+  max = 100;
+  min = 0;
+  showTicks = false;
+  step = 1;
+  thumbLabel = false;
+  value = 0;
+  
   profileForm = new FormGroup({
     name: new FormControl('', Validators.required),
     postup: new FormControl('', Validators.required),
@@ -43,6 +55,10 @@ export class CreateRecipeComponent {
     
     
   }
+
+
+  
+
   private createRecipe() {
     debugger
     this.recipesServíce.CreateRecipe({

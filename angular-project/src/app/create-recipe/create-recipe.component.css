@@ -22,6 +22,15 @@ form {
   height: 100vh;
 }
 
+
+textarea {
+  white-space: pre-wrap; /* zachovať formátovanie riadkov */
+}
+
+textarea::before {
+  content: '• ';
+  display: inline-block;
+}
 /* img {
     position:fixed;
     left: 0;
@@ -64,6 +73,22 @@ form {
 .formy {
   height: 100%; Roztáhne formulář na celou šířku 
 } */
+
+.example-margin {
+  width: 250px;
+}
+
+::ng-deep .mat-slider-track-fill {
+  background-color: #4caf50 !important; /* Change this to your desired color */
+}
+
+::ng-deep .mat-slider-thumb {
+  background-color: #4caf50 !important; /* Change this to your desired color */
+}
+
+::ng-deep .mat-slider-thumb-label {
+  background-color: #4caf50 !important; /* Change this to your desired color */
+}
 
 
 

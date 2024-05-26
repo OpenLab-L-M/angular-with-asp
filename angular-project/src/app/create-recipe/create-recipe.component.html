@@ -50,15 +50,27 @@
             
           </div>
           <div class="set">
-            <mat-form-field class="time_rcp">
-              
-
-                  <mat-label class="centered-label" for="cas">approximate time: </mat-label>
-                  <textarea matInput id="cas" formControlName="cas"></textarea>
-                  
-
-              
-            </mat-form-field>
+            <mat-card class="example-result-card">
+              <mat-card-content>
+            
+                <div class="example-label-container">
+                  <label for="cas" id="example-name-label" class="example-name-label">Time: </label>
+                  <label class="example-value-label">{{slider.value}}</label>
+                  <label for="cas"> min</label>
+                </div>
+                <mat-slider
+                    class="example-margin"
+                    [disabled]="disabled"
+                    [max]="max"
+                    [min]="min"
+                    [step]="step"
+                    [discrete]="thumbLabel"
+                    [showTickMarks]="showTicks"
+                    color="warn">
+                  <input id="cas" formControlName="cas" matSliderThumb [(ngModel)]="value" #slider>
+                </mat-slider>
+              </mat-card-content>
+            </mat-card>
             
           </div>
           
