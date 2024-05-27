@@ -1,3 +1,5 @@
+<body>
+
 
   <h1 mat-dialog-title>Hi {{this.user().userName}}</h1>
   <div mat-dialog-content>
@@ -14,5 +16,5 @@
     <button id="cancel" mat-raised-button  (click)="onNoClick()">Cancel</button>
     <button id="save" mat-raised-button mat-dialog-close (click)="imageUploadAction()" cdkFocusInitial>Save</button>
   </div>
-
+</body>
 <!-- *ngIf="!this.user().pictureURL && !imageUploaded" -->

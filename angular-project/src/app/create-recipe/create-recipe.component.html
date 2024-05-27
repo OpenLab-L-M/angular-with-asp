@@ -114,29 +114,18 @@
             <div class="diff_radio">
               <p>
                 
-                  <input id="jVeganske" type="radio" formControlName="veganske" [value]="true">
-                  <label for="jVeganske">veganske</label>
+                  <input id="jVeganske" type="checkbox" formControlName="veganske" [value]="true">
+                  <label for="jVeganske">vegan</label>
+
+                  <input id="jVegetarianske" type="checkbox" formControlName="vegetarianske" [value]="true">
+                  <label for="jVegetarianske">vegetarian</label>
+
+                  <input id="jnizkoKaloricke" type="checkbox" formControlName="nizkoKaloricke" [value]="true">
+                  <label for="jnizkoKaloricke">Low calorie</label>
                 </p>
             </div>
           </div>
-          <div class="set">
-            <label id="vegetarianske">vegetarianske?</label> <br>
-            <div class="diff_radio">
-              <p>
-                  <input id="jVegetarianske" type="radio" formControlName="vegetarianske" [value]="true">
-                  <label for="jVegetarianske">vegetarianske</label>
-                </p>
-            </div>
-          </div>
-          <div class="set">
-            <label id="nizkoKaloricke">nizkoKaloricke?</label> <br>
-            <div class="diff_radio">
-              <p>
-                  <input id="jnizkoKaloricke" type="radio" formControlName="nizkoKaloricke" [value]="true">
-                  <label for="jnizkoKaloricke">Nízko kalorické</label>
-                </p>
-            </div>
-          </div>
+
 
         
         

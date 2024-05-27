@@ -231,21 +231,37 @@ body #backgroundos{
   transition: 0.2s;
 }
 
+.example-container {
+  overflow: hidden;
+  /* height: 40%; */
+}
+
 .example-sidenav-content {
   background-color: rgb(15, 15, 15);
+  /* height: 40%; */
 }
 
 .example-sidenav-content button {
   color: white;
+  overflow: hidden;
 }
 
 .example-sidenav {
   background-color: rgb(15, 15, 15);
+  overflow: hidden;
+  /* height: 40%; */
+}
+
+.drawer-content {
+  /* height: 40%; */
+  overflow: hidden;
 }
 
 .example-sidenav label {
   color: white;
+  overflow: hidden;
 }
+
 
 .mat-card-header {
   display: flex;

@@ -1,3 +1,7 @@
+body {
+    overflow: hidden;
+}
+
 .decide_btn button:first-child {
     margin-right: 10px; /* Alebo akýkoľvek iný požadovaný odstup */
 }
