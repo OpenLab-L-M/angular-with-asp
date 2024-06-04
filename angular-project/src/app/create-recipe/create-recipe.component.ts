@@ -56,7 +56,22 @@ export class CreateRecipeComponent {
     
   }
 
-
+  updateIngredients(event: any) {
+    const ingrControl = this.profileForm.get('ingr');
+    if (event.target.checked) {
+      // Add the ingredient to the form control if checked
+      const currentValue = ingrControl.value || '';
+      const newIngredient = event.target.value;
+      const updatedValue = currentValue ? currentValue + ', ' + newIngredient : newIngredient;
+      ingrControl.setValue(updatedValue);
+    } else {
+      // Remove the ingredient from the form control if unchecked
+      const currentValue = ingrControl.value || '';
+      const ingredientToRemove = event.target.value;
+      const updatedValue = currentValue.replace(ingredientToRemove, '').replace(/,\s*,/, ',').trim();
+      ingrControl.setValue(updatedValue);
+    }
+  }
   
 
   private createRecipe() {

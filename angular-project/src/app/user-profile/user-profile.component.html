@@ -21,7 +21,8 @@
 <div class="recipes-container">
     <mat-card class="recipes-items" *ngFor="let ourRecipe of ourListOfRecipes()">
       <mat-card-header>
-        <img id="avatar" mat-card-avatar class="example-header-image" [src]="getImageSrc(this.user().pictureURL)" matTooltip="Creator">
+        <img *ngIf="this.user().pictureURL" id="avatar" mat-card-avatar class="example-header-image" [src]="getImageSrc(this.user().pictureURL)" matTooltip="Creator">
+        <img *ngIf="!this.user().pictureURL" id="avatar" mat-card-avatar class="example-header-image" src="../../assets/Whithout_profile_picture.jpg" matTooltip="Creator">
         <mat-card-title class="recipes-name">{{ourRecipe.name}}</mat-card-title>
         <mat-card-subtitle class="recipes-difficulty">{{ourRecipe.difficulty}}</mat-card-subtitle>
       </mat-card-header>
@@ -40,12 +41,14 @@
 <div class="recipes-container">
   <mat-card class="recipes-items" *ngFor="let oursFavRecipe of ourFavRecipes()">
     <mat-card-header>
-      <img id="avatar" mat-card-avatar class="example-header-image" [src]="getImageSrc(this.user().pictureURL)" matTooltip="Creator">
+      <img *ngIf="this.user().pictureURL" id="avatar" mat-card-avatar class="example-header-image" [src]="getImageSrc(this.user().pictureURL)" matTooltip="Creator">
+      <img *ngIf="!this.user().pictureURL" id="avatar" mat-card-avatar class="example-header-image" src="../../assets/Whithout_profile_picture.jpg" matTooltip="Creator">
       <mat-card-title class="recipes-name">{{oursFavRecipe.name}}</mat-card-title>
       <mat-card-subtitle class="recipes-difficulty">{{oursFavRecipe.difficulty}}</mat-card-subtitle>
     </mat-card-header>
     
       <img mat-card-image [src]="oursFavRecipe.imageURL" class="recipes-images" [routerLink]="['/RecipesDetails', oursFavRecipe.id]"/>
+      
       
       <mat-card-footer>
         <input id="favourite" type="checkbox" value="true">

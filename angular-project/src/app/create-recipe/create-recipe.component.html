@@ -38,7 +38,7 @@
             
           </div>
           <div class="set">
-            <mat-form-field class="ingredients_rcp">
+            <!-- <mat-form-field class="ingredients_rcp">
               
 
                   <mat-label class="centered-label" for="ingr">Recipe ingredients: </mat-label>
@@ -46,7 +46,17 @@
                   
 
               
-            </mat-form-field>
+            </mat-form-field> -->
+
+            <div class="dropdown">
+              <button class="dropbtn">Dropdown</button>
+              <div class="dropdown-content">
+              <input for="ingr" id="ingr" formControlName="ingr" type="checkbox" value="Almond Meal" (change)="updateIngredients($event)">
+              <label for="ingr">Almond Meal</label>
+              <input for="ingr" id="ingr" formControlName="ingr" type="checkbox" value="Egg" (change)="updateIngredients($event)">
+              <label for="ingr">Egg</label>
+              </div>
+            </div>
             
           </div>
           <div class="set">
