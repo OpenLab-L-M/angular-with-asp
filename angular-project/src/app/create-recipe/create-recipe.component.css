@@ -137,7 +137,7 @@ h1 {
 }
 .diff_radio input[type="radio"] {
     display: none;
-    
+
 }
 .diff_radio input[type="radio"]:checked + label {
     background: red;
@@ -147,7 +147,7 @@ h1 {
 
 .diff_radio input[type="checkbox"] {
   display: none;
-  
+
 }
 .diff_radio input[type="checkbox"]:checked + label {
   background: red;
@@ -171,4 +171,10 @@ h1 {
 .Image_rcp label {
   color: white;
 }
+
+/*.ch_ing {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}*/
 

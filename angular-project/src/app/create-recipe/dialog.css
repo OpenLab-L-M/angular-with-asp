@@ -1,0 +1,15 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); /* Set grid layout to automatically adjust columns */
+  gap: 10px; /* Adjust gap between columns */
+}
+
+.row {
+  display: flex;
+  justify-content: space-between; /* Ensure even spacing between items in a row */
+}
+
+.column {
+  flex: 1; /* Each column takes up equal space */
+  max-width: max-content; /* Set max-width for each column */
+}

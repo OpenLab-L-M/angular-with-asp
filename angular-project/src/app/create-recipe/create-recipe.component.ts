@@ -1,30 +1,45 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
+import {FormGroup, FormControl, ReactiveFormsModule, Validators, FormsModule} from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatSliderModule } from '@angular/material/slider';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatFormField, MatFormFieldModule} from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterLink } from '@angular/router';
 import { RecipesService } from 'src/services/recipes.service';
 import { RecipesDTO } from '../recipes/RecipesDTO';
 import { signal } from '@angular/core';
 import { createRecipe } from './createRecipe';
-import { Subject, takeUntil } from 'rxjs';
-import { FormsModule } from '@angular/forms';
+import {catchError, Observable, Subject, takeUntil} from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
+import {MatIcon} from "@angular/material/icon";
+import {MatTooltip} from "@angular/material/tooltip";
+import {DialogOverviewExampleDialog} from "../user-profile/user-profile.component";
+import {
+  MAT_DIALOG_DATA,
+  MatDialog, MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle
+} from "@angular/material/dialog";
+import {NgForOf, NgIf} from "@angular/common";
+import {UserDTO} from "../user-profile/UserDTO";
+import {UserService} from "../../services/user.service";
+import {IngredienceDTO} from "./IngredienceDTO";
+import {IngredientService} from "./IngredientService";
 
 @Component({
   selector: 'app-create-recipe',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatCardModule, MatButtonModule, MatSliderModule, FormsModule,
+    imports: [RouterLink, ReactiveFormsModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatCardModule, MatButtonModule, MatSliderModule, FormsModule, MatIcon, MatTooltip,
     ],
-  templateUrl: './create-recipe.component.html',
+  templateUrl:'./create-recipe.component.html',
   styleUrl: './create-recipe.component.css'
 })
 export class CreateRecipeComponent {
-  
+
   disabled = false;
   max = 100;
   min = 0;
@@ -32,7 +47,7 @@ export class CreateRecipeComponent {
   step = 1;
   thumbLabel = false;
   value = 0;
-  
+
   profileForm = new FormGroup({
     name: new FormControl('', Validators.required),
     postup: new FormControl('', Validators.required),
@@ -46,14 +61,14 @@ export class CreateRecipeComponent {
   });
   private destroy$ = new Subject<void>();
   newRecipe = signal<createRecipe>(undefined);
-  constructor(private httpClient: HttpClient, private recipesServíce: RecipesService, private router: Router){}
+  constructor(private httpClient: HttpClient, private recipesServíce: RecipesService, private router: Router, private dialog: MatDialog, protected ingredientService: IngredientService){}
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
     this.createRecipe();
     console.warn(this.profileForm.value);
-    
-    
+
+
   }
 
   updateIngredients(event: any) {
@@ -72,7 +87,7 @@ export class CreateRecipeComponent {
       ingrControl.setValue(updatedValue);
     }
   }
-  
+
 
   private createRecipe() {
     debugger
@@ -81,17 +96,32 @@ export class CreateRecipeComponent {
       postup: this.profileForm.controls['postup'].value,
       difficulty: this.profileForm.controls['diff'].value,
       imageURL: this.profileForm.controls['img'].value,
-      ingrediencie: this.profileForm.controls['ingr'].value,
+      ingrediencie: this.ingredientService.selectedIngredients,
       cas: this.profileForm.controls['cas'].value,
       veganske: this.profileForm.controls['veganske']?.value,
       vegetarianske: this.profileForm.controls['vegetarianske']?.value,
       nizkoKaloricke: this.profileForm.controls['nizkoKaloricke']?.value,
     }).pipe(takeUntil(this.destroy$))
     .subscribe(() => this.router.navigate(['/Recipes']));
+    this.ingredientService.selectedIngredients = "";
   }
 
 
-   
+  openDialogis(): void {
+    const dialogRef = this.dialog.open(Dialog, {
+      width: '500px',
+    });
+
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+
+    });
+
+  }
+
+
+
 
   // uploadedImage: File;
   // dbImage: any;
@@ -131,3 +161,72 @@ export class CreateRecipeComponent {
   //     );
   // }
 }
+
+
+@Component({
+  selector: 'dialog',
+  templateUrl: 'dialog.html',
+  styleUrl: 'dialog.css',
+  standalone: true,
+  imports: [
+    FormsModule,
+    MatDialogTitle,
+    MatDialogContent,
+    NgForOf
+  ]
+})
+export class Dialog implements OnInit {
+  ingredience: IngredienceDTO = {Name: ''};
+  inputString: string = '';
+  ingrediences: any = [];
+
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: UserDTO, private userService: UserService, private httpClient: HttpClient, private ingredientService: IngredientService) {
+  }
+
+  ngOnInit() {
+    this.httpClient.get<any>("https://localhost:7186/ingredience/getIngredience").subscribe(value =>
+      this.ingrediences = value,
+    )
+  }
+  selectedIngredients: string = '';
+/*  onCheckboxChange(ingredient: any, event: any) {
+    if (event.target.checked) {
+      this.selectedIngredients += ingredient.name + ', ';
+    } else {
+      this.selectedIngredients = this.selectedIngredients.replace(ingredient.name + ', ', '');
+    }
+    console.log(this.selectedIngredients)
+  }*/
+
+  onCheckboxChange(ingredient: any, event: any) {
+    if (event.target.checked) {
+      this.ingredientService.selectedIngredients += ingredient.name + ', ';
+    } else {
+      this.ingredientService.selectedIngredients = this.ingredientService.selectedIngredients.replace(ingredient.name + ', ', '');
+    }
+  }
+
+
+  sendIngredience() {
+    this.ingredience.Name = this.inputString;
+    this.httpClient.post('https://localhost:7186/ingredience/addIngredience', this.ingredience).subscribe(response =>
+        console.log(response)
+    )
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  addIngredience($event: any) {
+    this.ingrediences.add($event);
+  }
+}
+
+
+
+
+

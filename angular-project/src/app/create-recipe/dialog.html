@@ -1,20 +1,24 @@
 <body>
 
+  <h1 mat-dialog-title>Suroviny</h1>
+  <div mat-dialog-content>
+    <h1>Checkbox List</h1>
 
-  <h1 mat-dialog-title>Hi {{this.user().userName}}</h1>
-  <div mat-dialog-content>
-    <p>Do you want to change your profile picture?</p>
+    <div class="container">
+      <div class="row" *ngFor="let ingredience of ingrediences">
+        <div class="column">
+          <input type="checkbox" (change)="onCheckboxChange(ingredience, $event)"> {{ ingredience.name }}
+        </div>
+      </div>
+    </div>
+
+
+    <div class="input-container">
+        <label for="inputString">Enter a string:</label>
+        <input type="text" id="inputString" [(ngModel)]="inputString" name="inputString">
+      </div>
+      <button (click)="sendIngredience()" >Save ingredience</button>
+
   </div>
-  <div mat-dialog-actions class="form-group" >
-      <input *ngIf="this.user().pictureURL" type="button" value="Change your profile picture" (click)="deleteImage()">
-      <input *ngIf="!this.user().pictureURL" type="file" (change)="onImageUpload($event)">
-  </div>
-  <div mat-dialog-content>
-    <p></p>
-  </div>
-  <div mat-dialog-actions class="decide_btn">
-    <button id="cancel" mat-raised-button  (click)="onNoClick()">Cancel</button>
-    <button id="save" mat-raised-button mat-dialog-close (click)="imageUploadAction()" cdkFocusInitial>Save</button>
-  </div>
+
 </body>
-<!-- *ngIf="!this.user().pictureURL && !imageUploaded" -->
