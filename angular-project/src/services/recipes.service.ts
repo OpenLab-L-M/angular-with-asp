@@ -4,6 +4,7 @@ import { RecipesDTO } from 'src/app/recipes/RecipesDTO'
 import { createRecipe } from '../app/create-recipe/createRecipe';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { EditDTO } from 'src/app/recipes-details/recipes-details.component';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,8 @@ export class RecipesService {
   }
   addToFav(id: number){
     return this.http.post<void>(this.recipesURL + "AddToFav/" + id, id);
+  }
+  edit(upraveny: EditDTO){
+    return this.http.put<string>(this.recipesURL + "Editujem", upraveny);
   }
 }

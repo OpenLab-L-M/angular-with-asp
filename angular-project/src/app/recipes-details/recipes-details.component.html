@@ -1,6 +1,31 @@
 <body>
   <img id="backgroundos" src="../../assets/backgroundos_recipes.png">
+  <div *ngIf="clicked == true; else noCourses">
+        
+    <form [formGroup]="profileForm" style="color: aliceblue;">
 
+      <label for="name" >Name: </label>
+      <input id="name" type="text" formControlName="name" value="name">
+      <br>
+
+      <label for="ingrediencie">ingredients: </label>
+      <input id="ingrediencie" type="text" formControlName="ingrediencie" value="ingrediencie">
+      <br>
+      <label for="postup">postup: </label>
+      <input id="postup" type="text" formControlName="postup" value="postup">
+      <br>
+      <label for="imgURL">image URL: </label>
+      <input id="imgURL" type="text" formControlName="imgURL" value="imgURL">
+    <br>
+    <label for="cas">cas: </label>
+      <input id="cas" type="text" formControlName="cas" value="cas">
+    </form>
+    <button (click)="submit()" style="width: 100px; height: 100px; ">Submit</button>
+  </div>
+
+  <ng-template #noCourses>
+    
+  
   <div>
     <p class="detail_title">
       {{this.recipeService.chRecipe.name}}
@@ -23,6 +48,10 @@
         <input type="radio" name="rating" value="2" id="radio_down">
         <mat-icon id="thumb_down">thumb_down</mat-icon>
       </mat-card-actions>
+      <div *ngIf="recipeService.chRecipe.checkID == recipeService.chRecipe.userID">
+        <button id="Edit" type="submit" name="editBtn" value="enter" (click)="edit()">Edit Recipe</button>
+      </div>
+      
       <img class="detail_image" [src]="this.recipeService.chRecipe.imageURL" />
       <p class="detail_description">
         ingredients: <br> {{this.recipeService.chRecipe.ingrediencie}}
@@ -45,4 +74,5 @@
     
       
   </div>
+</ng-template>
 </body>

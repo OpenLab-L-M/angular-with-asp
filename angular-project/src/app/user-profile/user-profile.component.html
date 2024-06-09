@@ -30,7 +30,7 @@
         <img mat-card-image [src]="ourRecipe.imageURL" class="recipes-images" matTooltip="Details of {{ourRecipe.name}}" [routerLink]="['/RecipesDetails', ourRecipe.id]"/>
       
         <mat-card-footer>
-          <input id="favourite" type="checkbox">
+          <input id="favourite" (change)="ktoryRecept(ourRecipe.id)" type="checkbox">
           <mat-icon id="like">favorite</mat-icon>
         </mat-card-footer>
       
@@ -51,9 +51,8 @@
       
       
       <mat-card-footer>
-        <input id="favourite" type="checkbox" value="true">
-        <mat-icon id="like-false">favorite</mat-icon>
-        <mat-icon id="like-true">favorite</mat-icon>
+        <input id="favourite" type="checkbox" (change)="ktoryRecept(oursFavRecipe.id)" matTooltip="Add to favourite">
+        <mat-icon id="like" >favorite</mat-icon>
       </mat-card-footer>
     
   </mat-card>

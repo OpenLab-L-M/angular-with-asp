@@ -49,7 +49,16 @@ export class UserProfileComponent {
   name: string;
 
   constructor(private userService: UserService, private recipesSevice: RecipesService, private httpClient: HttpClient, public dialog: MatDialog){}
-
+  ktoryRecept(id: number): void{
+    debugger
+    const checkbox = document.getElementById('favourite') as HTMLInputElement;
+    const isChecked = (event.target as HTMLInputElement).checked;
+    if(isChecked){
+      this.recipesSevice.addToFav(id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe();
+    }
+    }
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '500px',
@@ -93,6 +102,7 @@ export class UserProfileComponent {
 })
 export class DialogOverviewExampleDialog {
 
+
   @Output() imageDeleted = new EventEmitter<void>();
 
   user = signal<UserDTO>(undefined);
@@ -105,6 +115,8 @@ export class DialogOverviewExampleDialog {
   onNoClick(): void {
     this.dialogRef.close();
   }
+    
+
 
   ngOnInit(): void{
     this.userService.getCurrentUser()
@@ -126,7 +138,7 @@ export class DialogOverviewExampleDialog {
       }
     );
   }
-  
+  private destroy$ = new Subject<void>();
   uploadedImage: File;
   dbImage: any;
   postResponse: any;
@@ -168,4 +180,6 @@ export class DialogOverviewExampleDialog {
     public getImageSrc(imageData: string): string {
       return `data:image/jpeg;base64,${imageData}`;
     }
+
+
 }

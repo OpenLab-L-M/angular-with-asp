@@ -122,10 +122,23 @@ namespace AspNetCoreAPI.Controllers
                return Ok(new { message = "Image uploaded successfully" });
            }
            */
+        [HttpPut("Editujem")]
+        public IActionResult Edit(EditDTO receptik)
+        {
+            var nReceptik = _context.Recipes.FirstOrDefault(x => x.Id == receptik.Id);
 
-   
+            nReceptik.Name = receptik.Name;
+            nReceptik.Ingrediencie = receptik.Ingrediencie;
+            nReceptik.Postup = receptik.Postup;
+            nReceptik.ImageURL = receptik.ImgURL;
+            nReceptik.Cas = receptik.Cas;
+            _context.SaveChanges();
+            return Ok();
+        }
 
-        
+
+
+
 
 
     }
