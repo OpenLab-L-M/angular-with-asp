@@ -10,6 +10,26 @@ body #backgroundos{
     padding-left: 30px;
 } */
 
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.edit_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit_btn {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
 .detail_title {
   font-size: 40px;
   text-align: center;
@@ -96,4 +116,9 @@ mat-card-footer #back {
   
   mat-card-footer #delete:hover {
     background: #171A2B;
+  }
+
+  .edit_form {
+    justify-content: center;
+    align-items: center;
   }

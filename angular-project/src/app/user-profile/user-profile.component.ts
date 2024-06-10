@@ -49,6 +49,9 @@ export class UserProfileComponent {
   name: string;
 
   constructor(private userService: UserService, private recipesSevice: RecipesService, private httpClient: HttpClient, public dialog: MatDialog){}
+
+
+  
   ktoryRecept(id: number): void{
     debugger
     const checkbox = document.getElementById('favourite') as HTMLInputElement;

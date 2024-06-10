@@ -22,8 +22,20 @@ form {
   height: 100vh;
 }
 
+.form-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
-.dropbtn {
+.column {
+  flex: 1;
+  max-width: 50%;
+  padding: 20px;
+}
+
+
+/* .dropbtn {
   background-color: #4CAF50;
   color: white;
   padding: 16px;
@@ -61,7 +73,7 @@ form {
 
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
-}
+} */
 
 
 
@@ -114,9 +126,15 @@ h1 {
     border: 1px solid rgba(0,0,0,.1);
     border-radius: 4px;
     display: inline-block;
-    padding: 5px;
+    padding: 2px;
     padding-top: 10px;
     text-align: center;
+}
+
+.diff_radio, .diff_checkbox {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
 }
 
 .diff_radio label {
@@ -140,10 +158,13 @@ h1 {
 
 }
 .diff_radio input[type="radio"]:checked + label {
-    background: red;
+    background: black;
     color: white;
     border: 1px solid rgba(0,0,0,.1);
 }
+
+
+
 
 .diff_radio input[type="checkbox"] {
   display: none;

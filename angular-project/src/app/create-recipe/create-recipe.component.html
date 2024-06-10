@@ -11,6 +11,8 @@
         <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
           <header>
             <h1>Create your recipe</h1>
+            <div class="form-container">
+              <div class="column">
           <div class="set">
             <mat-form-field class="Name_rcp">
 
@@ -24,19 +26,6 @@
 
           </div>
 
-            <div class="set">
-              <mat-form-field class="Description_rcp">
-
-
-                <mat-label class="centered-label" for="ingr">Recipe description: </mat-label>
-                <textarea [(ngModel)]="ingredientService.selectedIngredients" matInput id="ingr" formControlName="ingr"></textarea>
-
-
-
-              </mat-form-field>
-
-            </div>
-
           <div class="set">
             <mat-form-field class="Description_rcp">
 
@@ -49,6 +38,21 @@
             </mat-form-field>
 
           </div>
+
+            <div class="set">
+              <mat-form-field class="Description_rcp">
+
+
+                <mat-label class="centered-label" for="ingr">Recipe Ingredients: </mat-label>
+                <textarea [(ngModel)]="ingredientService.selectedIngredients" matInput id="ingr" formControlName="ingr"></textarea>
+
+
+
+              </mat-form-field>
+
+            </div>
+
+          
           <div class="set">
             <!-- <mat-form-field class="ingredients_rcp">
 
@@ -96,7 +100,8 @@
             </mat-card>
 
           </div>
-
+        </div>
+          <div class="column">
 
           <div class="set">
             <div class="Image_rcp">
@@ -107,6 +112,9 @@
               </p>
             </div>
           </div>
+        
+
+        
 
           <div class="set">
             <label id="ch_diff">Choose a difficulty: </label> <br>
@@ -115,7 +123,7 @@
 
                   <input id="diff" type="radio" formControlName="diff" value="Easy" [checked]="true">
 
-                  <label for="diff">Easy</label>
+                  <label id="diff_1" for="diff">Easy</label>
                   <input id="diff2" type="radio" formControlName="diff" value="Medium">
 
                   <label for="diff2">Medium</label>
@@ -143,9 +151,9 @@
           </div>
 
 
+        </div>
 
-
-
+        </div>
       </header>
 
 
@@ -161,7 +169,9 @@
             <span></span>
             <label for="img">Add an image: </label>
           </p> -->
+        
         </form>
-
-  <button  mat-raised-button (click)="openDialogis()"Choose Ingredience></button>
+<div class="ingr_btn">
+  <button  mat-raised-button (click)="openDialogis()">Add ingrediences</button>
+</div>
       </body>

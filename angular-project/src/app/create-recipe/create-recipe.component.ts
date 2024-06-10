@@ -4,8 +4,8 @@ import {FormGroup, FormControl, ReactiveFormsModule, Validators, FormsModule} fr
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatSliderModule } from '@angular/material/slider';
-import {MatFormField, MatFormFieldModule} from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
+import {MatFormField, MatFormFieldModule, MatLabel} from '@angular/material/form-field';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 import { Router, RouterLink } from '@angular/router';
 import { RecipesService } from 'src/services/recipes.service';
 import { RecipesDTO } from '../recipes/RecipesDTO';
@@ -16,6 +16,7 @@ import { MatCardModule } from '@angular/material/card';
 import {MatIcon} from "@angular/material/icon";
 import {MatTooltip} from "@angular/material/tooltip";
 import {DialogOverviewExampleDialog} from "../user-profile/user-profile.component";
+import { ChangeDetectorRef } from '@angular/core'; // Import ChangeDetectorRef
 import {
   MAT_DIALOG_DATA,
   MatDialog, MatDialogActions,
@@ -172,7 +173,9 @@ export class CreateRecipeComponent {
     FormsModule,
     MatDialogTitle,
     MatDialogContent,
-    NgForOf
+    NgForOf,
+    MatButtonModule,
+    MatLabel
   ]
 })
 export class Dialog implements OnInit {
@@ -183,7 +186,7 @@ export class Dialog implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: UserDTO, private userService: UserService, private httpClient: HttpClient, private ingredientService: IngredientService) {
+    @Inject(MAT_DIALOG_DATA) public data: UserDTO, private userService: UserService, private httpClient: HttpClient, private ingredientService: IngredientService, private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -212,9 +215,18 @@ export class Dialog implements OnInit {
 
   sendIngredience() {
     this.ingredience.Name = this.inputString;
-    this.httpClient.post('https://localhost:7186/ingredience/addIngredience', this.ingredience).subscribe(response =>
-        console.log(response)
-    )
+    this.httpClient.post('https://localhost:7186/ingredience/addIngredience', this.ingredience).subscribe(response => {
+        console.log(response);
+        // Add the new ingredient to the list without refreshing
+        this.ingrediences.push({ name: this.ingredience.Name });
+        // Clear the input field
+        this.inputString = '';
+        // Trigger change detection
+        this.cdr.detectChanges();
+      }, error => {
+        console.error('Error adding ingredient:', error);
+      }
+    );
   }
 
   onNoClick(): void {
