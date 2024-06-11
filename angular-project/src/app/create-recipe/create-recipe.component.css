@@ -199,3 +199,10 @@ h1 {
   justify-content: center;
 }*/
 
+.ingr_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  margin-right: 0px;
+}

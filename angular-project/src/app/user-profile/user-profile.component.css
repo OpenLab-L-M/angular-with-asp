@@ -56,7 +56,7 @@ h1, h2, h3 {
   background: #171A2B;
 }
 
-.recipes-items {
+/* .recipes-items {
     width: 350px;
     background-color:rgb(63, 63, 63);
     border-radius: 10px;
@@ -67,7 +67,7 @@ h1, h2, h3 {
     /* padding-top: 10px;
     padding-bottom: 20px;
     padding-left: 10px;
-    padding-right: 10px; */
+    padding-right: 10px; 
     border: transparent;
 }
 
@@ -94,6 +94,68 @@ h1, h2, h3 {
 
 .recipes-name, .recipes-difficulty {
   color: black;
+} */
+
+
+.recipes-container {
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.recipes-items {
+  width: 350px;
+  background-color:rgb(63, 63, 63);
+  border-radius: 10px;
+  border-width: 10px;
+  border-color: rgb(63, 63, 63);
+  color: white;
+  margin: 10px 10px;
+  /* padding-top: 10px;
+  padding-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px; */
+  border: transparent;
+  transition: transform 0.3s;
+}
+
+.recipes-items mat-card-subtitle {
+color: white;
+margin-bottom: 2px;
+}
+
+.recipes-items mat-card-title {
+color: white;
+font-style: italic;
+margin-bottom: 5px;
+}
+
+#avatar {
+border:3px solid rgb(190, 190, 190);
+}
+
+.recipes-items:hover {
+
+  box-shadow: 0 8px 12px 0 #474747;
+  cursor: pointer;
+  transform: scale(1.03);
+  transform-origin: center;
+}
+
+.recipes-images {
+  width: 350px;
+  height:290px;
+  padding-top: 5px;
+}
+
+/* .recipes-name, .recipes-difficulty {
+color: black;
+} */
+
+.recipes-difficulty mat-icon {
+font-size: 20px;
 }
 
 #favourite {
@@ -126,6 +188,13 @@ h1, h2, h3 {
     position: absolute;
     left: 0;
     margin-left: 8px;
+  }
+
+  #like_of_favourite {
+    position: absolute;
+    left: 0;
+    margin-left: 8px;
+    color: red;
   }
   
   #favourite:checked + #like {

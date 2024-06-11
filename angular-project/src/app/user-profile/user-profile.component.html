@@ -7,7 +7,7 @@
 <h2>Your profile picture</h2>
 <img id="your_img" *ngIf="this.user().pictureURL" [src]="getImageSrc(this.user().pictureURL)" alt="User Picture" class="profile_img" matTooltip="Your profile picture">
 
-<img id="your_img" class="profile_img" *ngIf="!this.user().pictureURL" src="../../assets/Whithout_profile_picture.jpg">
+<img id="your_img" class="profile_img" *ngIf="!this.user().pictureURL" src="../../assets/Whithout_profile_picture.jpg" matTooltip="Your profile picture">
 <!-- <div>{{this.user().userProfilePicture}}</div> -->
 
 <!-- <input id="delete" *ngIf="this.user().pictureURL" type="button" value="Delete profile picture" (click)="deleteImage()"> -->
@@ -52,7 +52,7 @@
       
       <mat-card-footer>
         <input id="favourite" type="checkbox" (change)="ktoryRecept(oursFavRecipe.id)" matTooltip="Add to favourite">
-        <mat-icon id="like" >favorite</mat-icon>
+        <mat-icon id="like_of_favourite" >favorite</mat-icon>
       </mat-card-footer>
     
   </mat-card>

@@ -45,12 +45,12 @@
         <mat-card-title>Rate this recipe</mat-card-title>
       </mat-card-header>
 
-      <mat-card-actions>
+      <!-- <mat-card-actions>
         <input type="radio" name="rating" value="1" id="radio_up">
         <mat-icon id="thumb_up">thumb_up</mat-icon>
         <input type="radio" name="rating" value="2" id="radio_down">
         <mat-icon id="thumb_down">thumb_down</mat-icon>
-      </mat-card-actions>
+      </mat-card-actions> -->
       <div *ngIf="recipeService.chRecipe.checkID == recipeService.chRecipe.userID">
         <button mat-raised-button id="Edit" type="submit" name="editBtn" value="enter" (click)="edit()">Edit Recipe</button>
       </div>
