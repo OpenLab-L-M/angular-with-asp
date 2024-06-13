@@ -2,8 +2,10 @@
 
 
   <img id="backgroundos" src="../../assets/backgroundos_recipes.png">
-<h1>Profile</h1>
-<h3>Your name: {{this.user().userName}}</h3>
+<div class="user_name">
+  <p>{{this.user().userName}}</p>
+</div>
+
 <h2>Your profile picture</h2>
 <img id="your_img" *ngIf="this.user().pictureURL" [src]="getImageSrc(this.user().pictureURL)" alt="User Picture" class="profile_img" matTooltip="Your profile picture">
 

@@ -10,6 +10,19 @@ h1, h2, h3 {
   color: white;
 }
 
+.user_name {
+  position: absolute;
+  margin-top: 60px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  color: white;
+}
+
 
 #your_img {
   border:10px solid rgb(255, 255, 255);

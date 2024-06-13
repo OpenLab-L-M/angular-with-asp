@@ -10,6 +10,9 @@ body #backgroundos{
     padding-left: 30px;
 } */
 
+
+
+
 .form-container {
   display: flex;
   justify-content: center;
@@ -39,8 +42,26 @@ body #backgroundos{
 
 }
 
+mat-card-title {
+  font-size: 25px;
+}
+
+mat-card-actions {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* mat-card-subtitle {
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+} */
+
 .detail_description {
-    font-size: 30px;
+    font-size: 20px;
     line-height: 1.5;
 }
 
@@ -85,10 +106,14 @@ body #backgroundos{
 
 
 .detail_image {
-    float: left;
-    padding-right: 20px;
-    max-width: 500px;
-    max-height: 500px;
+  display: flex;
+  display: block; /* Ensure it behaves as a block element */
+  margin: auto;
+    
+    max-width: 90%;
+    max-height: 90%;
+
+
 }
 
 mat-card-footer #back {

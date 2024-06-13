@@ -62,10 +62,10 @@ body #backgroundos{
 
 .recipes-items {
     width: 350px;
-    background-color:rgb(63, 63, 63);
+    background-color:rgb(41, 41, 41);
     border-radius: 10px;
     border-width: 10px;
-    border-color: rgb(63, 63, 63);
+    border-color: rgb(41, 41, 41);
     color: white;
     margin: 10px 10px;
     /* padding-top: 10px;
