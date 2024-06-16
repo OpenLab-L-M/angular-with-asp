@@ -18,5 +18,19 @@ namespace AspNetCoreAPI.Data
     public DbSet<ApplicationUserRecipe> UserRecipes { get; set; } = default!;
 
     public DbSet<Ingredience> Ingredience { get; set; } = default!;
+
+    public DbSet<Images> Images { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Configure one-to-one relationship between Recipe and Images
+            modelBuilder.Entity<Recipe>()
+                .HasOne(r => r.Images)
+                .WithOne(i => i.Recipe)
+                .HasForeignKey<Recipe>(r => r.ImageId)
+                .OnDelete(DeleteBehavior.Cascade); // Ensure cascading delete if needed
+        }
     }
 }

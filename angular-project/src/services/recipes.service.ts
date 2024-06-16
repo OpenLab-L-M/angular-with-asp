@@ -5,6 +5,7 @@ import { createRecipe } from '../app/create-recipe/createRecipe';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { EditDTO } from 'src/app/recipes-details/recipes-details.component';
+import {ImageDTO} from "../app/recipes/ImageDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,27 @@ export class RecipesService {
   getClickedRecipes(Id: number) {
     return this.http.get<RecipesDTO>(this.recipesURL + Id);
   }
-  CreateRecipe(RecipesDTO: createRecipe) {
+
+  getImage(Id: number) {
+    return this.http.get<ImageDTO>(this.baseUrl + "/getImage/" + Id);
+  }
+
+  getAllImages(): Observable<ImageDTO[]> {
+    return this.http.get<ImageDTO[]>(this.baseUrl + "/getAllImages");
+  }
+
+  CreateRecipe(RecipesDTO: {
+    difficulty: string;
+    ingrediencie: string;
+    imageId: Number;
+    cas: any;
+    veganske: any;
+    vegetarianske: any;
+    imageURL: string;
+    name: string;
+    nizkoKaloricke: any;
+    postup: string
+  }) {
     return this.http.post<createRecipe>(this.baseUrl + '/CreateRecipe', RecipesDTO)
   }
   deleteGuild(Id: number) {

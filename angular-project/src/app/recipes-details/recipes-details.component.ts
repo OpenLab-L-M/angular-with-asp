@@ -14,16 +14,17 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-recipes-details',
   standalone: true,
-  imports: [CommonModule, RouterLink, MatIconModule, MatIconAnchor, MatButtonModule, MatRadioModule, MatCardModule, ReactiveFormsModule], 
+  imports: [CommonModule, RouterLink, MatIconModule, MatIconAnchor, MatButtonModule, MatRadioModule, MatCardModule, ReactiveFormsModule],
   templateUrl: './recipes-details.component.html',
   styleUrl: './recipes-details.component.css'
 })
 export class RecipesDetailsComponent {
+
   clicked = false;
   recipeService = inject(RecipesService);
   private destroy$ = new Subject<void>();
   recipe: RecipesDTO;
-
+  image: any[] = [];
   profileForm = new FormGroup({
     name: new FormControl(''),
     ingrediencie: new FormControl(''),
@@ -33,7 +34,8 @@ export class RecipesDetailsComponent {
   });
   constructor(private route: ActivatedRoute, private router: Router) { }
   ngOnInit(): void {
-    
+
+
     const id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.recipeService.getClickedRecipes(id)
        .subscribe(result => {
@@ -44,23 +46,32 @@ export class RecipesDetailsComponent {
         postup: this.recipeService.chRecipe.postup,
         imgURL: this.recipeService.chRecipe.imageURL,
         cas: this.recipeService.chRecipe.cas,
-        })
+        }
+        )
       },
        );
-
+    this.recipeService.getImage(id).subscribe(value =>
+      this.image = value.image
+    )
 
    }
+
+
+   showImage() {
+     return `data:image/jpeg;base64,${this.image}`
+   }
+
 
     deleteBtn() {
     const id = parseInt(this.route.snapshot.paramMap.get('id'));
       this.recipeService.deleteGuild(id)
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => this.router.navigate(['/Recipes']));
-   
+
   }
   edit(){
   this.clicked = true;
-  
+
 }
 submit(){
   const id = parseInt(this.route.snapshot.paramMap.get('id'));
@@ -71,12 +82,12 @@ submit(){
       postup: this.profileForm.controls['postup']?.value,
       imgURL: this.profileForm.controls['imgURL']?.value,
       cas: this.profileForm.controls['cas']?.value,
-      
+
   })
   .pipe(takeUntil(this.destroy$))
   .subscribe();
   this.clicked=false;
-  
+
 }
 }
 

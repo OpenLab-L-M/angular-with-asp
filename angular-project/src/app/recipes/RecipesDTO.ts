@@ -13,5 +13,6 @@ export class RecipesDTO{
     veganske?: boolean;
     vegetarianske?: boolean;
     nizkoKaloricke?: boolean;
-
+    image: number;
+    comprimedImage: any;
   }

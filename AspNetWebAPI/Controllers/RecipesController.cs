@@ -3,6 +3,7 @@ using AspNetCoreAPI.Migrations;
 using AspNetCoreAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Expressions;
 using System.Security.Claims;
 
 namespace AspNetCoreAPI.Controllers
@@ -36,12 +37,13 @@ namespace AspNetCoreAPI.Controllers
                     Difficulty = dbRecipe.Difficulty,
                     ImageURL = dbRecipe.ImageURL,
                     CheckID = dbRecipe.CheckID,
-                    userID = GetCurrentUser().Id,
+                    userID = dbRecipe.userID,
                     Ingrediencie = dbRecipe.Ingrediencie,
                     Veganske = dbRecipe.Veganske,
                     Vegetarianske = dbRecipe.Vegetarianske,
                     NizkoKaloricke = dbRecipe.NizkoKaloricke,
-                    Cas = dbRecipe.Cas
+                    Cas = dbRecipe.Cas,
+                    imageId = dbRecipe.ImageId
                 });
         }
         [HttpGet("{id:int}")]
@@ -61,10 +63,41 @@ namespace AspNetCoreAPI.Controllers
                 Veganske = recipe.Veganske,
                 Vegetarianske = recipe.Vegetarianske,
                 NizkoKaloricke = recipe.NizkoKaloricke,
-                Cas = recipe.Cas
+                Cas = recipe.Cas,
+                imageId = recipe.ImageId
             };
-            
+           
         }
+
+        [HttpGet("/getImage/{id:int}")]
+        public ImagesDTO GetImage(int id)
+        {
+            var image = _context.Images.Single(savedId => savedId.Id == id);
+            return new ImagesDTO
+            {
+                Id = image.Id,
+                image = image.image
+            };
+
+        }
+
+
+        [HttpGet("/getAllImages")]
+        public ActionResult<List<ImagesDTO>> GetImages()
+        {
+            var images = _context.Images.ToList();
+            var imagesDTO = images.Select(image => new ImagesDTO
+            {
+                Id = image.Id,
+                image = image.image
+            }).ToList();
+
+            return Ok(imagesDTO);
+
+        }
+
+
+
         [HttpPost("/CreateRecipe")]
         public RecipesDTO CreateRecipe(RecipesDTO receptik)
         {
@@ -83,7 +116,8 @@ namespace AspNetCoreAPI.Controllers
                 Veganske = receptik.Veganske,
                 Vegetarianske = receptik.Vegetarianske,
                 NizkoKaloricke = receptik.NizkoKaloricke,
-                Cas = receptik.Cas
+                Cas = receptik.Cas,
+                ImageId = receptik.imageId
 
             };
             nReceptik.CheckID = user?.Id;
@@ -91,7 +125,42 @@ namespace AspNetCoreAPI.Controllers
             _context.SaveChanges();
             return receptik;
         }
-        
+
+        [Route("upload")]
+        [HttpPost]
+        public int SaveFile()
+        {
+            try
+            {
+                var httpRequest = Request.Form;
+                var postedFile = httpRequest.Files[0];
+                var filename = postedFile.FileName;
+
+                byte[] fileBytes;
+                using (var memoryStream = new MemoryStream())
+                {
+                    postedFile.CopyTo(memoryStream);
+                    fileBytes = memoryStream.ToArray();
+                }
+
+
+                var images = new Models.Images()
+                {
+                    image = fileBytes
+                };
+         
+                _context.Images.Add(images);
+                _context.SaveChanges();
+
+                return images.Id;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+
+        }
+
 
         [HttpDelete]
         [Route("{id:int}")]

@@ -17,5 +17,7 @@ namespace AspNetCoreAPI
         public bool? NizkoKaloricke { get; set; }
         public string? userID {  get; set; }
 
+        public int? imageId { get; set; }   
+
 }
 }

@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserDTO } from 'src/app/user-profile/UserDTO';
 import { RecipesDTO } from 'src/app/recipes/RecipesDTO';
+import {CreatorDTO} from "../app/recipes/CreatorDTO";
 
 
 @Injectable({
@@ -19,6 +20,12 @@ export class UserService {
   getCurrentUser(){
     return this.httpClient.get<UserDTO>(this.userUrl);
   }
+
+  getAllCreatorImages(): Observable<CreatorDTO[]> {
+    return this.httpClient.get<CreatorDTO[]>(`${this.baseUrl}/getUserCreators`);
+  }
+
+
 
   usersRecipes(){
     return this.httpClient.get<RecipesDTO[]>(this.userUrl + '/usersRecipes');

@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import {forkJoin, Subject, takeUntil} from 'rxjs';
 import { NgIf } from '@angular/common';
 import { NgFor } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
@@ -17,6 +17,8 @@ import { ElementRef, ViewChild } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { createRecipe } from '../create-recipe/createRecipe';
 import { UserDTO } from '../user-profile/UserDTO';
+import {ImageDTO} from "./ImageDTO";
+import {CreatorDTO} from "./CreatorDTO";
 
 @Component({
   selector: 'app-recipes',
@@ -33,11 +35,13 @@ import { UserDTO } from '../user-profile/UserDTO';
     MatSidenavModule,
     FormsModule
   ],
-  
+
   templateUrl: './recipes.component.html',
   styleUrl: './recipes.component.css'
 })
 export class RecipesComponent {
+  imageDTO: ImageDTO[] = [];
+  userImages: CreatorDTO[] = [];
   ktoryRecept(id: number){
     debugger
     const checkbox = document.getElementById('favourite') as HTMLInputElement;
@@ -49,10 +53,12 @@ export class RecipesComponent {
     }
     }
   recipeService = inject(RecipesService);
-  recipes? = signal<RecipesDTO[]>([]);
   private destroy$ = new Subject<void>();
   guild = signal<RecipesDTO>(undefined);
-  user = signal<UserDTO>(undefined);
+
+
+  useris: UserDTO;
+  realRecipes: RecipesDTO[] = [];
 
   easyChecked: boolean = false;
   mediumChecked: boolean = false;
@@ -64,12 +70,34 @@ export class RecipesComponent {
   sSearchRecept: string = '';
   constructor(private userService: UserService,) { }
   ngOnInit(): void {
-    this.recipeService.getRecipesList()
+
+
+    forkJoin({
+      recipes: this.recipeService.getRecipesList(),
+      currentUser: this.userService.getCurrentUser(),
+      images: this.recipeService.getAllImages(),
+      userCreators: this.userService.getAllCreatorImages()
+    })
       .pipe(takeUntil(this.destroy$))
-      .subscribe(result => this.recipes.set(result));
-      this.userService.getCurrentUser()
-      .subscribe(result => this.user.set(result));
+      .subscribe(result => {
+        this.realRecipes = result.recipes;
+        this.useris = result.currentUser;
+        this.imageDTO = result.images;
+        this.userImages = result.userCreators;
+        this.comprim();
+      });
+
+
   }
+
+  comprim() {
+    this.realRecipes.forEach(a =>
+      a.comprimedImage = `data:image/jpeg;base64,${this.userImages.find(b => b.id === a.userID).pictureURL}`,
+
+    )
+
+  }
+
 
   ngOnDestroy(): void {
     this.destroy$.next();
@@ -84,13 +112,12 @@ export class RecipesComponent {
       this.join += difficulty + " ";
     }
   }
-  
+
   call() {
-    console.log(this.join);
     const difficultiesArray = this.join.trim().split(" ");
     this.sSearchRecept = difficultiesArray.join(" ").toLowerCase();
   }
-  
+
   clearFilter(): void {
     this.sSearchRecept = '';
     this.join = '';
@@ -103,7 +130,10 @@ export class RecipesComponent {
     this.lowCalorieChecked = false;
   }
 
-  public getImageSrc(imageData: string): string {
-    return `data:image/jpeg;base64,${imageData}`;
+
+    getImage(id: number, ) {
+     return `data:image/jpeg;base64,${this.imageDTO.find(image => image.id === id).image}`;
   }
+
+
 }

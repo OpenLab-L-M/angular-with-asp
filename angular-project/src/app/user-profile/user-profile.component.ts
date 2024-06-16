@@ -1,4 +1,4 @@
-import { Component, computed, effect, signal, Inject, Output } from '@angular/core';
+import {Component, computed, effect, signal, Inject, Output, inject} from '@angular/core';
 import { UserService } from 'src/services/user.service';
 import { UserDTO } from './UserDTO';
 import { NgIf } from '@angular/common';
@@ -19,10 +19,12 @@ import { MatFormField } from '@angular/material/form-field';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { RecipesDTO } from '../recipes/RecipesDTO';
 import { MatTableDataSource } from '@angular/material/table';
-import { Subject, takeUntil } from 'rxjs';
+import {forkJoin, Subject, takeUntil} from 'rxjs';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldControl } from '@angular/material/form-field';
+import {ImageDTO} from "../recipes/ImageDTO";
+import {CreatorDTO} from "../recipes/CreatorDTO";
 
 export interface DialogData {
   animal: string;
@@ -39,9 +41,15 @@ export interface DialogData {
 })
 export class UserProfileComponent {
 
-  ourListOfRecipes = signal<RecipesDTO[]>([]);
-  ourFavRecipes = signal<RecipesDTO[]>([]);
-  user = signal<UserDTO>(undefined);
+ // ourListOfRecipes = signal<RecipesDTO[]>([]);
+  ourListOfRecipes: RecipesDTO[] = [];
+
+ // ourFavRecipes = signal<RecipesDTO[]>([]);
+  ourFavRecipes: RecipesDTO[] = [];
+
+//  user = signal<UserDTO>(undefined);
+  user: UserDTO;
+
   imageUploaded = false;
   private destroy$ = new Subject<void>();
 
@@ -51,7 +59,7 @@ export class UserProfileComponent {
   constructor(private userService: UserService, private recipesSevice: RecipesService, private httpClient: HttpClient, public dialog: MatDialog){}
 
 
-  
+
   ktoryRecept(id: number): void{
     debugger
     const checkbox = document.getElementById('favourite') as HTMLInputElement;
@@ -73,27 +81,45 @@ export class UserProfileComponent {
     });
 
     dialogRef.componentInstance.imageDeleted.subscribe(() => {
-      this.user.update(user => ({...user, pictureURL: undefined}));
+      //this.user.update(user => ({...user, pictureURL: undefined}));
+      this.user.pictureURL = undefined;
     });
   }
+  recipeService = inject(RecipesService);
+  imageDTO: ImageDTO[] = [];
 
+  userImages: CreatorDTO[] = [];
   ngOnInit(): void{
-    this.userService.getCurrentUser()
-    .subscribe(result => this.user.set(result));
-    this.userService.usersRecipes()
-    .pipe(takeUntil(this.destroy$))
-    .subscribe(result => this.ourListOfRecipes.set(result));
-    this.userService.getFavourites()
-    .pipe(takeUntil(this.destroy$))
-    .subscribe(result => this.ourFavRecipes.set(result));
-
-    this.getImageSrc(this.user().pictureURL);
+    forkJoin({
+      currentUser: this.userService.getCurrentUser(),
+      usersRecipes: this.userService.usersRecipes().pipe(takeUntil(this.destroy$)),
+      favourites: this.userService.getFavourites().pipe(takeUntil(this.destroy$)),
+      allImages: this.recipeService.getAllImages(),
+      userCreators: this.userService.getAllCreatorImages()
+    })
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(result => {
+        this.user = result.currentUser;
+        this.ourListOfRecipes = result.usersRecipes;
+        this.ourFavRecipes = result.favourites;
+        this.imageDTO = result.allImages;
+        this.userImages = result.userCreators;
+        this.comprim();
+        this.getImageSrc(this.user.pictureURL); // Assuming this is a method that sets the image source
+      });
   }
 
+  comprim() {
+    this.ourFavRecipes.forEach(a =>
+      a.comprimedImage = `data:image/jpeg;base64,${this.userImages.find(b => b.id === a.userID).pictureURL}`,
+    )
+  }
   public getImageSrc(imageData: string): string {
     return `data:image/jpeg;base64,${imageData}`;
   }
-  
+  public getImage(id: number, ) {
+    return `data:image/jpeg;base64,${this.imageDTO.find(image => image.id === id).image}`;
+  }
 }
 
 @Component({
@@ -104,7 +130,7 @@ export class UserProfileComponent {
   imports: [MatDialogClose, NgIf, MatFormField, MatButtonModule, MatInputModule, MatFormFieldModule],
 })
 export class DialogOverviewExampleDialog {
-
+  imageDTO: ImageDTO[] = [];
 
   @Output() imageDeleted = new EventEmitter<void>();
 
@@ -118,7 +144,7 @@ export class DialogOverviewExampleDialog {
   onNoClick(): void {
     this.dialogRef.close();
   }
-    
+  recipeService = inject(RecipesService);
 
 
   ngOnInit(): void{
@@ -126,10 +152,12 @@ export class DialogOverviewExampleDialog {
    .subscribe(result => this.user.set(result));
 
    this.getImageSrc(this.user().pictureURL);
+
+
   }
 
   deleteImage(): void {
-    this.userService.deleteImage().subscribe( 
+    this.userService.deleteImage().subscribe(
       () => {
         console.log('Image deleted successfully.');
         this.user.update(user => ({...user, pictureURL: undefined}));
@@ -183,6 +211,4 @@ export class DialogOverviewExampleDialog {
     public getImageSrc(imageData: string): string {
       return `data:image/jpeg;base64,${imageData}`;
     }
-
-
 }

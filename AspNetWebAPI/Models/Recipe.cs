@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AspNetCoreAPI.Models
 {
@@ -20,7 +21,10 @@ namespace AspNetCoreAPI.Models
         public bool? NizkoKaloricke { get; set; }
         public string? userID { get; set; }
 
-        
-        
+        public int? ImageId { get; set; }
+
+        [ForeignKey("ImageId")]
+        public Images Images { get; set; }
+
     }
 }

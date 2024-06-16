@@ -43,6 +43,23 @@ namespace AspNetCoreAPI.Controllers
             return userik;
             
         }
+
+
+        [HttpGet("/getUserCreators")]
+        public ActionResult<List<GetUserDTO>> GetAllUserCreators()
+        {
+            var users = _context.Userik.ToList();
+            var userImages = users.Select(user => new GetUserDTO
+            {
+                Id = user.Id,
+                PictureURL= user.PictureURL
+            }).ToList();
+
+            return Ok(userImages);
+        }
+
+
+
         [HttpGet("/userProfile/usersRecipes")]
         public IEnumerable<RecipesDTO> UserRecipes()
         {
@@ -88,7 +105,7 @@ namespace AspNetCoreAPI.Controllers
             var favouriteRecipeIds = _context.UserRecipes.Select(f => f.RecipeId).ToList();
             var fav = _context.UserRecipes
               .Include(f => f.recept)
-              .Where(f => f.UserId == GetCurrentUser().Id )
+              .Where(f => f.UserId == f.UserId  )
               .ToList();
             return fav.Select(f => mapReceptToDto(f.recept));
             
@@ -105,7 +122,7 @@ namespace AspNetCoreAPI.Controllers
                     Difficulty = dbRecipe.Difficulty,
                     ImageURL = dbRecipe.ImageURL,
                     CheckID = dbRecipe.CheckID,
-                    userID = GetCurrentUser().Id,
+                    userID = dbRecipe.userID,
                     Ingrediencie = dbRecipe.Ingrediencie,
                     Veganske = dbRecipe.Veganske,
                     Vegetarianske = dbRecipe.Vegetarianske,

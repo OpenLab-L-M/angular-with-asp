@@ -1,9 +1,9 @@
 <body>
   <img id="backgroundos" src="../../assets/backgroundos_recipes.png">
   <div *ngIf="clicked == true; else noCourses">
-        
+
     <form class="edit_form" [formGroup]="profileForm" style="color: aliceblue;">
-      
+
       <label for="name" >Name: </label>
       <input id="name" type="text" formControlName="name" value="name">
       <br>
@@ -23,11 +23,11 @@
     <div class="edit_btn">
       <button (click)="submit()" style="width: 100px; height: 50px; ">Submit</button>
     </div>
-    
+
   </div>
 
   <ng-template #noCourses>
-    
+
     <p class="detail_title">
       {{this.recipeService.chRecipe.name}}
     </p>
@@ -59,8 +59,11 @@
         </div>
       </mat-card-actions>
       <br>
-      
-      <img mat-card-image class="detail_image" [src]="this.recipeService.chRecipe.imageURL" />
+
+<!--     <img mat-card-image class="detail_image" [src]="this.recipeService.chRecipe.imageURL" />-->
+
+      <img mat-card-image class="detail_image" [src]="this.showImage()" />
+
     <mat-card-content>
       <p class="detail_description">
         <mat-card-title>Ingredients:</mat-card-title>
@@ -76,29 +79,29 @@
            {{this.recipeService.chRecipe.postup}}
         </p>
       </mat-card-content>
-      
+
 
       <mat-card-footer>
         <mat-card-actions>
           <button mat-raised-button [routerLink]="['/Recipes']">Back</button>
-      
+
         </mat-card-actions>
         <mat-card-actions>
-          
+
         <div *ngIf="recipeService.chRecipe.checkID == recipeService.chRecipe.userID">
-      
-        
+
+
         <button mat-raised-button color="warn" (click)="deleteBtn()">Delete Recipe</button>
       </div>
         </mat-card-actions>
-        
-      
-      
-      
+
+
+
+
       </mat-card-footer>
     </mat-card>
-    
-      
+
+
   </div>
 </ng-template>
 </body>

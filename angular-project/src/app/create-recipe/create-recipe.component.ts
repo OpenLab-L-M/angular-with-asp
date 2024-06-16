@@ -34,8 +34,8 @@ import {IngredientService} from "./IngredientService";
 @Component({
   selector: 'app-create-recipe',
   standalone: true,
-    imports: [RouterLink, ReactiveFormsModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatCardModule, MatButtonModule, MatSliderModule, FormsModule, MatIcon, MatTooltip,
-    ],
+  imports: [RouterLink, ReactiveFormsModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatCardModule, MatButtonModule, MatSliderModule, FormsModule, MatIcon, MatTooltip, MatDialogClose, NgIf,
+  ],
   templateUrl:'./create-recipe.component.html',
   styleUrl: './create-recipe.component.css'
 })
@@ -66,7 +66,7 @@ export class CreateRecipeComponent {
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
-    this.createRecipe();
+  //  this.createRecipe();
     console.warn(this.profileForm.value);
 
 
@@ -90,8 +90,7 @@ export class CreateRecipeComponent {
   }
 
 
-  private createRecipe() {
-    debugger
+  private createRecipe(value: Number) {
     this.recipesServíce.CreateRecipe({
       name: this.profileForm.controls['name'].value,
       postup: this.profileForm.controls['postup'].value,
@@ -102,6 +101,7 @@ export class CreateRecipeComponent {
       veganske: this.profileForm.controls['veganske']?.value,
       vegetarianske: this.profileForm.controls['vegetarianske']?.value,
       nizkoKaloricke: this.profileForm.controls['nizkoKaloricke']?.value,
+      imageId: value
     }).pipe(takeUntil(this.destroy$))
     .subscribe(() => this.router.navigate(['/Recipes']));
     this.ingredientService.selectedIngredients = "";
@@ -121,6 +121,38 @@ export class CreateRecipeComponent {
 
   }
 
+
+
+  uploadedImage: File;
+  dbImage: any;
+  postResponse: any;
+  successResponse: string;
+  image: any;
+
+  public onImageUpload(event) {
+    this.uploadedImage = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.liveDemo = e.target.result;
+    }
+    reader.readAsDataURL(event.target.files[0]);
+  }
+
+  liveDemo:any;
+
+
+
+  imageUploadAction() {
+    const imageFormData = new FormData();
+    imageFormData.append('image', this.uploadedImage, this.uploadedImage.name);
+
+
+    this.httpClient.post('https://localhost:7186/recipes/upload', imageFormData)
+      .subscribe((value: number) => {
+        this.createRecipe(value);
+        }
+      );
+  }
 
 
 
@@ -236,6 +268,9 @@ export class Dialog implements OnInit {
   addIngredience($event: any) {
     this.ingrediences.add($event);
   }
+
+
+
 }
 
 

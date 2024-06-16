@@ -6,11 +6,12 @@
       <img src="https://th.bing.com/th/id/R.75b7633177977a276cd781b0e0520a92?rik=EpfN3HQQ7%2fOhcw&riu=http%3a%2f%2fwww.solidbackgrounds.com%2fimages%2f5120x2880%2f5120x2880-black-solid-color-background.jpg&ehk=AqB9SoEXUPu7BGaVH7M32l2%2b1UZ%2foIlkcd8MnplO62E%3d&risl=&pid=ImgRaw&r=0" alt=""/>
     </div> -->
 
-    <div class="ingr_btn">
-      <button  mat-raised-button (click)="openDialogis()">Add ingrediences</button>
-    </div>
 
-        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+
+  <div class="container">
+
+        <form [formGroup]="profileForm">
           <header>
             <h1>Create your recipe</h1>
             <div class="form-container">
@@ -40,7 +41,7 @@
             </mat-form-field>
 
           </div>
-
+                <button class="ingr_btn" (click)="openDialogis()">Add ingrediences</button>
             <div class="set">
               <mat-form-field class="Description_rcp">
 
@@ -54,30 +55,7 @@
 
             </div>
 
-          
-          <div class="set">
-            <!-- <mat-form-field class="ingredients_rcp">
 
-
-                  <mat-label class="centered-label" for="ingr">Recipe ingredients: </mat-label>
-                  <textarea matInput id="ingr" formControlName="ingr"></textarea>
-
-
-
-            </mat-form-field> -->
-
-<!--            <div class="dropdown">-->
-<!--              <button class="dropbtn">Dropdown</button>-->
-<!--              <div class="dropdown-content">-->
-<!--              <input for="ingr" id="ingr" formControlName="ingr" type="checkbox" value="Almond Meal" (change)="updateIngredients($event)">-->
-<!--              <label for="ingr">Almond Meal</label>-->
-<!--              <input for="ingr" id="ingr" formControlName="ingr" type="checkbox" value="Egg" (change)="updateIngredients($event)">-->
-<!--              <label for="ingr">Egg</label>-->
-<!--              </div>-->
-<!--            </div>-->
-
-
-          </div>
           <div class="set">
             <mat-card class="example-result-card">
               <mat-card-content>
@@ -105,21 +83,9 @@
         </div>
           <div class="column">
 
-          <div class="set">
-            <div class="Image_rcp">
-              <p>
-                <label for="img">imageURL: </label>
-                <input id="img" type="text" formControlName="img">
-
-              </p>
-            </div>
-          </div>
-        
-
-        
 
           <div class="set">
-            <label id="ch_diff">Choose a difficulty: </label> <br>
+            <label id="ch_diff" style="color: white; font-size: 20px;">Choose a difficulty:</label> <br>
             <div class="diff_radio">
               <p>
 
@@ -135,8 +101,9 @@
                 </p>
             </div>
           </div>
+            <br>
           <div class="set">
-            <label id="veganske">veganske?</label> <br>
+            <label id="veganske" style="color: white; font-size: 20px;">Special category</label> <br>
             <div class="diff_radio">
               <p>
 
@@ -152,26 +119,26 @@
             </div>
           </div>
 
-
+            <input type="file" (change)="onImageUpload($event)">
+             <br>
+            <img [src]="this.liveDemo"  alt=""/>
+            <br>
+            <button id="save"(click)="imageUploadAction()" >Save</button>
         </div>
 
         </div>
+
+
       </header>
 
 
-            
-              <button mat-raised-button id="make" type="submit" [disabled]="!profileForm.valid">Create</button>
+
+              <button mat-raised-button id="make" type="submit" [disabled]="!profileForm.valid"  (click)="imageUploadAction()">Create</button>
               <button mat-raised-button id="back" [routerLink]="['/Recipes']">Back</button>
 
 
 
-          <!-- <p>
-            <img id="img">
-            <input id="img" type="file" accept="image/*" formControlName="img">
-            <span></span>
-            <label for="img">Add an image: </label>
-          </p> -->
-        
-        </form>
 
+        </form>
+  </div>
       </body>
