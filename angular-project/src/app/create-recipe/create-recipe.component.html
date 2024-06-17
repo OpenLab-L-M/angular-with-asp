@@ -73,7 +73,7 @@
                     [step]="step"
                     [discrete]="thumbLabel"
                     [showTickMarks]="showTicks"
-                    color="warn">
+                    >
                   <input id="cas" formControlName="cas" matSliderThumb [(ngModel)]="value" #slider>
                 </mat-slider>
               </mat-card-content>
@@ -118,12 +118,27 @@
                 </p>
             </div>
           </div>
-
-            <input type="file" (change)="onImageUpload($event)">
-             <br>
-            <img [src]="this.liveDemo"  alt=""/>
             <br>
-            <button id="save"(click)="imageUploadAction()" >Save</button>
+            <br>
+            <label for="img" class="input-for-img" style="color: black; cursor: pointer; background: white; padding: 10px; border-radius: 10px">Vložiť obrázky</label>
+            <input
+              id="img"
+              class="form-control"
+              type="file"
+              style="
+                box-shadow: 7px 7px 17px;
+                border-width: 0;
+                margin-bottom: 43px;
+                display: none;
+              "
+              (change)="onImageUpload($event)"
+              accept="image/*"
+              title = "Žiadne fotografie nie sú vložené"
+            />
+             <br>
+            <br><br>
+
+            <img [src]="this.liveDemo"  alt=""/>
         </div>
 
         </div>
@@ -137,7 +152,7 @@
               <button mat-raised-button id="back" [routerLink]="['/Recipes']">Back</button>
 
 
-
+            <br>
 
         </form>
   </div>

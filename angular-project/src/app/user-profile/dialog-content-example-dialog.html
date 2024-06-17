@@ -6,8 +6,9 @@
     <p>Do you want to change your profile picture?</p>
   </div>
   <div mat-dialog-actions class="form-group" >
-      <input *ngIf="this.user().pictureURL" type="button" value="Change your profile picture" (click)="deleteImage()">
-      <input *ngIf="!this.user().pictureURL" type="file" (change)="onImageUpload($event)">
+      <input *ngIf="this.user().pictureURL" type="button" value="Change your profile picture" (click)="deleteImage()" style="color: white; cursor: pointer; background: rgb(41,41,41); padding: 10px; border-radius: 10px">
+    <label for="img" *ngIf="!this.user().pictureURL" class="input-for-img" style="color: white; cursor: pointer; background: rgb(41,41,41); padding: 10px; border-radius: 10px">Vložiť obrázky</label>
+      <input id="img" *ngIf="!this.user().pictureURL" type="file" (change)="onImageUpload($event)" style="display: none;">
   </div>
   <div mat-dialog-content>
     <p></p>

@@ -19,6 +19,7 @@ import { createRecipe } from '../create-recipe/createRecipe';
 import { UserDTO } from '../user-profile/UserDTO';
 import {ImageDTO} from "./ImageDTO";
 import {CreatorDTO} from "./CreatorDTO";
+import { MatInput } from '@angular/material/input';
 
 @Component({
   selector: 'app-recipes',

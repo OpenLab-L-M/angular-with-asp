@@ -21,7 +21,7 @@ button {
 }
 
 .spacer {
-  
+
   flex: 2 2 auto;
 }
 
@@ -36,10 +36,10 @@ button {
 } */
 
 #white.active {
-  color: red;
+  color: darkgoldenrod;
 }
 
-#white:after {    
+#white:after {
   background: none repeat scroll 0 0 transparent;
   bottom: 0;
   content: "";
@@ -47,14 +47,14 @@ button {
   height: 2px;
   left: 50%;
   position: absolute;
-  background: red;
+  background: darkgoldenrod;
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
   width: 0;
 }
-#white:hover:after { 
-  width: 100%; 
-  left: 0; 
-  color: red;
+#white:hover:after {
+  width: 100%;
+  left: 0;
+  color: darkgoldenrod;
 }
 
 img {

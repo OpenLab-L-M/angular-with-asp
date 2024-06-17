@@ -24,7 +24,7 @@ body #backgroundos{
   appearance: none;
   width: 20px;
   height: 20px;
-  border: 2px solid red;
+  border: 2px solid darkgoldenrod;
   border-radius: 5px;
   background-color: transparent;
   display: inline-block;
@@ -35,7 +35,7 @@ body #backgroundos{
 
 .cyberpunk-checkbox:before {
   content: "";
-  background-color: red;
+  background-color: darkgoldenrod;
   display: block;
   position: absolute;
   top: 50%;
@@ -82,13 +82,16 @@ body #backgroundos{
 }
 
 .recipes-items mat-card-title {
-  color: white;
+  color: darkgoldenrod;
   font-style: italic;
   margin-bottom: 5px;
 }
 
 #avatar {
-  border:3px solid rgb(190, 190, 190);
+  /*border:3px solid rgb(190, 190, 190);*/
+  width: 50px;
+  height: 50px;
+  border: 3px solid #3d3d3d;
 }
 
 .recipes-items:hover {
@@ -178,8 +181,8 @@ body #backgroundos{
 }
 
 #create_link {
-  
-  background: rgb(226, 0, 0);
+
+  background: darkgoldenrod;
   font-size: 17px;
     width: 70px;
     height: 70px;
@@ -189,7 +192,7 @@ body #backgroundos{
 }
 
 #create_link:hover {
-  background: rgba(226, 0, 0, 0.652);
+  background: #916b08;
     /* color: black; */
     animation: 1s pulse infinite;
 }

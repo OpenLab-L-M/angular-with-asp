@@ -9,12 +9,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatIconAnchor } from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import {MatFormField, MatFormFieldModule, MatLabel} from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatInput, MatInputModule } from '@angular/material/input';
 @Component({
   selector: 'app-recipes-details',
   standalone: true,
-  imports: [CommonModule, RouterLink, MatIconModule, MatIconAnchor, MatButtonModule, MatRadioModule, MatCardModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterLink, MatIconModule, MatIconAnchor, MatButtonModule, MatRadioModule, MatCardModule, ReactiveFormsModule, MatFormField, MatFormFieldModule, MatLabel, MatInput, MatInputModule],
   templateUrl: './recipes-details.component.html',
   styleUrl: './recipes-details.component.css'
 })

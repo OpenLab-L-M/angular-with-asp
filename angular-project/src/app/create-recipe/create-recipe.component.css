@@ -38,6 +38,7 @@ form {
 }
 
 
+
 /* .dropbtn {
   background-color: #4CAF50;
   color: white;
@@ -117,7 +118,8 @@ h1 {
   text-align: center;
   padding: 5px 0 20px 0;
   border-bottom: 1px solid silver;
-  background-color: rgb(232, 0, 0);
+  /*background-color: rgb(232, 0, 0);*/
+  background-color: darkgoldenrod;
   color: white;
   padding-top: 15px;
   border-radius: 10px;
@@ -174,7 +176,7 @@ h1 {
 
 }
 .diff_radio input[type="checkbox"]:checked + label {
-  background: red;
+  background: darkgoldenrod;
   color: white;
   border: 1px solid rgba(0,0,0,.1);
 }
@@ -196,12 +198,15 @@ h1 {
 .ingr_btn {
   width: -webkit-fill-available;
   height: 30px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
 }
 
 form {
   height: min-content;
   width: auto;
-  background: #cdcdcd47;
+  background: rgb(41, 41, 41);
   border-radius: 10px;
 }
 

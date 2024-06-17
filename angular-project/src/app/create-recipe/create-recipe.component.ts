@@ -14,6 +14,7 @@ import { createRecipe } from './createRecipe';
 import {catchError, Observable, Subject, takeUntil} from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import {MatIcon} from "@angular/material/icon";
+import { MatCard } from '@angular/material/card';
 import {MatTooltip} from "@angular/material/tooltip";
 import {DialogOverviewExampleDialog} from "../user-profile/user-profile.component";
 import { ChangeDetectorRef } from '@angular/core'; // Import ChangeDetectorRef
@@ -34,7 +35,7 @@ import {IngredientService} from "./IngredientService";
 @Component({
   selector: 'app-create-recipe',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatCardModule, MatButtonModule, MatSliderModule, FormsModule, MatIcon, MatTooltip, MatDialogClose, NgIf,
+  imports: [RouterLink, ReactiveFormsModule, MatCard, MatSelectModule, MatInputModule, MatFormFieldModule, MatCardModule, MatButtonModule, MatSliderModule, FormsModule, MatIcon, MatTooltip, MatDialogClose, NgIf,
   ],
   templateUrl:'./create-recipe.component.html',
   styleUrl: './create-recipe.component.css'

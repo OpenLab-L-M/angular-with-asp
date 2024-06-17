@@ -1,11 +1,11 @@
 <div>
   <mat-toolbar>
     <div class="center">
-      <img src="https://dcassetcdn.com/design_img/10150/1680/1680_298517_10150_image.jpg">
+      <img src="../../assets/Our_New_Logo.png">
     </div>
     <span [routerLink]="['/Homepage']">TOP RECIPES</span>
-    
-    
+
+
   <span class="spacer"></span>
   @if (authService.authenticated()) {
     <button id="white" mat-button (click)="logout()">Logout</button>
@@ -17,7 +17,7 @@
     <button id="white" mat-button [routerLink]="['/login']">Login</button>
     <button id="white" mat-button [routerLink]="['/register']">Registration</button>
   }
-  
+
 </mat-toolbar>
 </div>
 

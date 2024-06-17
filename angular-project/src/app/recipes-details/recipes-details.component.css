@@ -25,6 +25,9 @@ body #backgroundos{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: rgb(41, 41, 41);
+  border-radius: 0px 0px 10px 10px;
+  padding: 50px;
 }
 
 .edit_btn {
@@ -41,6 +44,8 @@ body #backgroundos{
   color: white;
 
 }
+
+
 
 mat-card-title {
   font-size: 25px;
@@ -109,9 +114,11 @@ mat-card-actions {
   display: flex;
   display: block; /* Ensure it behaves as a block element */
   margin: auto;
-    
-    max-width: 90%;
-    max-height: 90%;
+
+  max-width: 450px;
+  max-height: 310px;
+  width: auto; /* Automatically adjust the width to maintain aspect ratio */
+  height: auto;
 
 
 }
@@ -124,13 +131,13 @@ mat-card-footer #back {
     height: 60px;
     transition: .2s all ease-in-out;
   }
-  
+
   mat-card-footer #back:hover {
     background: #171A2B;
     color: white;
-    
+
   }
-  
+
   mat-card-footer #delete {
     background: #807182;
     border: 1px solid transparent;
@@ -138,7 +145,7 @@ mat-card-footer #back {
     height: 60px;
     color: #fff;
   }
-  
+
   mat-card-footer #delete:hover {
     background: #171A2B;
   }
@@ -147,3 +154,33 @@ mat-card-footer #back {
     justify-content: center;
     align-items: center;
   }
+
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+h1 {
+  text-align: center;
+  padding: 5px 0 20px 0;
+  border-bottom: 1px solid silver;
+  /*background-color: rgb(232, 0, 0);*/
+  background-color: darkgoldenrod;
+  color: white;
+  padding-top: 15px;
+  border-radius: 10px 10px 0px 0px;
+  margin-bottom: unset;
+}
+
+mat-card {
+  width: 70%;
+  max-width: 70%; /* Optional, can be adjusted based on design needs */
+  overflow-wrap: break-word; /* Ensures text wraps within the card */
+  word-wrap: break-word; /* Fallback for older browsers */
+  word-break: break-word; /* Additional support for word breaking */
+  margin: auto; /* Center the card horizontally */
+}

@@ -1,29 +1,39 @@
 <body>
   <img id="backgroundos" src="../../assets/backgroundos_recipes.png">
-  <div *ngIf="clicked == true; else noCourses">
 
+  <div class="container">
+  <div class="inside_container" *ngIf="clicked == true; else noCourses">
+    <h1>EDIT</h1>
     <form class="edit_form" [formGroup]="profileForm" style="color: aliceblue;">
 
-      <label for="name" >Name: </label>
-      <input id="name" type="text" formControlName="name" value="name">
-      <br>
 
-      <label for="ingrediencie">ingredients: </label>
-      <input id="ingrediencie" type="text" formControlName="ingrediencie" value="ingrediencie">
-      <br>
-      <label for="postup">postup: </label>
-      <input id="postup" type="text" formControlName="postup" value="postup">
-      <br>
-      <label for="imgURL">image URL: </label>
-      <input id="imgURL" type="text" formControlName="imgURL" value="imgURL">
-    <br>
-    <label for="cas">cas: </label>
-      <input id="cas" type="text" formControlName="cas" value="cas">
+      <mat-form-field>
+        <mat-label for="name" >Name: </mat-label>
+      <input matInput id="name" type="text" formControlName="name" value="name">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label for="ingrediencie">ingredients: </mat-label>
+      <input matInput id="ingrediencie" type="text" formControlName="ingrediencie" value="ingrediencie">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label for="postup">postup: </mat-label>
+      <input matInput id="postup" type="text" formControlName="postup" value="postup">
+      </mat-form-field>
+      <!-- <mat-form-field>
+        <mat-label for="imgURL">image URL: </mat-label>
+      <input matInput id="imgURL" type="text" formControlName="imgURL" value="imgURL">
+      </mat-form-field> -->
+      <mat-form-field>
+        <mat-label for="cas">cas: </mat-label>
+      <input matInput id="cas" type="text" formControlName="cas" value="cas">
+      </mat-form-field>
+
+      <div class="edit_btn">
+        <button (click)="submit()" style="width: 100px; height: 50px; ">Submit</button>
+      </div>
     </form>
-    <div class="edit_btn">
-      <button (click)="submit()" style="width: 100px; height: 50px; ">Submit</button>
-    </div>
 
+  </div>
   </div>
 
   <ng-template #noCourses>
@@ -38,7 +48,7 @@
     <!-- <p class="detail_difficulty">
       Difficulty: {{this.recipeService.chRecipe.difficulty}}
     </p> -->
-    <mat-card style="width: 70%;">
+    <mat-card>
       <mat-card-header>
         <mat-card-subtitle>time: {{this.recipeService.chRecipe.cas}}</mat-card-subtitle>
       </mat-card-header>
@@ -61,8 +71,11 @@
       <br>
 
 <!--     <img mat-card-image class="detail_image" [src]="this.recipeService.chRecipe.imageURL" />-->
-
+    <mat-card-content>
       <img mat-card-image class="detail_image" [src]="this.showImage()" />
+    </mat-card-content>
+
+      <br>
 
     <mat-card-content>
       <p class="detail_description">
