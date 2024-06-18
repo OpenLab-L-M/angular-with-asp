@@ -28,7 +28,7 @@
   appearance: none;
   width: 20px;
   height: 20px;
-  border: 2px solid red;
+  border: 2px solid darkgoldenrod;
   border-radius: 5px;
   background-color: transparent;
   display: inline-block;
@@ -39,7 +39,7 @@
 
 .cyberpunk-checkbox:before {
   content: "";
-  background-color: red;
+  background-color: darkgoldenrod;
   display: block;
   position: absolute;
   top: 50%;

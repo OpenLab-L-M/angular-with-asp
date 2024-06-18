@@ -114,8 +114,12 @@ body #backgroundos{
 
 .recipes-difficulty mat-icon {
   font-size: 20px;
+  
 }
 
+.recipes-difficulty {
+  font-family: 'Times New Roman', Times, serif;
+}
 
 .dropbtn {
   background-color: black;

@@ -29,7 +29,8 @@
       </mat-form-field>
 
       <div class="edit_btn">
-        <button (click)="submit()" style="width: 100px; height: 50px; ">Submit</button>
+        <button (click)="submit()" style="width: 100px; height: 50px; font-size: 16px; font-weight: bold; font-family: system-ui; background-color: black; color: white; cursor: pointer;">Submit</button>
+        <button (click)="submit()" style="width: 100px; height: 50px; font-size: 16px; font-weight: bold; font-family: system-ui; cursor: pointer;" [routerLink]="['/RecipesDetails'] ">Cancel</button>
       </div>
     </form>
 
@@ -38,7 +39,7 @@
 
   <ng-template #noCourses>
 
-    <p class="detail_title">
+    <p class="detail_title" style="font-family: 'Times New Roman', Times, serif; font-style: italic;">
       {{this.recipeService.chRecipe.name}}
     </p>
   <div style="display: flex; justify-content: center;">
@@ -50,10 +51,10 @@
     </p> -->
     <mat-card>
       <mat-card-header>
-        <mat-card-subtitle>time: {{this.recipeService.chRecipe.cas}}</mat-card-subtitle>
+        <mat-card-subtitle style="color: white;">time: {{this.recipeService.chRecipe.cas}} min</mat-card-subtitle>
       </mat-card-header>
       <mat-card-header>
-        <mat-card-subtitle>Difficulty: {{this.recipeService.chRecipe.difficulty}}</mat-card-subtitle>
+        <mat-card-subtitle style="color: white;">Difficulty: {{this.recipeService.chRecipe.difficulty}}</mat-card-subtitle>
         <!-- <mat-card-title>Rate this recipe</mat-card-title> -->
       </mat-card-header>
 
@@ -65,7 +66,7 @@
       </mat-card-actions> -->
       <mat-card-actions>
         <div style="justify-content: center; display: flex; align-items: center;" *ngIf="recipeService.chRecipe.checkID == recipeService.chRecipe.userID">
-          <button color="primary" mat-raised-button id="Edit" type="submit" name="editBtn" value="enter" (click)="edit()">Edit Recipe</button>
+          <button color="basic" mat-raised-button id="Edit" type="submit" name="editBtn" value="enter" (click)="edit()">Edit Recipe</button>
         </div>
       </mat-card-actions>
       <br>
@@ -75,6 +76,7 @@
       <img mat-card-image class="detail_image" [src]="this.showImage()" />
     </mat-card-content>
 
+      <br>
       <br>
 
     <mat-card-content>

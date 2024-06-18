@@ -37,24 +37,38 @@ body #backgroundos{
 }
 
 .detail_title {
-  font-size: 40px;
+  font-size: 50px;
   text-align: center;
   font-weight: bold;
   padding-bottom: 20px;
-  color: white;
+  color: darkgoldenrod;
 
 }
 
 
 
 mat-card-title {
-  font-size: 25px;
+  font-size: 30px;
+  color: darkgoldenrod;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+mat-subtitle {
+  color: white;
 }
 
 mat-card-actions {
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+
+mat-header mat-card-content{
+  color: white;
+}
+
+mat-card-content {
+  color: white;
 }
 
 /* mat-card-subtitle {
@@ -183,4 +197,5 @@ mat-card {
   word-wrap: break-word; /* Fallback for older browsers */
   word-break: break-word; /* Additional support for word breaking */
   margin: auto; /* Center the card horizontally */
+  background-color: rgb(41, 41, 41);
 }
