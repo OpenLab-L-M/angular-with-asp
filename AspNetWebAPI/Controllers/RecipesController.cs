@@ -3,6 +3,7 @@ using AspNetCoreAPI.Migrations;
 using AspNetCoreAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Expressions;
 using System.Security.Claims;
 
@@ -204,8 +205,34 @@ namespace AspNetCoreAPI.Controllers
             _context.SaveChanges();
             return Ok();
         }
+        [HttpPost("PridajRecenziu")]
+        public void AddRecension(RecensionDTO nRecenzia)
+        {
+            Recensions recenzia = new Recensions();
+            //var recenzia = _context.Recensions.FirstOrDefault(x => x.UserId == GetCurrentUser().Id && x.RecipeId == nRecenzia.RecipesID);
+            recenzia.RecipeId = nRecenzia.RecipesID;
+            recenzia.Content = nRecenzia.Content;
+            recenzia.UserName = GetCurrentUser().UserName;
+            recenzia.UserId = GetCurrentUser().Id;
+            _context.Add(recenzia);
+            _context.SaveChanges();
+            
+        }
+        [HttpGet("recenzie/{id:int}")]
+        public IEnumerable<RecensionDTO> GetRecensions([FromRoute] int id)
+        {
+            IEnumerable<Recensions> dbRecensions = _context.Recensions.Where(x => x.RecipeId == id).ToArray();
+            
 
-
+            return dbRecensions.Select(dbRecension =>
+                new RecensionDTO
+                {
+                    Content = dbRecension.Content,
+                    UserID = dbRecension.UserId,
+                    UserName = dbRecension.UserName
+                    
+                });
+        }
 
 
 

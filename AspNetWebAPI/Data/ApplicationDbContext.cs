@@ -18,7 +18,8 @@ namespace AspNetCoreAPI.Data
     public DbSet<ApplicationUserRecipe> UserRecipes { get; set; } = default!;
 
     public DbSet<Ingredience> Ingredience { get; set; } = default!;
-
+    
+    public DbSet<Recensions> Recensions { get; set; } = default!;
     public DbSet<Images> Images { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

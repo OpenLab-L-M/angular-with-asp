@@ -119,4 +119,10 @@
 
   </div>
 </ng-template>
+<input type="text" id="koment" name="komentar"/>
+<button (click)="addComment()" style="height: 50px; width: 50px;">submit</button>
+<div *ngFor="let recension of recensions()">
+  <p style="color: white;">{{recension.userName}}</p>
+  <p style="color: white;">{{recension.content}}</p>
+</div>
 </body>

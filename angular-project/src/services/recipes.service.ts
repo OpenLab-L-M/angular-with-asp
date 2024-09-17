@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { EditDTO } from 'src/app/recipes-details/recipes-details.component';
 import {ImageDTO} from "../app/recipes/ImageDTO";
+import { RecensionsDTO } from 'src/app/recipes-details/recensions-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -54,5 +55,11 @@ export class RecipesService {
   }
   edit(upraveny: EditDTO){
     return this.http.put<string>(this.recipesURL + "Editujem", upraveny);
+  }
+  letsAddComment(recenzia: RecensionsDTO){
+    return this.http.post<RecensionsDTO>(this.recipesURL + "PridajRecenziu",recenzia);
+  }
+  getRecension(id: number){
+    return this.http.get<RecensionsDTO[]>(this.recipesURL + "recenzie/" + id);
   }
 }

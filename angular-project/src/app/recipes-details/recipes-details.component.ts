@@ -13,6 +13,7 @@ import {MatFormField, MatFormFieldModule, MatLabel} from '@angular/material/form
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatInput, MatInputModule } from '@angular/material/input';
+import { RecensionsDTO } from './recensions-dto';
 @Component({
   selector: 'app-recipes-details',
   standalone: true,
@@ -21,7 +22,7 @@ import { MatInput, MatInputModule } from '@angular/material/input';
   styleUrl: './recipes-details.component.css'
 })
 export class RecipesDetailsComponent {
-
+ public recensions = signal<RecensionsDTO[]>([])
   clicked = false;
   recipeService = inject(RecipesService);
   private destroy$ = new Subject<void>();
@@ -52,10 +53,14 @@ export class RecipesDetailsComponent {
         )
       },
        );
+       this.recipeService.getRecension(id).pipe(takeUntil(this.destroy$))
+    .subscribe(value => this.recensions.set(value));
+
     this.recipeService.getImage(id).subscribe(value =>
       this.image = value.image
     )
-
+    console.log(parseInt(this.route.snapshot.paramMap.get('id')));
+    
    }
 
 
@@ -91,7 +96,16 @@ submit(){
   this.clicked=false;
 
 }
+addComment(){
+  var inputValue = (<HTMLInputElement>document.getElementById("koment")).value;
+  const id = parseInt(this.route.snapshot.paramMap.get('id'));
+  
+  this.recipeService.letsAddComment({content: inputValue, recipesID: id})
+  .pipe(takeUntil(this.destroy$))
+  .subscribe();
 }
+}
+
 
 export class EditDTO{
   id?:number;
