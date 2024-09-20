@@ -206,7 +206,7 @@ namespace AspNetCoreAPI.Controllers
             return Ok();
         }
         [HttpPost("PridajRecenziu")]
-        public void AddRecension(RecensionDTO nRecenzia)
+        public RecensionDTO AddRecension(RecensionDTO nRecenzia)
         {
             Recensions recenzia = new Recensions();
             //var recenzia = _context.Recensions.FirstOrDefault(x => x.UserId == GetCurrentUser().Id && x.RecipeId == nRecenzia.RecipesID);
@@ -216,6 +216,7 @@ namespace AspNetCoreAPI.Controllers
             recenzia.UserId = GetCurrentUser().Id;
             _context.Add(recenzia);
             _context.SaveChanges();
+            return nRecenzia;
             
         }
         [HttpGet("recenzie/{id:int}")]

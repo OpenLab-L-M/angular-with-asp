@@ -22,6 +22,7 @@ import { RecensionsDTO } from './recensions-dto';
   styleUrl: './recipes-details.component.css'
 })
 export class RecipesDetailsComponent {
+  
  public recensions = signal<RecensionsDTO[]>([])
   clicked = false;
   recipeService = inject(RecipesService);
@@ -96,14 +97,17 @@ submit(){
   this.clicked=false;
 
 }
-addComment(){
+ addComment(){
   var inputValue = (<HTMLInputElement>document.getElementById("koment")).value;
   const id = parseInt(this.route.snapshot.paramMap.get('id'));
-  
+
   this.recipeService.letsAddComment({content: inputValue, recipesID: id})
   .pipe(takeUntil(this.destroy$))
-  .subscribe();
+  .subscribe(value => this.recensions().push(value));
+  
+
 }
+
 }
 
 

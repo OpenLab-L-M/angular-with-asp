@@ -119,10 +119,15 @@
 
   </div>
 </ng-template>
+<div class="comment-section">
+  <h2>Comments</h2>
+</div>
+<div class="comment-box">
 <input type="text" id="koment" name="komentar"/>
 <button (click)="addComment()" style="height: 50px; width: 50px;">submit</button>
-<div *ngFor="let recension of recensions()">
-  <p style="color: white;">{{recension.userName}}</p>
+</div>
+<div *ngFor="let recension of recensions()" class="comment">
+  <h3 style="color: white;">{{recension.userName}}</h3>
   <p style="color: white;">{{recension.content}}</p>
 </div>
 </body>
