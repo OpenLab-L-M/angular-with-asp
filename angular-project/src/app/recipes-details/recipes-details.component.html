@@ -1,6 +1,6 @@
 <body>
   <img id="backgroundos" src="../../assets/backgroundos_recipes.png">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <div class="container">
   <div class="inside_container" *ngIf="clicked == true; else noCourses">
     <h1>EDIT</h1>
@@ -129,5 +129,15 @@
 <div *ngFor="let recension of recensions()" class="comment">
   <h3 style="color: white;">{{recension.userName}}</h3>
   <p style="color: white;">{{recension.content}}</p>
+  <div>
+    <mat-card>
+      <input id="liked" type="checkbox" (click)="likeRecension(recension.id)" matTooltip="Add to Favourite">
+      <mat-icon id="like" class="fa fa-thumbs-up" aria-hidden="false" ></mat-icon>
+    </mat-card>
+    <mat-card>
+      <input id="dissliked" type="checkbox" (click)="disslikeRecension(recension.id)" matTooltip="Add to Favourite">
+      <mat-icon id="like" class="fa fa-thumbs-down" aria-hidden="false" ></mat-icon>
+    </mat-card>
+  </div>
 </div>
 </body>

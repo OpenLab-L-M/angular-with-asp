@@ -240,3 +240,22 @@ mat-card {
   margin: auto; /* Center the card horizontally */
   background-color: rgb(41, 41, 41);
 }
+
+
+/*RatingDesign*/
+
+
+#liked {
+  position: relative;
+  z-index: 3;
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  opacity: 0;
+}
+#like {
+  position: absolute;
+  left: 0;
+  color: #fff;
+  margin-left: 8px;
+}

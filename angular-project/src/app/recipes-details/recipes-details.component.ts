@@ -108,6 +108,20 @@ submit(){
 
 }
 
+likeRecension(id: number){
+
+  const checkbox = document.getElementById('liked') as HTMLInputElement;
+    const isChecked = (event.target as HTMLInputElement).checked;
+    if(isChecked){
+      this.recipeService.likeRecension(id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe();
+    }
+}
+disslikeRecension(id: number){
+
+}
+
 }
 
 

@@ -227,12 +227,44 @@ namespace AspNetCoreAPI.Controllers
 
             return dbRecensions.Select(dbRecension =>
                 new RecensionDTO
-                {
+                { 
+                    Id = dbRecension.Id,
                     Content = dbRecension.Content,
                     UserID = dbRecension.UserId,
                     UserName = dbRecension.UserName
                     
                 });
+        }
+        [HttpPost("likeRecension/{id:int}")]
+        public void LikeRecension([FromBody] int RecensionId)
+        {
+            var dLike = _context.Recensions.Where(x => x.Id == RecensionId).Single<Recensions>();
+            var existuje = _context.LikeRecensions.Any(x => x.RecenziaId == RecensionId);
+            
+           
+            if(existuje)
+            {
+                var jeLiknuty = _context.LikeRecensions.Where(x => x.RecenziaId == RecensionId).Single<LikeRecensions>();
+                _context.LikeRecensions.Remove(jeLiknuty);
+                _context.SaveChanges();
+                
+            }
+            else if (!existuje)
+            {
+                LikeRecensions nLike = new LikeRecensions()
+                {
+                    User = GetCurrentUser(),
+                    Recenzia = dLike, 
+                    IsLiked = true,
+                    RecenziaId = RecensionId,
+                    UserId = GetCurrentUser().Id
+                };
+
+                _context.LikeRecensions.Add(nLike);
+                _context.SaveChanges();
+
+            }
+
         }
 
 

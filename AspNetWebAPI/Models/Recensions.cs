@@ -12,6 +12,7 @@ namespace AspNetCoreAPI.Models
         public string? UserName { get; set; }
 
 
+
         public ApplicationUser user { get; set; } = default!;
         public Recipe recept { get; set; } = default!;
     }

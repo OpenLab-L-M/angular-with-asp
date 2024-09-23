@@ -4,6 +4,7 @@ using AspNetCoreAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AspNetCoreAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240921074229_fixMig02")]
+    partial class fixMig02
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -153,10 +156,19 @@ namespace AspNetCoreAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("AmountOfLikes")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdOfLikedRecipe")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IdOfLikingUser")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool?>("IsLiked")
                         .HasColumnType("bit");
 
-                    b.Property<int>("RecenziaId")
+                    b.Property<int>("ReceptId")
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
@@ -164,7 +176,7 @@ namespace AspNetCoreAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RecenziaId");
+                    b.HasIndex("ReceptId");
 
                     b.HasIndex("UserId");
 
@@ -409,9 +421,9 @@ namespace AspNetCoreAPI.Migrations
 
             modelBuilder.Entity("AspNetCoreAPI.Models.LikeRecensions", b =>
                 {
-                    b.HasOne("AspNetCoreAPI.Models.Recensions", "Recenzia")
+                    b.HasOne("AspNetCoreAPI.Models.Recipe", "Recept")
                         .WithMany()
-                        .HasForeignKey("RecenziaId")
+                        .HasForeignKey("ReceptId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -419,7 +431,7 @@ namespace AspNetCoreAPI.Migrations
                         .WithMany()
                         .HasForeignKey("UserId");
 
-                    b.Navigation("Recenzia");
+                    b.Navigation("Recept");
 
                     b.Navigation("User");
                 });

@@ -5,15 +5,15 @@
 namespace AspNetCoreAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class upravaRecensionsMig : Migration
+    public partial class fixMig02 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "UserName",
-                table: "Recensions",
-                type: "nvarchar(max)",
+            migrationBuilder.AddColumn<bool>(
+                name: "IsLiked",
+                table: "LikeRecensions",
+                type: "bit",
                 nullable: true);
         }
 
@@ -21,8 +21,8 @@ namespace AspNetCoreAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "UserName",
-                table: "Recensions");
+                name: "IsLiked",
+                table: "LikeRecensions");
         }
     }
 }

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpStatusCode } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { RecipesDTO } from 'src/app/recipes/RecipesDTO'
 import { createRecipe } from '../app/create-recipe/createRecipe';
@@ -61,5 +61,8 @@ export class RecipesService {
   }
   getRecension(id: number){
     return this.http.get<RecensionsDTO[]>(this.recipesURL + "recenzie/" + id);
+  }
+  likeRecension(recensionId: number){
+    return this.http.post<void>(this.recipesURL + "likeRecension/" + recensionId, recensionId);
   }
 }

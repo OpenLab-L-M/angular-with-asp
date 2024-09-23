@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AspNetCoreAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240917141037_upravaRecensionsMig")]
-    partial class upravaRecensionsMig
+    [Migration("20240921073937_fixMig")]
+    partial class fixMig
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -146,6 +146,38 @@ namespace AspNetCoreAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Ingredience");
+                });
+
+            modelBuilder.Entity("AspNetCoreAPI.Models.LikeRecensions", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AmountOfLikes")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdOfLikedRecipe")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IdOfLikingUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ReceptId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReceptId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("LikeRecensions");
                 });
 
             modelBuilder.Entity("AspNetCoreAPI.Models.Recensions", b =>
@@ -382,6 +414,23 @@ namespace AspNetCoreAPI.Migrations
                     b.Navigation("recept");
 
                     b.Navigation("user");
+                });
+
+            modelBuilder.Entity("AspNetCoreAPI.Models.LikeRecensions", b =>
+                {
+                    b.HasOne("AspNetCoreAPI.Models.Recipe", "Recept")
+                        .WithMany()
+                        .HasForeignKey("ReceptId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AspNetCoreAPI.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Recept");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("AspNetCoreAPI.Models.Recensions", b =>
