@@ -220,3 +220,19 @@ font-size: 20px;
     color: red;
     transition: 0.2s;
   }
+
+
+  @media screen and (max-width: 1300px) {
+    .user_name {
+      font-size: 40px;
+    }
+
+    h1 {
+      font-size: 20px;
+    }
+
+    .profile_img {
+      width: 200px;
+      height: 200px;
+    }
+  }
