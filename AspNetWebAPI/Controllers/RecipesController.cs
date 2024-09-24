@@ -216,36 +216,44 @@ namespace AspNetCoreAPI.Controllers
             recenzia.UserId = GetCurrentUser().Id;
             _context.Add(recenzia);
             _context.SaveChanges();
-            return nRecenzia;
+            var vraciam = new RecensionDTO()
+            {
+                RecipesID = nRecenzia.RecipesID,
+                Content = nRecenzia.Content,
+                UserName = GetCurrentUser().UserName,
+                
+            };
+            return vraciam;
             
         }
         [HttpGet("recenzie/{id:int}")]
         public IEnumerable<RecensionDTO> GetRecensions([FromRoute] int id)
         {
             IEnumerable<Recensions> dbRecensions = _context.Recensions.Where(x => x.RecipeId == id).ToArray();
-            
+
 
             return dbRecensions.Select(dbRecension =>
                 new RecensionDTO
-                { 
+                {
                     Id = dbRecension.Id,
                     Content = dbRecension.Content,
                     UserID = dbRecension.UserId,
-                    UserName = dbRecension.UserName
-                    
+                    UserName = dbRecension.UserName,
+                    AmountOfLikes = dbRecension.AmountOfLikes
                 });
         }
         [HttpPost("likeRecension/{id:int}")]
-        public void LikeRecension([FromBody] int RecensionId)
+        public RecensionDTO LikeRecension([FromBody] int RecensionId)
         {
             var dLike = _context.Recensions.Where(x => x.Id == RecensionId).Single<Recensions>();
-            var existuje = _context.LikeRecensions.Any(x => x.RecenziaId == RecensionId);
+            var existuje = _context.LikeRecensions.Any(x => x.RecenziaId == RecensionId && x.UserId == GetCurrentUser().Id);
             
            
             if(existuje)
             {
-                var jeLiknuty = _context.LikeRecensions.Where(x => x.RecenziaId == RecensionId).Single<LikeRecensions>();
+                var jeLiknuty = _context.LikeRecensions.Where(x => x.RecenziaId == RecensionId && x.UserId == GetCurrentUser().Id).Single<LikeRecensions>();
                 _context.LikeRecensions.Remove(jeLiknuty);
+                dLike.AmountOfLikes -= 1;
                 _context.SaveChanges();
                 
             }
@@ -254,17 +262,23 @@ namespace AspNetCoreAPI.Controllers
                 LikeRecensions nLike = new LikeRecensions()
                 {
                     User = GetCurrentUser(),
-                    Recenzia = dLike, 
+                    Recenzia = dLike,
                     IsLiked = true,
+                    
                     RecenziaId = RecensionId,
                     UserId = GetCurrentUser().Id
                 };
+                dLike.AmountOfLikes += 1;
 
                 _context.LikeRecensions.Add(nLike);
                 _context.SaveChanges();
 
             }
-
+            var pseudoSignaly = new RecensionDTO()
+            {
+                AmountOfLikes = dLike.AmountOfLikes,
+            };
+            return pseudoSignaly;
         }
 
 

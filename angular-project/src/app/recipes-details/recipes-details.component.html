@@ -133,6 +133,7 @@
     <mat-card>
       <input id="liked" type="checkbox" (click)="likeRecension(recension.id)" matTooltip="Add to Favourite">
       <mat-icon id="like" class="fa fa-thumbs-up" aria-hidden="false" ></mat-icon>
+      <p style="color: white">{{recension.amountOfLikes}}</p>
     </mat-card>
     <mat-card>
       <input id="dissliked" type="checkbox" (click)="disslikeRecension(recension.id)" matTooltip="Add to Favourite">

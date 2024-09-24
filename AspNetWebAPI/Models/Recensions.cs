@@ -10,6 +10,7 @@ namespace AspNetCoreAPI.Models
         public int RecipeId { get; set; }
         public string? Content { get; set; }
         public string? UserName { get; set; }
+        public int? AmountOfLikes { get; set; } = 0;
 
 
 

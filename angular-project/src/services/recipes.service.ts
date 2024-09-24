@@ -63,6 +63,6 @@ export class RecipesService {
     return this.http.get<RecensionsDTO[]>(this.recipesURL + "recenzie/" + id);
   }
   likeRecension(recensionId: number){
-    return this.http.post<void>(this.recipesURL + "likeRecension/" + recensionId, recensionId);
+    return this.http.post<RecensionsDTO>(this.recipesURL + "likeRecension/" + recensionId, recensionId);
   }
 }
