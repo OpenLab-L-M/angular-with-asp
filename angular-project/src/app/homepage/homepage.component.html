@@ -14,4 +14,40 @@
   <div class="button-container">
     <button id="check_btn" [routerLink]="['/Recipes']">Check some created recipes</button>
   </div>
+  
+  <div class="recipes-container">
+    <mat-card class="recipes-items" *ngFor="let recipe of realRecipes | filter : sSearchRecept">
+      <mat-card-header>
+        <div class="left-header">
+          <img id="avatar" mat-card-avatar class="example-header-image" [src]="recipe.comprimedImage" matTooltip="Creator">
+<!--            <img *ngIf="!this.user().pictureURL" id="avatar" mat-card-avatar class="example-header-image" src="../../assets/Whithout_profile_picture.jpg" matTooltip="Creator">-->
+
+          <div class="text-content">
+            <mat-card-title class="recipes-name" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 25px;">{{recipe.name}}</mat-card-title>
+            <mat-card-subtitle class="recipes-difficulty">{{recipe.difficulty}}</mat-card-subtitle>
+            <mat-card-subtitle class="recipes-difficulty"><mat-icon>query_builder</mat-icon> {{recipe.cas}} min</mat-card-subtitle>
+          </div>
+        </div>
+        <div class="right-header">
+          <mat-card-subtitle *ngIf="recipe.veganske">Vegan</mat-card-subtitle>
+          <mat-card-subtitle *ngIf="recipe.vegetarianske">Vegetarian</mat-card-subtitle>
+          <mat-card-subtitle *ngIf="recipe.nizkoKaloricke">Low calorie</mat-card-subtitle>
+        </div>
+      </mat-card-header>
+
+        <img mat-card-image [src]="this.getImage(recipe.id)" class="recipes-images" matTooltip="Details of {{recipe.name}}" [routerLink]="['/RecipesDetails', recipe.id]"/>
+
+
+      <mat-card-footer>
+        <input id="favourite" type="checkbox" (change)="ktoryRecept(recipe.id)" matTooltip="Add to favourite">
+        <mat-icon id="like" >favorite</mat-icon>
+      </mat-card-footer>
+
+
+    </mat-card>
+  </div>
+
+  <div class="create">
+    <button id="create_link" [routerLink]="['/CreateRecipe']" matTooltip="Create a new recipe"><mat-icon>add</mat-icon></button>
+  </div>
 </body>

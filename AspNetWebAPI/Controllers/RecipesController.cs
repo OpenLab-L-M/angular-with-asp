@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Expressions;
 using System.Security.Claims;
+using System.Security.Cryptography;
 
 namespace AspNetCoreAPI.Controllers
 {
@@ -280,6 +281,43 @@ namespace AspNetCoreAPI.Controllers
             };
             return pseudoSignaly;
         }
+        /*[HttpGet("/Homepage/returnRandomRecipe")]
+        public IEnumerable<RecipesDTO> ReturnRandomRecipe()
+        {
+            
+            Random rng = new Random();
+            IEnumerable<Recipe> dbRecipes = _context.Recipes.Where(x => x.Id == rng.Next(1, _context.Recipes.Count()));
+            int rng2;
+            List<int> RandomReceptyId;
+            rng.Next(1, _context.Recipes.Count());
+            for(int i = 0; i< _context.Recipes.Count() - _context.Recipes.Count()/5; i++)
+            {
+                rng2 = rng.Next(1, _context.Recipes.Count());
+                var pridaj = _context.Recipes.Where(x => x.Id == rng2).Single<Recipe>();
+                dbRecipes.Append(pridaj);
+            }
+            
+           
+            
+
+            return dbRecipes.Select(dbRecipe =>
+                new RecipesDTO
+                {
+                    Id = dbRecipe.Id,
+                    Name = dbRecipe.Name,
+                    Postup = dbRecipe.Postup,
+                    Difficulty = dbRecipe.Difficulty,
+                    ImageURL = dbRecipe.ImageURL,
+                    CheckID = dbRecipe.CheckID,
+                    userID = dbRecipe.userID,
+                    Ingrediencie = dbRecipe.Ingrediencie,
+                    Veganske = dbRecipe.Veganske,
+                    Vegetarianske = dbRecipe.Vegetarianske,
+                    NizkoKaloricke = dbRecipe.NizkoKaloricke,
+                    Cas = dbRecipe.Cas,
+                    imageId = dbRecipe.ImageId
+                }).Reverse();
+        }*/
 
 
 
