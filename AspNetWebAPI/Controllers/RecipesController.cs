@@ -288,14 +288,27 @@ namespace AspNetCoreAPI.Controllers
 
             Random rng = new Random();
             int dalsi = rng.Next(1, pocet);
-            IEnumerable<Recipe> dbRecipes = _context.Recipes.Where(x => x.Id == dalsi);
+            List<Recipe> dbRecipes = _context.Recipes.Where(x => x.Id == dalsi).ToList();
             int rng2;
+            List<int> randomIds = new List<int>();
             rng.Next(1, pocet);
-            for(int i = 0; i< pocet - pocet / 5; i++)
+            for(int i = 0; i< pocet - (pocet / 2); i++)
             {
+                
                 rng2 = rng.Next(1, pocet);
-                var pridaj = _context.Recipes.Where(x => x.Id == rng2).Single<Recipe>();
-                dbRecipes.Append(pridaj);
+                if (randomIds.Contains(rng2))
+                {
+                    continue;
+                }
+                
+
+                else {
+                    var pridaj = _context.Recipes.Where(x => x.Id == rng2).Single<Recipe>();
+
+                    dbRecipes.Add(pridaj);
+                }
+                randomIds.Add(rng2);
+
             }
             
            
