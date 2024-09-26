@@ -281,20 +281,34 @@ namespace AspNetCoreAPI.Controllers
             };
             return pseudoSignaly;
         }
-        /*[HttpGet("/Homepage/returnRandomRecipe")]
+        [HttpGet("/Homepage/returnRandomRecipe")]
         public IEnumerable<RecipesDTO> ReturnRandomRecipe()
         {
-            
+            int pocet = _context.Recipes.Count();
+
             Random rng = new Random();
-            IEnumerable<Recipe> dbRecipes = _context.Recipes.Where(x => x.Id == rng.Next(1, _context.Recipes.Count()));
+            int dalsi = rng.Next(1, pocet);
+            List<Recipe> dbRecipes = _context.Recipes.Where(x => x.Id == dalsi).ToList();
             int rng2;
-            List<int> RandomReceptyId;
-            rng.Next(1, _context.Recipes.Count());
-            for(int i = 0; i< _context.Recipes.Count() - _context.Recipes.Count()/5; i++)
+            List<int> randomIds = new List<int>();
+            rng.Next(1, pocet);
+            for(int i = 0; i< pocet - (pocet / 2); i++)
             {
-                rng2 = rng.Next(1, _context.Recipes.Count());
-                var pridaj = _context.Recipes.Where(x => x.Id == rng2).Single<Recipe>();
-                dbRecipes.Append(pridaj);
+                
+                rng2 = rng.Next(1, pocet);
+                if (randomIds.Contains(rng2))
+                {
+                    continue;
+                }
+                
+
+                else {
+                    var pridaj = _context.Recipes.Where(x => x.Id == rng2).Single<Recipe>();
+
+                    dbRecipes.Add(pridaj);
+                }
+                randomIds.Add(rng2);
+
             }
             
            
@@ -317,7 +331,7 @@ namespace AspNetCoreAPI.Controllers
                     Cas = dbRecipe.Cas,
                     imageId = dbRecipe.ImageId
                 }).Reverse();
-        }*/
+        }
 
 
 

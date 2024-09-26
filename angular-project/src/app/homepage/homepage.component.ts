@@ -51,7 +51,7 @@ export class HomepageComponent {
       .subscribe();
     }
     }
-  /*ngOnInit(): void {
+  ngOnInit(): void {
 
 
     forkJoin({
@@ -70,7 +70,7 @@ export class HomepageComponent {
       });
 
 
-  }*/
+  }
 
   comprim() {
     this.realRecipes.forEach(a =>
