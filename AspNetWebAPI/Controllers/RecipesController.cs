@@ -281,18 +281,19 @@ namespace AspNetCoreAPI.Controllers
             };
             return pseudoSignaly;
         }
-        /*[HttpGet("/Homepage/returnRandomRecipe")]
+        [HttpGet("/Homepage/returnRandomRecipe")]
         public IEnumerable<RecipesDTO> ReturnRandomRecipe()
         {
-            
+            int pocet = _context.Recipes.Count();
+
             Random rng = new Random();
-            IEnumerable<Recipe> dbRecipes = _context.Recipes.Where(x => x.Id == rng.Next(1, _context.Recipes.Count()));
+            int dalsi = rng.Next(1, pocet);
+            IEnumerable<Recipe> dbRecipes = _context.Recipes.Where(x => x.Id == dalsi);
             int rng2;
-            List<int> RandomReceptyId;
-            rng.Next(1, _context.Recipes.Count());
-            for(int i = 0; i< _context.Recipes.Count() - _context.Recipes.Count()/5; i++)
+            rng.Next(1, pocet);
+            for(int i = 0; i< pocet - pocet / 5; i++)
             {
-                rng2 = rng.Next(1, _context.Recipes.Count());
+                rng2 = rng.Next(1, pocet);
                 var pridaj = _context.Recipes.Where(x => x.Id == rng2).Single<Recipe>();
                 dbRecipes.Append(pridaj);
             }
@@ -317,7 +318,7 @@ namespace AspNetCoreAPI.Controllers
                     Cas = dbRecipe.Cas,
                     imageId = dbRecipe.ImageId
                 }).Reverse();
-        }*/
+        }
 
 
 
