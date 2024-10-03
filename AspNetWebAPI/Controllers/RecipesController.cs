@@ -219,6 +219,7 @@ namespace AspNetCoreAPI.Controllers
             _context.SaveChanges();
             var vraciam = new RecensionDTO()
             {
+                Id = recenzia.Id,
                 RecipesID = nRecenzia.RecipesID,
                 Content = nRecenzia.Content,
                 UserName = GetCurrentUser().UserName,
@@ -248,8 +249,8 @@ namespace AspNetCoreAPI.Controllers
         {
             var dLike = _context.Recensions.Where(x => x.Id == RecensionId).Single<Recensions>();
             var existuje = _context.LikeRecensions.Any(x => x.RecenziaId == RecensionId && x.UserId == GetCurrentUser().Id);
+
             
-           
             if(existuje)
             {
                 var jeLiknuty = _context.LikeRecensions.Where(x => x.RecenziaId == RecensionId && x.UserId == GetCurrentUser().Id).Single<LikeRecensions>();

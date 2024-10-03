@@ -27,7 +27,7 @@ export class RecipesDetailsComponent {
   clicked = false;
   recipeService = inject(RecipesService);
   private destroy$ = new Subject<void>();
-  recipe: RecipesDTO;
+  //recipe: RecipesDTO;
   image: any[] = [];
   profileForm = new FormGroup({
     name: new FormControl(''),
@@ -98,25 +98,28 @@ submit(){
 
 }
  addComment(){
+  
   var inputValue = (<HTMLInputElement>document.getElementById("koment")).value;
   const id = parseInt(this.route.snapshot.paramMap.get('id'));
 
   this.recipeService.letsAddComment({content: inputValue, recipesID: id})
   .pipe(takeUntil(this.destroy$))
-  .subscribe(value => this.recensions().push(value));
-  
+  .subscribe(value => {console.log(value); 
+    this.recensions.update(actualRecension => [...actualRecension, value])} );
+   
+
 
 }
 
 likeRecension(id: number){
 
-  const checkbox = document.getElementById('liked') as HTMLInputElement;
-    const isChecked = (event.target as HTMLInputElement).checked;
-    if(isChecked){
+  //const checkbox = document.getElementById('liked') as HTMLInputElement;
+    //const isChecked = (event.target as HTMLInputElement).checked;
+    
       this.recipeService.likeRecension(id)
       .pipe(takeUntil(this.destroy$))
       .subscribe();
-    }
+    
 }
 disslikeRecension(id: number){
 
