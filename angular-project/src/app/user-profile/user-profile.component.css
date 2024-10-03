@@ -6,7 +6,7 @@ body #backgroundos{
   z-index: -2;
 }
 
-body {
+/* body {
   animation: grow 1s;
 }
 
@@ -15,7 +15,7 @@ body {
   100% { transform: scale(1); }
 }
 
-body { background-color: rgba(0,0,0,.1); }
+body { background-color: rgba(0,0,0,.1); } */
 
 h1, h2, h3 {
   color: darkgoldenrod;
@@ -238,12 +238,14 @@ font-size: 20px;
   @media screen and (max-width: 1300px) {
     .user_name {
       font-size: 40px;
+      transition: 0.75s;
     }
 
     h1 {
       padding-top: 20px;
       font-size: 20px;
       text-align: center;
+      transition: 0.75s;
     }
 
     .profile_img {
@@ -252,12 +254,14 @@ font-size: 20px;
       display: block;
       margin-left: auto;
       margin-right: auto;
+      transition: 0.75s;
     }
 
     .button_position {
       padding-top: 20px;
       position: absolute;
       left: 60%;
+      transition: 0.75s;
     }
 
     
@@ -269,6 +273,7 @@ font-size: 20px;
       z-index: 2;
       overflow: hidden;
       justify-content: center;
+      transition: 0.75s;
     }
     
     .recipes-items {
@@ -285,20 +290,28 @@ font-size: 20px;
       padding-right: 10px; */
       border: transparent;
       transition: transform 0.3s;
+      transition: 0.75s;
+
     }
     
     .recipes-items mat-card-subtitle {
     color: white;
     margin-bottom: 2px;
+    transition: 0.75s;
+
     }
     
     .recipes-items mat-card-title {
     color: white;
     font-style: italic;
     margin-bottom: 5px;
+    transition: 0.75s;
+
     }
     
     #avatar {
     border:3px solid rgb(190, 190, 190);
+    transition: 0.75s;
+
     }
   }
