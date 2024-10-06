@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatInput, MatInputModule } from '@angular/material/input';
 import { RecensionsDTO } from './recensions-dto';
+import { DataSource } from '@angular/cdk/collections';
 @Component({
   selector: 'app-recipes-details',
   standalone: true,
@@ -115,10 +116,17 @@ likeRecension(id: number){
 
   //const checkbox = document.getElementById('liked') as HTMLInputElement;
     //const isChecked = (event.target as HTMLInputElement).checked;
-    
+    debugger
       this.recipeService.likeRecension(id)
       .pipe(takeUntil(this.destroy$))
-      .subscribe();
+      .subscribe(value => 
+        
+        {this.recensions.update(data => data.map(recension => recension.id === id ? 
+        {recipesID: value.recipesID, content: value.content, likes:value.amountOfLikes} : recension ))
+          console.log(value);
+      }
+
+    );
     
 }
 disslikeRecension(id: number){

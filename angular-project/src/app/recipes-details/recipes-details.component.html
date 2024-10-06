@@ -132,7 +132,7 @@
   <p style="color: white;">{{recension.content}}</p>
   <div>
     <mat-card>
-      <input id="liked" type="checkbox" (click)="likeRecension(recension.id)" matTooltip="Add to Favourite">
+      <input id="liked" type="checkbox" (change)="likeRecension(recension.id)" matTooltip="Add to Favourite">
       <mat-icon id="like" class="fa fa-thumbs-up" aria-hidden="false" ></mat-icon>
       <p style="color: white">{{recension.amountOfLikes}}</p>
     </mat-card>

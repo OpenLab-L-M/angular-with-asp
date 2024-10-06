@@ -246,7 +246,7 @@ namespace AspNetCoreAPI.Controllers
         }
         [HttpPost("likeRecension/{id:int}")]
         public RecensionDTO LikeRecension([FromBody] int RecensionId)
-        {
+          {
             var dLike = _context.Recensions.Where(x => x.Id == RecensionId).Single<Recensions>();
             var existuje = _context.LikeRecensions.Any(x => x.RecenziaId == RecensionId && x.UserId == GetCurrentUser().Id);
 
@@ -278,6 +278,10 @@ namespace AspNetCoreAPI.Controllers
             }
             var pseudoSignaly = new RecensionDTO()
             {
+                RecipesID = dLike.RecipeId,
+                UserName = dLike.UserName,
+                Content = dLike.Content,
+                Id = dLike.Id,
                 AmountOfLikes = dLike.AmountOfLikes,
             };
             return pseudoSignaly;
