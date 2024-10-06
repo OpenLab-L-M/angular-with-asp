@@ -116,13 +116,14 @@ likeRecension(id: number){
 
   //const checkbox = document.getElementById('liked') as HTMLInputElement;
     //const isChecked = (event.target as HTMLInputElement).checked;
-    debugger
+    
       this.recipeService.likeRecension(id)
       .pipe(takeUntil(this.destroy$))
       .subscribe(value => 
         
-        {this.recensions.update(data => data.map(recension => recension.id === id ? 
-        {recipesID: value.recipesID, content: value.content, likes:value.amountOfLikes} : recension ))
+        {
+          this.recensions.update(data => data.map(recension => recension.id === id ? 
+        {recipesID: value.recipesID, content: value.content,id: value.id , likes:value.amountOfLikes} : recension ))
           console.log(value);
       }
 

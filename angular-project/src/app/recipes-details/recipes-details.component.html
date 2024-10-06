@@ -127,16 +127,16 @@
 <input type="text" id="koment" name="komentar"/>
 <button (click)="addComment()" style="height: 50px; width: 50px;">submit</button>
 </div>
-<div *ngFor="let recension of recensions()" class="comment">
+<div *ngFor="let recension of recensions(); let i = index" class="comment">
   <h3 style="color: white;">{{recension.userName}}</h3>
   <p style="color: white;">{{recension.content}}</p>
   <div>
-    <mat-card>
+    <mat-card id="matBug" [attr.id]="'like-card-' + i">
       <input id="liked" type="checkbox" (change)="likeRecension(recension.id)" matTooltip="Add to Favourite">
       <mat-icon id="like" class="fa fa-thumbs-up" aria-hidden="false" ></mat-icon>
-      <p style="color: white">{{recension.amountOfLikes}}</p>
+      <p style="color: white" [textContent]="recension.amountOfLikes"></p>
     </mat-card>
-    <mat-card>
+    <mat-card [attr.id]="'dislike-card-' + i">
       <input id="dissliked" type="checkbox" (click)="disslikeRecension(recension.id)" matTooltip="Add to Favourite">
       <mat-icon id="like" class="fa fa-thumbs-down" aria-hidden="false" ></mat-icon>
     </mat-card>

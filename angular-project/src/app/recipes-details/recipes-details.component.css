@@ -247,6 +247,7 @@ mat-card {
 
 #liked {
   position: relative;
+  visibility: visible;
   z-index: 3;
   width: 20px;
   height: 20px;
@@ -255,7 +256,12 @@ mat-card {
 }
 #like {
   position: absolute;
+  visibility: visible;
   left: 0;
   color: #fff;
   margin-left: 8px;
+}
+#matBug p {
+  visibility: visible;
+  font-size: large;
 }
