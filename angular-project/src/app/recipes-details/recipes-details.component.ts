@@ -112,24 +112,23 @@ submit(){
 
 }
 
-likeRecension(id: number){
-
-  //const checkbox = document.getElementById('liked') as HTMLInputElement;
-    //const isChecked = (event.target as HTMLInputElement).checked;
+  likeRecension(id: number) {
     
-      this.recipeService.likeRecension(id)
+    this.recipeService.likeRecension(id)
       .pipe(takeUntil(this.destroy$))
-      .subscribe(value => 
-        
-        {
-          this.recensions.update(data => data.map(recension => recension.id === id ? 
-        {recipesID: value.recipesID, content: value.content,id: value.id , likes:value.amountOfLikes} : recension ))
-          console.log(value);
+      .subscribe(value => {
+        this.recensions.update(data => data.map(recension => recension.id === id ?
+          { recipesID: value.recipesID,
+            content: value.content,
+            id: value.id, 
+            amountOfLikes: value.amountOfLikes, 
+            userName: value.userName } : recension))
+        console.log(value);
       }
 
-    );
-    
-}
+      );
+
+  }
 disslikeRecension(id: number){
 
 }
