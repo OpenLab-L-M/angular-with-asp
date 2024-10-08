@@ -242,6 +242,10 @@ mat-card {
 }
 
 
+
+
+
+
 /*RatingDesign*/
 
 
@@ -261,7 +265,28 @@ mat-card {
   color: #fff;
   margin-left: 8px;
 }
+#dislike {
+  position: absolute;
+  visibility: visible;
+  left: 0;
+  color: #fff;
+  margin-left: 8px;
+}
 #matBug p {
   visibility: visible;
   font-size: large;
+  
 }
+
+#matBug {
+  width: 100%;
+}
+
+#liked:checked + #like {
+  color: darkgoldenrod
+}
+
+.matCardContainer {
+  justify-content: left;
+}
+

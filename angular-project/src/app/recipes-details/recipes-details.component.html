@@ -131,6 +131,7 @@
   <h3 style="color: white;">{{recension.userName}}</h3>
   <p style="color: white;">{{recension.content}}</p>
   <div>
+    <mat-card class="matCardContainer">
     <mat-card id="matBug" [attr.id]="'like-card-' + i">
       <input id="liked" type="checkbox" (change)="likeRecension(recension.id)" matTooltip="Add to Favourite">
       <mat-icon id="like" class="fa fa-thumbs-up" aria-hidden="false" ></mat-icon>
@@ -138,8 +139,9 @@
     </mat-card>
     <mat-card [attr.id]="'dislike-card-' + i">
       <input id="dissliked" type="checkbox" (click)="disslikeRecension(recension.id)" matTooltip="Add to Favourite">
-      <mat-icon id="like" class="fa fa-thumbs-down" aria-hidden="false" ></mat-icon>
+      <mat-icon id="dislike" class="fa fa-thumbs-down" aria-hidden="false" ></mat-icon>
     </mat-card>
+  </mat-card>
   </div>
 </div>
 </body>
