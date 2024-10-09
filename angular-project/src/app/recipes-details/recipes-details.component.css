@@ -10,15 +10,54 @@ body #backgroundos{
     padding-left: 30px;
 } */
 .comment-box input{
-  background: rgb(69, 69, 69);
+  background: rgb(50, 50, 50);
   color: #fff;
   width: 75%;
-  height: 152px;
-  margin-left: 3%;
+  height: 50px;
+  margin-left: 50px;
   padding: 10px;
-  border:none;
-  border-radius: 4px;
-  text-align: left;
+  border: 1px solid #444;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease-in-out;
+}
+
+.comment-box input:focus {
+  border-color: darkgoldenrod;
+  outline: none;
+}
+
+.comment-box input:hover {
+  border-color: darkgoldenrod;
+  transition: all 0.3s ease-in-out;
+}
+
+.comment-box button {
+  height: 50px;
+  width: 100px;
+  background-color: darkgoldenrod;
+  border: none;
+  border-radius: 10%;
+  cursor: pointer;
+  color: white;
+  font-size: 18px;
+  padding-top: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.comment-box button:hover {
+  background-color: #dda30f;
+}
+
+.comment-box {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  
 }
 
 .comment-section {
@@ -29,23 +68,36 @@ body #backgroundos{
 
 }
 .comment-section h2{
-  font-size: 40px;
-  color: #fff;
+  font-size: 32px;
+  color: darkgoldenrod;
+  text-align: left;
+  padding-left: 10px;
+  border-bottom: 2px solid darkgoldenrod;
+  padding-bottom: 10px;
 }
 .comment {
-  size: flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 75%;
-  margin-left: 10px;
-  border-top: 1px dashed gold;
-
-  padding: 10px;
-  margin: 50px;
-  background-color: rgb(20, 19, 19);
+  margin: 20px auto;
+  padding: 15px;
+  border: 1px solid #333;
+  border-radius: 10px;
+  background-color: #252525;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.comment:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(175, 123, 11, 0.568);
+}
+
 .comment h3 {
-  font-size: 16px;
-  color: white;
-  font-weight: bold;
+  font-size: 18px;
+  color: rgb(228, 167, 14);
+  margin-bottom: 10px;
 
 }
 .comment p {
@@ -257,11 +309,14 @@ mat-card {
   height: 20px;
   margin-left: 10px;
   opacity: 0;
+  padding-top: 5px;
 }
 #like {
   position: absolute;
   visibility: visible;
   left: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
   color: #fff;
   margin-left: 8px;
 }
@@ -272,6 +327,23 @@ mat-card {
   color: #fff;
   margin-left: 8px;
 }
+#dissliked {
+  position: relative;
+  visibility: visible;
+  z-index: 3;
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  opacity: 0;
+}
+
+#like, #dislike {
+  color: #fff;
+  font-size: 20px;
+  transition: color 0.3s ease;
+  padding-bottom: 5px;
+}
+
 #matBug p {
   visibility: visible;
   font-size: large;
@@ -279,14 +351,47 @@ mat-card {
 }
 
 #matBug {
-  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: #333;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+#matBug:hover {
+  background-color: #444;
+}
+
+#matBug p {
+  margin-left: 10px;
+  font-size: 18px;
+  color: white;
 }
 
 #liked:checked + #like {
   color: darkgoldenrod
 }
 
-.matCardContainer {
-  justify-content: left;
+#dissliked:checked + #dislike {
+  color: red
 }
 
+.matCardContainer {
+  display: flex; /* Flexbox pre lepšie rozloženie */
+  flex-direction: column;
+  justify-content: flex-start; /* Posunutie k ľavej strane */
+  align-items: center; /* Vertikálne centrovanie */
+  margin-top: 10px; /* Pridanie medzery od vrchu */
+}
+
+
+
+.comment .matCardContainer mat-card {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.comment-box button:before {
+  content: '➤ '; /* Môžeš to upraviť na ikonu alebo iný symbol */
+}
