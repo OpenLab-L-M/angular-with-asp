@@ -68,4 +68,7 @@ export class RecipesService {
   returnRandomRecipe(){
     return this.http.get<RecipesDTO[]>(this.baseUrl + "/Homepage/returnRandomRecipe")
   }
+  disslikeRecension(recensionId: number){
+    return this.http.post<RecensionsDTO>(this.recipesURL + "disslikeRecension/" + recensionId, recensionId);
+  }
 }
