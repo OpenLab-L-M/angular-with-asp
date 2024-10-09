@@ -122,7 +122,8 @@ submit(){
             content: value.content,
             id: value.id, 
             amountOfLikes: value.amountOfLikes, 
-            userName: value.userName } : recension))
+            userName: value.userName,
+            amountOfDisslikes: value.amountOfDisslikes } : recension))
         console.log(value);
       }
 
@@ -130,7 +131,20 @@ submit(){
 
   }
 disslikeRecension(id: number){
+  this.recipeService.disslikeRecension(id)
+  .pipe(takeUntil(this.destroy$))
+  .subscribe(value => {
+    this.recensions.update(data => data.map(recension => recension.id === id ?
+      { recipesID: value.recipesID,
+        content: value.content,
+        id: value.id, 
+        amountOfLikes: value.amountOfLikes, 
+        userName: value.userName,
+        amountOfDisslikes: value.amountOfDisslikes } : recension))
+    console.log(value);
+  }
 
+  );
 }
 
 }

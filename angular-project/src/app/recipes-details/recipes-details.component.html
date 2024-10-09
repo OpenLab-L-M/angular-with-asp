@@ -138,8 +138,9 @@
       <p style="color: white" [textContent]="recension.amountOfLikes"></p>
     </mat-card>
     <mat-card [attr.id]="'dislike-card-' + i">
-      <input id="dissliked" type="checkbox" (click)="disslikeRecension(recension.id)" matTooltip="Add to Favourite">
+      <input id="dissliked" type="checkbox" (change)="disslikeRecension(recension.id)" matTooltip="Add to Favourite">
       <mat-icon id="dislike" class="fa fa-thumbs-down" aria-hidden="false" ></mat-icon>
+      <p style="color: white" [textContent]="recension.amountOfDisslikes"></p>
     </mat-card>
   </mat-card>
   </div>

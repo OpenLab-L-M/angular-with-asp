@@ -10,7 +10,6 @@ namespace AspNetCoreAPI.Models
         public int RecenziaId { get; set; }
         public bool? IsLiked { get; set; }
 
-
         public ApplicationUser User { get; set; } = default!;
         public Recensions Recenzia { get; set; } = default!;
     }

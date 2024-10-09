@@ -241,23 +241,33 @@ namespace AspNetCoreAPI.Controllers
                     Content = dbRecension.Content,
                     UserID = dbRecension.UserId,
                     UserName = dbRecension.UserName,
-                    AmountOfLikes = dbRecension.AmountOfLikes
+                    AmountOfLikes = dbRecension.AmountOfLikes,
+                    AmountOfDisslikes = dbRecension.AmountOfDisslikes
                 });
         }
         [HttpPost("likeRecension/{id:int}")]
         public RecensionDTO LikeRecension([FromBody] int RecensionId)
           {
             var dLike = _context.Recensions.Where(x => x.Id == RecensionId).Single<Recensions>();
-            var existuje = _context.LikeRecensions.Any(x => x.RecenziaId == RecensionId && x.UserId == GetCurrentUser().Id);
+            var existuje = _context.LikeRecensions.Any(x => x.RecenziaId == RecensionId && x.UserId == GetCurrentUser().Id && x.IsLiked == true);
+            var jeDisslikenuty = _context.LikeRecensions.Any(x => x.RecenziaId == RecensionId && x.UserId == GetCurrentUser().Id && x.IsLiked == false);
 
-            
-            if(existuje)
+
+            if (existuje)
             {
-                var jeLiknuty = _context.LikeRecensions.Where(x => x.RecenziaId == RecensionId && x.UserId == GetCurrentUser().Id).Single<LikeRecensions>();
+                var jeLiknuty = _context.LikeRecensions.Where(x => x.RecenziaId == RecensionId && x.UserId == GetCurrentUser().Id && x.IsLiked == true).Single<LikeRecensions>();
                 _context.LikeRecensions.Remove(jeLiknuty);
                 dLike.AmountOfLikes -= 1;
                 _context.SaveChanges();
                 
+            }
+            else if (jeDisslikenuty)
+            {
+                var jeDissLiknuty = _context.LikeRecensions.Where(x => x.RecenziaId == RecensionId && x.UserId == GetCurrentUser().Id && x.IsLiked == false).Single<LikeRecensions>();
+                jeDissLiknuty.IsLiked = true;
+                dLike.AmountOfLikes += 1; 
+                dLike.AmountOfDisslikes -= 1;
+                _context.SaveChanges();
             }
             else if (!existuje)
             {
@@ -283,6 +293,7 @@ namespace AspNetCoreAPI.Controllers
                 Content = dLike.Content,
                 Id = dLike.Id,
                 AmountOfLikes = dLike.AmountOfLikes,
+                AmountOfDisslikes = dLike.AmountOfDisslikes
             };
             return pseudoSignaly;
         }
@@ -291,53 +302,115 @@ namespace AspNetCoreAPI.Controllers
         {
             int pocet = _context.Recipes.Count();
 
-            Random rng = new Random();
-            int dalsi = rng.Next(1, pocet);
-            List<Recipe> dbRecipes = _context.Recipes.Where(x => x.Id == dalsi).ToList();
-            int rng2;
-            List<int> randomIds = new List<int>();
-            rng.Next(1, pocet);
-            for(int i = 0; i< pocet - (pocet / 2); i++)
-            {
-                
-                rng2 = rng.Next(1, pocet);
-                if (randomIds.Contains(rng2))
+
+            if (pocet != 0) {
+                Random rng = new Random();
+                int dalsi = rng.Next(1, pocet);
+                List<Recipe> dbRecipes = _context.Recipes.Where(x => x.Id == dalsi).ToList();
+                int rng2;
+                List<int> randomIds = new List<int>();
+                rng.Next(1, pocet);
+                for (int i = 0; i < pocet - (pocet / 2); i++)
                 {
-                    continue;
-                }
-                
 
-                else {
-                    var pridaj = _context.Recipes.Where(x => x.Id == rng2).Single<Recipe>();
+                    rng2 = rng.Next(1, pocet);
+                    if (randomIds.Contains(rng2))
+                    {
+                        continue;
+                    }
 
-                    dbRecipes.Add(pridaj);
+
+                    else
+                    {
+                        var pridaj = _context.Recipes.Where(x => x.Id == rng2).Single<Recipe>();
+
+                        dbRecipes.Add(pridaj);
+                    }
+                    randomIds.Add(rng2);
+
                 }
-                randomIds.Add(rng2);
+
+
+
+
+                return dbRecipes.Select(dbRecipe =>
+                    new RecipesDTO
+                    {
+                        Id = dbRecipe.Id,
+                        Name = dbRecipe.Name,
+                        Postup = dbRecipe.Postup,
+                        Difficulty = dbRecipe.Difficulty,
+                        ImageURL = dbRecipe.ImageURL,
+                        CheckID = dbRecipe.CheckID,
+                        userID = dbRecipe.userID,
+                        Ingrediencie = dbRecipe.Ingrediencie,
+                        Veganske = dbRecipe.Veganske,
+                        Vegetarianske = dbRecipe.Vegetarianske,
+                        NizkoKaloricke = dbRecipe.NizkoKaloricke,
+                        Cas = dbRecipe.Cas,
+                        imageId = dbRecipe.ImageId
+                    }).Reverse();
+            }
+            else {
+                return null;
+                }
+
+
+            
+        }
+        [HttpPost("disslikeRecension/{id:int}")]
+        public RecensionDTO DisslikeRecension([FromBody] int RecensionId)
+        {
+            var dLike = _context.Recensions.Where(x => x.Id == RecensionId).Single<Recensions>();
+            var existuje = _context.LikeRecensions.Any(x => x.RecenziaId == RecensionId && x.UserId == GetCurrentUser().Id && x.IsLiked == false);
+            var jeLikenuty = _context.LikeRecensions.Any(x => x.RecenziaId == RecensionId && x.UserId == GetCurrentUser().Id && x.IsLiked == true);
+
+            if (existuje)
+            {
+                var jeLiknuty = _context.LikeRecensions.Where(x => x.RecenziaId == RecensionId && x.UserId == GetCurrentUser().Id && x.IsLiked == false).Single<LikeRecensions>();
+                _context.LikeRecensions.Remove(jeLiknuty);
+                dLike.AmountOfDisslikes -= 1;
+
+                _context.SaveChanges();
 
             }
-            
-           
-            
+            else if (jeLikenuty)
+            {
 
-            return dbRecipes.Select(dbRecipe =>
-                new RecipesDTO
+                var jeDissLiknuty = _context.LikeRecensions.Where(x => x.RecenziaId == RecensionId && x.UserId == GetCurrentUser().Id && x.IsLiked == true).Single<LikeRecensions>();
+                jeDissLiknuty.IsLiked = false;
+                dLike.AmountOfLikes -= 1;
+                dLike.AmountOfDisslikes += 1;
+                _context.SaveChanges();
+            }
+            else if (!existuje)
+            {
+                LikeRecensions nLike = new LikeRecensions()
                 {
-                    Id = dbRecipe.Id,
-                    Name = dbRecipe.Name,
-                    Postup = dbRecipe.Postup,
-                    Difficulty = dbRecipe.Difficulty,
-                    ImageURL = dbRecipe.ImageURL,
-                    CheckID = dbRecipe.CheckID,
-                    userID = dbRecipe.userID,
-                    Ingrediencie = dbRecipe.Ingrediencie,
-                    Veganske = dbRecipe.Veganske,
-                    Vegetarianske = dbRecipe.Vegetarianske,
-                    NizkoKaloricke = dbRecipe.NizkoKaloricke,
-                    Cas = dbRecipe.Cas,
-                    imageId = dbRecipe.ImageId
-                }).Reverse();
-        }
+                    User = GetCurrentUser(),
+                    Recenzia = dLike,
+                    IsLiked = false,
 
+                    RecenziaId = RecensionId,
+                    UserId = GetCurrentUser().Id
+                };
+                dLike.AmountOfDisslikes += 1;
+
+                _context.LikeRecensions.Add(nLike);
+                _context.SaveChanges();
+
+            }
+            var pseudoSignaly = new RecensionDTO()
+            {
+                RecipesID = dLike.RecipeId,
+                UserName = dLike.UserName,
+                Content = dLike.Content,
+                Id = dLike.Id,
+                AmountOfLikes = dLike.AmountOfLikes,
+                AmountOfDisslikes = dLike.AmountOfDisslikes
+            };
+            return pseudoSignaly;
+        }
 
 
 
