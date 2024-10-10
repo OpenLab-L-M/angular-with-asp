@@ -125,7 +125,9 @@
 </div>
 <div class="comment-box">
 <input type="text" id="koment" name="komentar"/>
-<button (click)="addComment()" >submit</button>
+<button (click)="addComment()" >submit
+  <a href="#bottom"></a>
+</button>
 </div>
 <div *ngFor="let recension of recensions(); let i = index" class="comment">
   <h3>{{recension.userName}}</h3>
@@ -142,7 +144,9 @@
       <mat-icon id="dislike" class="fa fa-thumbs-down" aria-hidden="false" ></mat-icon>
       <p style="color: white" [textContent]="recension.amountOfDisslikes"></p>
     </mat-card>
-  
+    
   </div>
 </div>
+<section id="bottom"></section>
 </body>
+

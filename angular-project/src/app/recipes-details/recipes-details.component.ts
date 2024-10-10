@@ -96,7 +96,7 @@ submit(){
   .pipe(takeUntil(this.destroy$))
   .subscribe();
   this.clicked=false;
-
+  
 }
  addComment(){
   
@@ -108,7 +108,7 @@ submit(){
   .subscribe(value => {console.log(value); 
     this.recensions.update(actualRecension => [...actualRecension, value])} );
    
-
+    this.scrollToBottom()
 
 }
 
@@ -145,6 +145,14 @@ disslikeRecension(id: number){
   }
 
   );
+}
+
+
+scrollToBottom() {
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: 'smooth'
+  });
 }
 
 }
