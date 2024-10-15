@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { RecipesService } from 'src/services/recipes.service';
 import { RecipesDTO } from '../recipes/RecipesDTO';
 import { Subject, takeUntil } from 'rxjs';
@@ -10,20 +10,24 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatIconAnchor } from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormField, MatFormFieldModule, MatLabel} from '@angular/material/form-field';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatInput, MatInputModule } from '@angular/material/input';
 import { RecensionsDTO } from './recensions-dto';
+
+import {CreatorDTO} from 'src/app/recipes/CreatorDTO';
 import { DataSource } from '@angular/cdk/collections';
 @Component({
   selector: 'app-recipes-details',
   standalone: true,
-  imports: [CommonModule, RouterLink, MatIconModule, MatIconAnchor, MatButtonModule, MatRadioModule, MatCardModule, ReactiveFormsModule, MatFormField, MatFormFieldModule, MatLabel, MatInput, MatInputModule],
+  imports: [CommonModule, RouterLink, MatIconModule, MatIconAnchor, MatButtonModule, MatRadioModule, MatCardModule, ReactiveFormsModule, MatFormField, MatFormFieldModule, MatLabel, MatInput, MatInputModule, DatePipe],
+  providers: [DatePipe],
   templateUrl: './recipes-details.component.html',
   styleUrl: './recipes-details.component.css'
 })
-export class RecipesDetailsComponent {
-  
+export class RecipesDetailsComponent implements OnInit{
+
+  userImages: CreatorDTO[] = [];
  public recensions = signal<RecensionsDTO[]>([])
   clicked = false;
   recipeService = inject(RecipesService);
@@ -37,7 +41,8 @@ export class RecipesDetailsComponent {
     imgURL: new FormControl(''),
     cas: new FormControl(null),
   });
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  currentDate: string = '';
+  constructor(private route: ActivatedRoute, private router: Router, private datePipe: DatePipe) { }
   ngOnInit(): void {
 
 
@@ -63,6 +68,8 @@ export class RecipesDetailsComponent {
     )
     console.log(parseInt(this.route.snapshot.paramMap.get('id')));
     
+    
+    console.log(this.currentDate);
    }
 
 
@@ -108,7 +115,8 @@ submit(){
   .subscribe(value => {console.log(value); 
     this.recensions.update(actualRecension => [...actualRecension, value])} );
    
-    this.scrollToBottom()
+    this.scrollToBottom();
+    this.currentDate = this.datePipe.transform(new Date(), 'yyyy, MMM d, h:mm a');
 
 }
 
@@ -155,7 +163,10 @@ scrollToBottom() {
   });
 }
 
+
+
 }
+
 
 
 export class EditDTO{

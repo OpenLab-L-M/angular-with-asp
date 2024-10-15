@@ -224,6 +224,8 @@ mat-card-content {
 
   max-width: 450px;
   max-height: 310px;
+  min-width: 400px;
+  min-height: 260px;
   width: auto; /* Automatically adjust the width to maintain aspect ratio */
   height: auto;
 
@@ -285,6 +287,7 @@ h1 {
 
 mat-card {
   width: 70%;
+  min-width: 70%;
   max-width: 70%; /* Optional, can be adjusted based on design needs */
   overflow-wrap: break-word; /* Ensures text wraps within the card */
   word-wrap: break-word; /* Fallback for older browsers */
@@ -394,4 +397,21 @@ mat-card {
 
 .comment-box button:before {
   content: '➤ '; /* Môžeš to upraviť na ikonu alebo iný symbol */
+}
+
+
+@media screen and (max-width: 1300px) {
+
+  .detail_image {
+    display: flex;
+    display: block; /* Ensure it behaves as a block element */
+    margin: auto;
+  
+    max-width: 200px;
+    max-height: 150px;
+    
+    
+  
+  
+  }
 }
