@@ -72,3 +72,55 @@ img {
   display: flex;
   justify-content: center;
 }
+
+.checkbtn {
+  visibility: visible;
+ }
+
+ #check {
+  visibility: hidden;
+  
+ }
+
+ 
+
+ @media only screen and (max-width: 992px) {
+  .nav-mobile {
+    display: none;
+   }
+  
+   #check:checked ~ .nav-mobile {
+    display: flex;
+  flex-direction: column;
+  padding-top: 200px;
+  margin-right: 20px;
+    background-color: black;
+    
+   }
+
+   .checkbtn {
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+    visibility: visible;
+   }
+
+   #check {
+    visibility: visible;
+    position: fixed;
+    right: 0;
+    margin-right: 10px;
+   }
+
+   
+   img {
+    width: 45px;
+    height: 38px;
+    display: block;
+      margin: 0 auto;
+      justify-content: center;
+      align-items: center;
+      padding-right: 10px;
+      cursor: pointer;
+  }
+}

@@ -43,10 +43,10 @@ import {IngredientService} from "./IngredientService";
 export class CreateRecipeComponent {
 
   disabled = false;
-  max = 100;
+  max = 300;
   min = 0;
   showTicks = false;
-  step = 1;
+  step = 10;
   thumbLabel = false;
   value = 0;
 
