@@ -411,8 +411,20 @@ namespace AspNetCoreAPI.Controllers
             };
             return pseudoSignaly;
         }
+        [HttpDelete("removeRecension/{id:int}")]
+        public RecensionDTO RemoveRecension([FromRoute]int id)
+        {
+            var vymaz = _context.Recensions.Where(x => x.Id == id).Single();
+            _context.Remove(vymaz);
+            _context.SaveChanges();
+            return null;
 
+            
+
+        }
 
 
     }
+
+
 }

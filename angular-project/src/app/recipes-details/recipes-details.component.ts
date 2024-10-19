@@ -163,7 +163,12 @@ scrollToBottom() {
   });
 }
 
-
+Vymaz(id: number){
+  
+  this.recipeService.removeRecension(id)
+  .pipe(takeUntil(this.destroy$))
+  .subscribe(value => this.recensions.update(items => items.filter(item => item.id !== id)));
+}
 
 }
 

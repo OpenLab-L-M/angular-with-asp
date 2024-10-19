@@ -1,4 +1,4 @@
-import { HttpClient, HttpStatusCode } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpStatusCode } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { RecipesDTO } from 'src/app/recipes/RecipesDTO'
 import { createRecipe } from '../app/create-recipe/createRecipe';
@@ -70,5 +70,9 @@ export class RecipesService {
   }
   disslikeRecension(recensionId: number){
     return this.http.post<RecensionsDTO>(this.recipesURL + "disslikeRecension/" + recensionId, recensionId);
+  }
+  removeRecension(recensionId: number){
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.delete<RecensionsDTO>(this.recipesURL + "removeRecension/" + recensionId, {headers});
   }
 }

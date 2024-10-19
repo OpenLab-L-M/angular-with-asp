@@ -398,7 +398,11 @@ mat-card {
 .comment-box button:before {
   content: '➤ '; /* Môžeš to upraviť na ikonu alebo iný symbol */
 }
-
+.delete-link {
+  color: red;
+  cursor: pointer;
+  text-decoration: underline;
+}
 
 @media screen and (max-width: 1300px) {
 
