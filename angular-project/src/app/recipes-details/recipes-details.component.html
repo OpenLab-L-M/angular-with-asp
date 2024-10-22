@@ -132,7 +132,7 @@
 <div *ngFor="let recension of recensions(); let i = index" class="comment">
   <h3>{{recension.userName}}</h3>
   
-  <span>{{currentDate}}</span>
+  <span>{{recension.datetime}}</span>
   <p style="color: white;">{{recension.content}}</p>
   <div class="matCardContainer">
     
