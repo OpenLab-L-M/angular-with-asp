@@ -61,7 +61,9 @@ export class RecipesDetailsComponent implements OnInit{
       },
        );
        this.recipeService.getRecension(id).pipe(takeUntil(this.destroy$))
-    .subscribe(value => this.recensions.set(value));
+    .subscribe(value => {this.recensions.set(value)
+        console.log(value)}
+    );
 
     this.recipeService.getImage(id).subscribe(value =>
       this.image = value.image
@@ -131,7 +133,9 @@ submit(){
             id: value.id, 
             amountOfLikes: value.amountOfLikes, 
             userName: value.userName,
-            amountOfDisslikes: value.amountOfDisslikes } : recension))
+            amountOfDisslikes: value.amountOfDisslikes,
+            userID: value.userID,
+            checkID: value.checkID } : recension))
         console.log(value);
       }
 
@@ -148,7 +152,9 @@ disslikeRecension(id: number){
         id: value.id, 
         amountOfLikes: value.amountOfLikes, 
         userName: value.userName,
-        amountOfDisslikes: value.amountOfDisslikes } : recension))
+        amountOfDisslikes: value.amountOfDisslikes,
+        userID: value.userID,
+        checkID: value.checkID } : recension))
     console.log(value);
   }
 

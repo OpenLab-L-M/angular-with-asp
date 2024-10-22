@@ -5,6 +5,7 @@
         public int Id { get; set; }
         public int RecipesID { get; set; }
         public string? UserID { get; set; }
+        public string? CheckID { get; set; }
         public string? Content { get; set; }
         public string? UserName { get; set; }
         public bool? Liked { get; set; }
