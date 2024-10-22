@@ -5,4 +5,5 @@ export class RecensionsDTO {
     content: string;
     amountOfLikes?: number;
     amountOfDisslikes?: number;
+    datetime?: string;
 }

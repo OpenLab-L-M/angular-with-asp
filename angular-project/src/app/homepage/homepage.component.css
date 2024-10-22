@@ -164,6 +164,43 @@ body #backgroundos{
   font-family: 'Times New Roman', Times, serif;
 }
 
+#favourite {
+  position: relative;
+  z-index: 3;
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  opacity: 0;
+}
+
+#like {
+  position: absolute;
+  left: 0;
+  margin-left: 8px;
+}
+
+#favourite:checked + #like {
+  color: red;
+  transition: 0.2s;
+}
+
+.left-header {
+  display: flex;
+  align-items: center;
+}
+
+.left-header .text-content {
+  margin-left: 10px;
+}
+
+.right-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding-left: 40px;
+}
+
 @media screen and (max-width: 1300px) {
   .slogan h2 {
     color: rgb(255, 255, 255);

@@ -41,7 +41,7 @@ export class RecipesDetailsComponent implements OnInit{
     imgURL: new FormControl(''),
     cas: new FormControl(null),
   });
-  currentDate: string = '';
+  
   constructor(private route: ActivatedRoute, private router: Router, private datePipe: DatePipe) { }
   ngOnInit(): void {
 
@@ -69,7 +69,7 @@ export class RecipesDetailsComponent implements OnInit{
     console.log(parseInt(this.route.snapshot.paramMap.get('id')));
     
     
-    console.log(this.currentDate);
+    //console.log(this.currentDate);
    }
 
 
@@ -109,14 +109,15 @@ submit(){
   
   var inputValue = (<HTMLInputElement>document.getElementById("koment")).value;
   const id = parseInt(this.route.snapshot.paramMap.get('id'));
+  var date = this.datePipe.transform(new Date(), 'yyyy, MMM d, h:mm a');
 
-  this.recipeService.letsAddComment({content: inputValue, recipesID: id})
+  this.recipeService.letsAddComment({content: inputValue, recipesID: id, datetime: date})
   .pipe(takeUntil(this.destroy$))
   .subscribe(value => {console.log(value); 
     this.recensions.update(actualRecension => [...actualRecension, value])} );
    
     this.scrollToBottom();
-    this.currentDate = this.datePipe.transform(new Date(), 'yyyy, MMM d, h:mm a');
+    
 
 }
 

@@ -213,6 +213,7 @@ namespace AspNetCoreAPI.Controllers
             //var recenzia = _context.Recensions.FirstOrDefault(x => x.UserId == GetCurrentUser().Id && x.RecipeId == nRecenzia.RecipesID);
             recenzia.RecipeId = nRecenzia.RecipesID;
             recenzia.Content = nRecenzia.Content;
+            recenzia.Datetime = nRecenzia.Datetime;
             recenzia.UserName = GetCurrentUser().UserName;
             recenzia.UserId = GetCurrentUser().Id;
             _context.Add(recenzia);
@@ -239,6 +240,7 @@ namespace AspNetCoreAPI.Controllers
                 {
                     Id = dbRecension.Id,
                     Content = dbRecension.Content,
+                    Datetime = dbRecension.Datetime,
                     UserID = dbRecension.UserId,
                     UserName = dbRecension.UserName,
                     AmountOfLikes = dbRecension.AmountOfLikes,
