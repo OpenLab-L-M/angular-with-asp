@@ -18,7 +18,7 @@ import { UserProfileComponent } from './app/user-profile/user-profile.component'
 import { HomepageComponent } from './app/homepage/homepage.component';
 
 export function getBaseUrl() {
-  return 'https://localhost:7186/api';
+  return 'https://GulityCrown.bsite.net/api';
 }
 
 export function tokenGetter() {
@@ -35,7 +35,7 @@ bootstrapApplication(AppComponent, {
       importProvidersFrom(BrowserModule, JwtModule.forRoot({
         config: {
           tokenGetter: tokenGetter,
-          allowedDomains: ['https://localhost:7189'],
+          allowedDomains: ['https://GulityCrown.bsite.net/'],
           disallowedRoutes: [],
         },
       })),
