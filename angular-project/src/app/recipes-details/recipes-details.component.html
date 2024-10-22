@@ -148,8 +148,9 @@
     </mat-card>
     
   </div>
-  <!-- <a href="#" style="color: white;" >delete</a> -->
+  <div *ngIf="recension.userID == recension.checkID">
   <span class="delete-link"  (click)="Vymaz(recension.id)">Delete </span>
+  </div>
 </div>
 <section  style="color: white;" id="bottom"></section>
 </body>

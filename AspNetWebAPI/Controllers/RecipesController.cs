@@ -244,8 +244,9 @@ namespace AspNetCoreAPI.Controllers
                     UserID = dbRecension.UserId,
                     UserName = dbRecension.UserName,
                     AmountOfLikes = dbRecension.AmountOfLikes,
-                    AmountOfDisslikes = dbRecension.AmountOfDisslikes
-                });
+                    AmountOfDisslikes = dbRecension.AmountOfDisslikes,
+                    CheckID = GetCurrentUser().Id
+                }); 
         }
         [HttpPost("likeRecension/{id:int}")]
         public RecensionDTO LikeRecension([FromBody] int RecensionId)
