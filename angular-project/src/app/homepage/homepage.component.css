@@ -1,4 +1,4 @@
-body #backgroundos{
+body #backgroundos {
   width: 100%;
   height: 100%;
   position: fixed;
@@ -7,121 +7,110 @@ body #backgroundos{
 }
 
 .logo {
-  position: absolute; /* Ensure it's positioned absolutely relative to the nearest positioned ancestor */
-  left: 50%; /* Move the element to the center of the parent element */
-  transform: translateX(-50%); /* Offset the element by half of its own width to truly center it */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   justify-content: center;
   align-items: center;
   text-align: center;
-
 }
 
 #food {
-      width: 750px;
-    height: auto;
-    border-radius: 50%;
-    margin: 0;
-    position: relative;
-    transform: translateX(50px);
-  }
+  width: 750px;
+  height: auto;
+  border-radius: 50%;
+  margin: 0;
+  position: relative;
+  transform: translateX(50px);
+}
 
-  .center {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    height: 100vh;
-  }
+.center {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
 
-  .slogan h2 {
-    color: rgb(255, 255, 255);
-    font-size: 80px;
-    line-height: 1.5;
-    font-family: "Times New Roman", Times, serif;
-    margin-left: 60px;
-    transition: font-size 0.7s;
-  }
+.slogan h2 {
+  color: rgb(255, 255, 255);
+  font-size: 80px;
+  line-height: 1.5;
+  font-family: "Times New Roman", Times, serif;
+  margin-left: 60px;
+  transition: font-size 0.7s;
+}
 
-  .slogan {
-    display: flex;
-    align-items: center;
-    height: 100vh;
-    width: 50%;
-    top: 0;
-    left: 0;
-    z-index: 4;
+.slogan {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  width: 50%;
+  z-index: 4;
+}
 
-  }
-  .slogan h2:hover {
-    font-size: 83px;
-  }
+.slogan h2:hover {
+  font-size: 83px;
+}
 
-  .button-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    position: absolute;
-    /* bottom: 20px; */
-    bottom: 1px;
-    z-index: 10;
-  }
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  bottom: 1px;
+  z-index: 10;
+}
 
-  #check_btn {
-    border-color: white;
-    border-width: 3px;
-    background-color: black;
-    color: white;
-    width: 400px;
-    height: 60px;
-    font-size: 20px;
-    cursor: pointer;
-    transition: background-color 1s, color 1s;
-  }
+#check_btn {
+  border-color: white;
+  border-width: 3px;
+  background-color: black;
+  color: white;
+  width: 400px;
+  height: 60px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 1s, color 1s;
+}
 
-  #check_btn:hover {
-    color: black;
-    background-color: white;
-    animation: pulse 1s infinite;
-  }
+#check_btn:hover {
+  color: black;
+  background-color: white;
+  animation: pulse 1s infinite;
+}
 
-  @keyframes pulse {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.05);
-    }
-    100% {
-      transform: scale(1);
-    }
+@keyframes pulse {
+  0% {
+    transform: scale(1);
   }
-  .recipes-container {
-    margin: 20px auto;
-    display: flex;
-    flex-wrap: wrap;
-    z-index: 2;
-    overflow: hidden;
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.recipes-container {
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 2;
+  overflow: hidden;
 }
 
 .recipes-items {
-    width: 350px;
-    background-color:rgb(41, 41, 41);
-    border-radius: 10px;
-    border-width: 10px;
-    border-color: rgb(41, 41, 41);
-    color: white;
-    margin: 10px 10px;
-    /* padding-top: 10px;
-    padding-bottom: 20px;
-    padding-left: 10px;
-    padding-right: 10px; */
-    border: transparent;
-    transition: transform 0.3s;
+  width: 350px;
+  background-color: rgb(41, 41, 41);
+  border-radius: 10px;
+  color: white;
+  margin: 10px 10px;
+  transition: transform 0.3s;
 }
 
 .recipes-items mat-card-subtitle {
   color: white;
-  margin-bottom: 2px;
 }
 
 .recipes-items mat-card-title {
@@ -131,33 +120,26 @@ body #backgroundos{
 }
 
 #avatar {
-  /*border:3px solid rgb(190, 190, 190);*/
   width: 50px;
   height: 50px;
   border: 3px solid #3d3d3d;
 }
 
 .recipes-items:hover {
-
-    box-shadow: 0 8px 12px 0 #474747;
-    cursor: pointer;
-    transform: scale(1.03);
-    transform-origin: center;
+  box-shadow: 0 8px 12px 0 #474747;
+  cursor: pointer;
+  transform: scale(1.03);
+  transform-origin: center;
 }
 
 .recipes-images {
-    width: 350px;
-    height:290px;
-    padding-top: 5px;
+  width: 350px;
+  height: 290px;
+  padding-top: 5px;
 }
-
-/* .recipes-name, .recipes-difficulty {
-  color: black;
-} */
 
 .recipes-difficulty mat-icon {
   font-size: 20px;
-  
 }
 
 .recipes-difficulty {
@@ -201,45 +183,119 @@ body #backgroundos{
   padding-left: 40px;
 }
 
+/* Responsive styling for smaller screens */
 @media screen and (max-width: 1300px) {
   .slogan h2 {
-    color: rgb(255, 255, 255);
     font-size: 40px;
-    line-height: 1.5;
-    font-family: "Times New Roman", Times, serif;
-    margin-left: 60px;
-    transition: font-size 0.7s;
   }
-
-  .slogan {
-    display: flex;
-    align-items: center;
-    height: 100vh;
-    width: 50%;
-    top: 0;
-    left: 0;
-    z-index: 4;
-
-  }
-  .slogan h2:hover {
-    font-size: 43px;
-  }
-
 
   #food {
     width: 350px;
-  height: auto;
-  border-radius: 50%;
-  margin: 0;
-  position: relative;
-  transform: translateX(50px);
+    transform: translateX(50px);
   }
 
-.center {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
+  .center {
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .recipes-container {
+    margin: 10px;
+    justify-content: center;
+  }
+
+  .recipes-items {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .slogan h2 {
+    font-size: 30px;
+  }
+
+  #food {
+    width: 200px;
+  }
+
+  .center {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .slogan {
+    width: 100%;
+    height: auto;
+  }
+
+  .button-container {
+    position: static;
+    bottom: 0;
+  }
+
+  #check_btn {
+    width: 250px;
+    height: 50px;
+    font-size: 18px;
+  }
+
+  .recipes-items {
+    width: 100%;
+  }
+
+  .recipes-images {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .slogan {
+    width: 100%;
+    text-align: center; /* Center text */
+    justify-content: center; /* Center flexbox items */
+    align-items: center; /* Vertically center items */
+    margin: 0 auto; /* Center horizontally */
+  }
+  
+  .slogan h2 {
+    font-size: 25px;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .center {
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    text-align: center;
+  }
+
+  #food {
+    width: 400px;
+    margin: 0; /* Remove any margins */
+    transform: translateX(0); /* Reset the X-axis translation */
+  }
+  
+
+  .button-container {
+    bottom: 0;
+  }
+
+  #check_btn {
+    width: 200px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .recipes-items {
+    width: 100%;
+  }
+
+  .recipes-images {
+    width: 100%;
+    height: auto;
   }
 }
