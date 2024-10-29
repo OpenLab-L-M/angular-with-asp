@@ -186,7 +186,29 @@ namespace AspNetCoreAPI.Controllers
 
             return Ok();
         }
-
+        [HttpGet("vratMojeKomenty")]
+        public IEnumerable<RecensionDTO> MyRecensions()
+        {
+            IEnumerable<Recensions> mojeRecenzie = _context.Recensions.Where(x => x.UserId == GetCurrentUser().Id);
+            return mojeRecenzie.Select(dbRecension => RecensionsToDTO(dbRecension)).ToList();
+            
+        }
+        private RecensionDTO RecensionsToDTO(Recensions dbRecension)
+        {
+            return
+                new RecensionDTO
+                {
+                    Id = dbRecension.Id,
+                    UserID = dbRecension.UserId,
+                    Content = dbRecension.Content,
+                    CheckID = dbRecension.CheckId,
+                    UserName = dbRecension.UserName,
+                    AmountOfDisslikes = dbRecension.AmountOfDisslikes,
+                    AmountOfLikes = dbRecension.AmountOfDisslikes,
+                    Datetime = dbRecension.Datetime,
+                    RecipesID = dbRecension.RecipeId,
+                };
+        }
 
     }
 
