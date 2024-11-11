@@ -214,6 +214,7 @@ namespace AspNetCoreAPI.Controllers
             recenzia.RecipeId = nRecenzia.RecipesID;
             recenzia.Content = nRecenzia.Content;
             recenzia.Datetime = nRecenzia.Datetime;
+            recenzia.UserImage = nRecenzia.UserImage;
             recenzia.UserName = GetCurrentUser().UserName;
             recenzia.UserId = GetCurrentUser().Id;
             _context.Add(recenzia);
@@ -241,6 +242,7 @@ namespace AspNetCoreAPI.Controllers
                     Id = dbRecension.Id,
                     Content = dbRecension.Content,
                     Datetime = dbRecension.Datetime,
+                    UserImage = dbRecension.UserImage,
                     UserID = dbRecension.UserId,
                     UserName = dbRecension.UserName,
                     AmountOfLikes = dbRecension.AmountOfLikes,

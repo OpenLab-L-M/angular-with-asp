@@ -12,6 +12,7 @@
         public int? AmountOfLikes { get; set; } = 0;
         public int? AmountOfDisslikes { get; set; } = 0;
         public string? Datetime { get; set; }
+        public byte[]? UserImage { get; set; }
 
     }
 }

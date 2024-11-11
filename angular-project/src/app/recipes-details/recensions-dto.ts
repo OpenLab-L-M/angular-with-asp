@@ -8,4 +8,5 @@ export class RecensionsDTO {
     checkID?: string;
     userID?: string;
     datetime?: string;
+    userImage?: string;
 }
