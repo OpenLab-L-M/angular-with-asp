@@ -49,7 +49,7 @@ bootstrapApplication(AppComponent, {
         { path: 'Recipes', component: RecipesComponent},
         { path: 'CreateRecipe', component: CreateRecipeComponent},
         { path: 'RecipesDetails/:id', component: RecipesDetailsComponent },
-        { path: 'userProfile', component: UserProfileComponent},
+        { path: 'userProfile/:userName', component: UserProfileComponent},
       ])
     ]
 })

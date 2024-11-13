@@ -9,7 +9,7 @@ import { NgModel } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { RecipesService } from 'src/services/recipes.service';
 import { MatIconModule } from '@angular/material/icon';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EventEmitter } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -56,12 +56,12 @@ export class UserProfileComponent {
   animal: string;
   name: string;
 
-  constructor(private userService: UserService, private recipesSevice: RecipesService, private httpClient: HttpClient, public dialog: MatDialog){}
+  constructor(private userService: UserService, private recipesSevice: RecipesService, private httpClient: HttpClient, public dialog: MatDialog, private route: ActivatedRoute){}
 
 
 
   ktoryRecept(id: number): void{
-    debugger
+    
     const checkbox = document.getElementById('favourite') as HTMLInputElement;
     const isChecked = (event.target as HTMLInputElement).checked;
     if(isChecked){
@@ -70,6 +70,7 @@ export class UserProfileComponent {
       .subscribe();
     }
     }
+     
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '500px',
@@ -90,8 +91,9 @@ export class UserProfileComponent {
 
   userImages: CreatorDTO[] = [];
   ngOnInit(): void{
+    const userId = this.route.snapshot.paramMap.get('userName');
     forkJoin({
-      currentUser: this.userService.getCurrentUser(),
+      currentUser: this.userService.userProfile(userId),
       usersRecipes: this.userService.usersRecipes().pipe(takeUntil(this.destroy$)),
       favourites: this.userService.getFavourites().pipe(takeUntil(this.destroy$)),
       allImages: this.recipeService.getAllImages(),
@@ -139,16 +141,17 @@ export class DialogOverviewExampleDialog {
 
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: UserDTO, private userService: UserService, private httpClient: HttpClient,) {}
+    @Inject(MAT_DIALOG_DATA) public data: UserDTO, private userService: UserService, private httpClient: HttpClient,private route: ActivatedRoute) {}
 
   onNoClick(): void {
     this.dialogRef.close();
   }
   recipeService = inject(RecipesService);
-
+   
 
   ngOnInit(): void{
-    this.userService.getCurrentUser()
+    const userId = this.route.snapshot.paramMap.get('userName');
+    this.userService.userProfile(userId)
    .subscribe(result => this.user.set(result));
 
    this.getImageSrc(this.user().pictureURL);

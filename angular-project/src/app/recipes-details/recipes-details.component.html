@@ -130,7 +130,7 @@
 </button>
 </div>
 <div *ngFor="let recension of recensions(); let i = index" class="comment">
-  <h3>{{recension.userName}}</h3>
+  <a [routerLink]="['/userProfile', recension.userName]"><h3 >{{recension.userName}}</h3></a>
   
   <span>{{recension.datetime}}</span>
   <p style="color: white;">{{recension.content}}</p>

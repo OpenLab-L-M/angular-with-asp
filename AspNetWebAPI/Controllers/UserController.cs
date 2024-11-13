@@ -43,6 +43,22 @@ namespace AspNetCoreAPI.Controllers
             return userik;
             
         }
+        
+        [HttpGet("/clickedUserProfile")]
+        public GetUserDTO? returnClickedUser([FromRoute] string userName)
+        {
+            
+            var user = _context.Userik.Where(x => x.UserName == userName.ToString()).Single();
+            GetUserDTO userik = new GetUserDTO();
+            {
+                userik.UserName = user.UserName;
+                userik.PictureURL = user.PictureURL;
+
+            }
+            return userik;
+
+        }
+
 
 
         [HttpGet("/getUserCreators")]
