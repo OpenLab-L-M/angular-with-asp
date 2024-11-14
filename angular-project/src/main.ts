@@ -27,7 +27,7 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 
 
 export function getBaseUrl() {
-  return 'https://localhost:7186/api';
+  return 'https://GulityCrown.bsite.net/api';
 }
 
 export function tokenGetter() {
@@ -44,7 +44,7 @@ bootstrapApplication(AppComponent, {
       importProvidersFrom(BrowserModule, JwtModule.forRoot({
         config: {
           tokenGetter: tokenGetter,
-          allowedDomains: ['https://localhost:7189'],
+          allowedDomains: ['https://GulityCrown.bsite.net'],
           disallowedRoutes: [],
         },
       })),
