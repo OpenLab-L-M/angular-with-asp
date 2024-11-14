@@ -14,9 +14,9 @@ jobs:
       - run: npm ci && npm run build
         working-directory: ./angular-project/src
       - uses: FirebaseExtended/action-hosting-deploy@v0
-        working-directory: ./angular-project/src
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KUCHARKA_F23D5 }}
           channelId: live
           projectId: kucharka-f23d5
+          entryPoint: ./angular-project/src
