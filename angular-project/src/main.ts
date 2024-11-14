@@ -16,6 +16,15 @@ import { CreateRecipeComponent } from './app/create-recipe/create-recipe.compone
 import { RecipesDetailsComponent } from './app/recipes-details/recipes-details.component';
 import { UserProfileComponent } from './app/user-profile/user-profile.component';
 import { HomepageComponent } from './app/homepage/homepage.component';
+// Import the functions you need from the SDKs you need
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getAnalytics, provideAnalytics, ScreenTrackingService } from '@angular/fire/analytics';
+import { getStorage, provideStorage } from '@angular/fire/storage';
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+
+
 
 export function getBaseUrl() {
   return 'https://localhost:7186/api';
@@ -49,8 +58,9 @@ bootstrapApplication(AppComponent, {
         { path: 'Recipes', component: RecipesComponent},
         { path: 'CreateRecipe', component: CreateRecipeComponent},
         { path: 'RecipesDetails/:id', component: RecipesDetailsComponent },
-        { path: 'userProfile/:userName', component: UserProfileComponent},
-      ])
+        { path: 'userProfile', component: UserProfileComponent},
+      ]),
+      provideFirebaseApp(() => initializeApp({"projectId":"kucharka-f23d5","appId":"1:877324679360:web:88055d30f344841e0e9525","storageBucket":"kucharka-f23d5.firebasestorage.app","apiKey":"AIzaSyDizY3tqEbDJtkzWPiHD8-okoWu2RuMgbA","authDomain":"kucharka-f23d5.firebaseapp.com","messagingSenderId":"877324679360","measurementId":"G-F1FYEFP6YM"})), provideAnalytics(() => getAnalytics()), ScreenTrackingService, provideStorage(() => getStorage())
     ]
 })
   .catch(err => console.error(err));
