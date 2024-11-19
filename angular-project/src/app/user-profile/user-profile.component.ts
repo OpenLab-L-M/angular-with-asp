@@ -93,7 +93,7 @@ export class UserProfileComponent {
   ngOnInit(): void{
     const userId = this.route.snapshot.paramMap.get('userName');
     forkJoin({
-      currentUser: this.userService.userProfile(userId),
+      currentUser: this.userService.getCurrentUser(),
       usersRecipes: this.userService.usersRecipes().pipe(takeUntil(this.destroy$)),
       favourites: this.userService.getFavourites().pipe(takeUntil(this.destroy$)),
       allImages: this.recipeService.getAllImages(),
@@ -151,7 +151,7 @@ export class DialogOverviewExampleDialog {
 
   ngOnInit(): void{
     const userId = this.route.snapshot.paramMap.get('userName');
-    this.userService.userProfile(userId)
+    this.userService.getCurrentUser()
    .subscribe(result => this.user.set(result));
 
    this.getImageSrc(this.user().pictureURL);

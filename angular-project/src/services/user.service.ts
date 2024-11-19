@@ -21,9 +21,9 @@ export class UserService {
   getCurrentUser(){
     return this.httpClient.get<UserDTO>(this.userUrl);
   }
-  userProfile(userName: string){
+  /*userProfile(userName: string){
     return this.httpClient.get<UserDTO>(this.clickedUserUrl);
-  }
+  }*/
 
   getAllCreatorImages(): Observable<CreatorDTO[]> {
     return this.httpClient.get<CreatorDTO[]>(`${this.baseUrl}/getUserCreators`);
