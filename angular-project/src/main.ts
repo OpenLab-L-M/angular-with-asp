@@ -44,7 +44,7 @@ bootstrapApplication(AppComponent, {
       importProvidersFrom(BrowserModule, JwtModule.forRoot({
         config: {
           tokenGetter: tokenGetter,
-          allowedDomains: ['https://GulityCrown.bsite.net'],
+          allowedDomains: ['https://GulityCrown.bsite.net/'],
           disallowedRoutes: [],
         },
       })),
