@@ -27,7 +27,7 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 
 
 export function getBaseUrl() {
-  return 'https://GulityCrown.bsite.net';
+  return 'https://GulityCrown.bsite.net/api';
 }
 
 export function tokenGetter() {
