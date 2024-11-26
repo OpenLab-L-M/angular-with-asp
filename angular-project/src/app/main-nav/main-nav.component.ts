@@ -1,11 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatButton } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common'; 
 import { AuthenticationService } from '../api-authorization/authentication.service';
 import { NgIf } from '@angular/common';
+import { UserService } from 'src/services/user.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-main-nav',
@@ -24,13 +26,22 @@ import { NgIf } from '@angular/common';
 export class MainNavComponent {
   authService = inject(AuthenticationService);
   private router = inject(Router);
-
+  private userService = inject(UserService);
+  private route: ActivatedRoute;
+  public userName: string;
+  private destroy$ = new Subject<void>();
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
-
+  getCurrentUserName(){
+    const userId = this.route.snapshot.paramMap.get('userName');
+    this.userService.userProfile(userId)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(result => this.userName = result.userName);
+  }
   isActive(url: string): boolean {
     return this.router.url === url;
   }
+
 }

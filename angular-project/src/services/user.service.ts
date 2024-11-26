@@ -16,14 +16,14 @@ export class UserService {
 
   constructor(@Inject('BASE_URL') private baseUrl: string, private route: ActivatedRoute) { }
   private userUrl = this.baseUrl + '/userProfile';
-  private clickedUserUrl = this.baseUrl + '/clickedUserProfile';
+  private clickedUserUrl = this.baseUrl + '/clickedUserProfile/';
   private anotherUserURL = this.baseUrl + '/user';
   getCurrentUser(){
     return this.httpClient.get<UserDTO>(this.userUrl);
   }
-  /*userProfile(userName: string){
-    return this.httpClient.get<UserDTO>(this.clickedUserUrl);
-  }*/
+  userProfile(userName: string){
+    return this.httpClient.get<UserDTO>(this.clickedUserUrl + userName);
+  }
 
   getAllCreatorImages(): Observable<CreatorDTO[]> {
     return this.httpClient.get<CreatorDTO[]>(`${this.baseUrl}/getUserCreators`);

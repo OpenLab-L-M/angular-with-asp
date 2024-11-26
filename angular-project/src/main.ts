@@ -58,7 +58,7 @@ bootstrapApplication(AppComponent, {
         { path: 'Recipes', component: RecipesComponent},
         { path: 'CreateRecipe', component: CreateRecipeComponent},
         { path: 'RecipesDetails/:id', component: RecipesDetailsComponent },
-        { path: 'userProfile', component: UserProfileComponent},
+        { path: 'userProfile/:userName', component: UserProfileComponent},
       ]),
       provideFirebaseApp(() => initializeApp({"projectId":"kucharka-f23d5","appId":"1:877324679360:web:88055d30f344841e0e9525","storageBucket":"kucharka-f23d5.firebasestorage.app","apiKey":"AIzaSyDizY3tqEbDJtkzWPiHD8-okoWu2RuMgbA","authDomain":"kucharka-f23d5.firebaseapp.com","messagingSenderId":"877324679360","measurementId":"G-F1FYEFP6YM"})), provideAnalytics(() => getAnalytics()), ScreenTrackingService, provideStorage(() => getStorage())
     ]

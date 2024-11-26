@@ -19,7 +19,7 @@
     <button id="white" mat-button [routerLink]="['/Homepage']" [ngClass]="{'active': isActive('/Homepage')}">Home</button>
     <button id="white" mat-button [routerLink]="['/Recipes']" [ngClass]="{'active': isActive('/Recipes')}">Recipes</button>
     <button id="white" mat-button [routerLink]="['/CreateRecipe']" [ngClass]="{'active': isActive('/CreateRecipe')}">Create Recipe</button>
-    <button id="white" mat-button [routerLink]="['/userProfile']" [ngClass]="{'active': isActive('/userProfile')}"><mat-icon>account_circle</mat-icon></button>
+    <button id="white" mat-button [routerLink]="['/userProfile', userName]" [ngClass]="{'active': isActive('/userProfile')}"><mat-icon>account_circle</mat-icon></button>
     } @else {
     <button id="white" mat-button [routerLink]="['/login']">Login</button>
     <button id="white" mat-button [routerLink]="['/register']">Registration</button>

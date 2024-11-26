@@ -47,7 +47,7 @@ builder.Services.AddCors(options =>
             policy.WithOrigins("https://kucharka-f23d5.web.app", "https://localhost:4200" ).AllowAnyHeader().AllowAnyMethod().AllowCredentials();
         });
 });
-
+                                            //s
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

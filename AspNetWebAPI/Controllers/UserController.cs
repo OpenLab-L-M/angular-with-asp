@@ -44,7 +44,7 @@ namespace AspNetCoreAPI.Controllers
             
         }
         
-        /*[HttpGet("/clickedUserProfile")]
+        [HttpGet("/clickedUserProfile/{userName}")]
         public GetUserDTO? returnClickedUser([FromRoute] string userName)
         {
             
@@ -57,7 +57,7 @@ namespace AspNetCoreAPI.Controllers
             }
             return userik;
 
-        }*/
+        }
 
 
 
