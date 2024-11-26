@@ -44,7 +44,7 @@ builder.Services.AddCors(options =>
         name: MyAllowSpecificOrigins,
         policy =>
         {
-            policy.WithOrigins("https://kucharka-f23d5.web.app").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+            policy.WithOrigins("https://kucharka-f23d5.web.app", "https://localhost:4200" ).AllowAnyHeader().AllowAnyMethod().AllowCredentials();
         });
 });
 
