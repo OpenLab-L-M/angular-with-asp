@@ -110,7 +110,7 @@ namespace AspNetCoreAPI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserRecipes");
+                    b.ToTable("UserRecipes", (string)null);
                 });
 
             modelBuilder.Entity("AspNetCoreAPI.Models.Images", b =>
@@ -126,7 +126,7 @@ namespace AspNetCoreAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Images");
+                    b.ToTable("Images", (string)null);
                 });
 
             modelBuilder.Entity("AspNetCoreAPI.Models.Ingredience", b =>
@@ -142,7 +142,7 @@ namespace AspNetCoreAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Ingredience");
+                    b.ToTable("Ingredience", (string)null);
                 });
 
             modelBuilder.Entity("AspNetCoreAPI.Models.LikeRecensions", b =>
@@ -168,7 +168,7 @@ namespace AspNetCoreAPI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("LikeRecensions");
+                    b.ToTable("LikeRecensions", (string)null);
                 });
 
             modelBuilder.Entity("AspNetCoreAPI.Models.Recensions", b =>
@@ -212,7 +212,7 @@ namespace AspNetCoreAPI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Recensions");
+                    b.ToTable("Recensions", (string)null);
                 });
 
             modelBuilder.Entity("AspNetCoreAPI.Models.Recipe", b =>
@@ -265,7 +265,7 @@ namespace AspNetCoreAPI.Migrations
                     b.HasIndex("ImageId")
                         .IsUnique();
 
-                    b.ToTable("Recipes");
+                    b.ToTable("Recipes", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

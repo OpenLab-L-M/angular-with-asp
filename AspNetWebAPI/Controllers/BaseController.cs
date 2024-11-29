@@ -6,6 +6,7 @@ using System.Security.Claims;
 namespace AspNetCoreAPI.Controllers
 {
     [ApiController]
+
     public class BaseController : ControllerBase
     {
         protected readonly ApplicationDbContext Context;

@@ -47,15 +47,27 @@ namespace AspNetCoreAPI.Controllers
         [HttpGet("/clickedUserProfile/{userName}")]
         public GetUserDTO? returnClickedUser([FromRoute] string userName)
         {
-            
-            var user = _context.Userik.Where(x => x.UserName == userName.ToString()).Single();
-            GetUserDTO userik = new GetUserDTO();
+            if(userName == "undefined")
             {
-                userik.UserName = user.UserName;
-                userik.PictureURL = user.PictureURL;
-
+                var tentoUser = GetCurrentUser();
+                GetUserDTO tentoUserik = new GetUserDTO();
+                {
+                    tentoUserik.UserName = tentoUser.UserName;
+                    tentoUserik.PictureURL = tentoUser.PictureURL;
+                }
+                return tentoUserik;
             }
-            return userik;
+            else {
+                var user = _context.Userik.Where(x => x.UserName == userName.ToString()).Single();
+                GetUserDTO userik = new GetUserDTO();
+                {
+                    userik.UserName = user.UserName;
+                    userik.PictureURL = user.PictureURL;
+
+                }
+                return userik;
+            }
+
 
         }
 
@@ -76,12 +88,21 @@ namespace AspNetCoreAPI.Controllers
 
 
 
-        [HttpGet("/userProfile/usersRecipes")]
-        public IEnumerable<RecipesDTO> UserRecipes()
+        [HttpGet("/userProfile/usersRecipes/{userName}")]
+        public IEnumerable<RecipesDTO> UserRecipes([FromRoute] string userName)
         {
-            IEnumerable<Recipe> dbRecipes = _context.Recipes.Where(x => x.CheckID == GetCurrentUser().Id).ToList();
+            
+            if (userName == "undefined")
+            {
+                IEnumerable<Recipe> currentUsersRecipes = _context.Recipes.Where(x => x.userID == GetCurrentUser().Id).ToList();
+                return currentUsersRecipes.Select(currentRecipe => mapReceptToDto(currentRecipe));
+            }
+            else {
+                var user = _context.Users.Where(x => x.UserName == userName).Single();
+                IEnumerable<Recipe> dbRecipes = _context.Recipes.Where(x => x.userID == user.Id).ToList();
+                return dbRecipes.Select(dbRecipe => mapReceptToDto(dbRecipe));
+            }
 
-            return dbRecipes.Select(dbRecipe => mapReceptToDto(dbRecipe));
         }
         [HttpPost("/recipes/addtofav/{id:int}")]
          public IActionResult addtofav([FromRoute] int id)

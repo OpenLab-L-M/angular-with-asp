@@ -91,10 +91,10 @@ export class UserProfileComponent {
 
   userImages: CreatorDTO[] = [];
   ngOnInit(): void{
-    const userId = this.route.snapshot.paramMap.get('userName');
+    const userName = this.route.snapshot.paramMap.get('userName');
     forkJoin({
-      currentUser: this.userService.getCurrentUser(),
-      usersRecipes: this.userService.usersRecipes().pipe(takeUntil(this.destroy$)),
+      currentUser: this.userService.userProfile(userName),
+      usersRecipes: this.userService.usersRecipes(userName).pipe(takeUntil(this.destroy$)),
       favourites: this.userService.getFavourites().pipe(takeUntil(this.destroy$)),
       allImages: this.recipeService.getAllImages(),
       userCreators: this.userService.getAllCreatorImages()
@@ -150,8 +150,8 @@ export class DialogOverviewExampleDialog {
    
 
   ngOnInit(): void{
-    const userId = this.route.snapshot.paramMap.get('userName');
-    this.userService.getCurrentUser()
+    const userName = this.route.snapshot.paramMap.get('userName');
+    this.userService.userProfile(userName)
    .subscribe(result => this.user.set(result));
 
    this.getImageSrc(this.user().pictureURL);

@@ -31,8 +31,8 @@ export class UserService {
 
 
 
-  usersRecipes(){
-    return this.httpClient.get<RecipesDTO[]>(this.userUrl + '/usersRecipes');
+  usersRecipes(userName: string){
+    return this.httpClient.get<RecipesDTO[]>(this.userUrl + '/usersRecipes/' + userName);
   }
   getFavourites(){
     return this.httpClient.get<RecipesDTO[]>(this.userUrl + '/usersFavRecipes');

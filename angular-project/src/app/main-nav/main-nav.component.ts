@@ -36,7 +36,7 @@ export class MainNavComponent {
   }
   getCurrentUserName(){
     const userId = this.route.snapshot.paramMap.get('userName');
-    this.userService.userProfile(userId)
+    this.userService.getCurrentUser()
     .pipe(takeUntil(this.destroy$))
     .subscribe(result => this.userName = result.userName);
   }
