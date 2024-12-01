@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { UserDTO } from 'src/app/user-profile/UserDTO';
 import { RecipesDTO } from 'src/app/recipes/RecipesDTO';
 import {CreatorDTO} from "../app/recipes/CreatorDTO";
+import { RecensionsDTO } from 'src/app/recipes-details/recensions-dto';
 
 
 @Injectable({
@@ -40,5 +41,8 @@ export class UserService {
 
   deleteImage(): Observable<any> {
     return this.httpClient.delete<any>(this.anotherUserURL + '/deleteImage');
+  }
+  getUsersRecensions(userName: string){
+    return this.httpClient.get<RecensionsDTO[]>(this.clickedUserUrl + 'myRecensions/'+ userName);
   }
 }

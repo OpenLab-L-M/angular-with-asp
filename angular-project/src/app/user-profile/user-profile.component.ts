@@ -25,6 +25,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import {ImageDTO} from "../recipes/ImageDTO";
 import {CreatorDTO} from "../recipes/CreatorDTO";
+import { RecensionsDTO } from '../recipes-details/recensions-dto';
 
 export interface DialogData {
   animal: string;
@@ -49,7 +50,8 @@ export class UserProfileComponent {
 
 //  user = signal<UserDTO>(undefined);
   user: UserDTO;
-
+// mine Written Comments
+  public recensions: RecensionsDTO[] = [];
   imageUploaded = false;
   private destroy$ = new Subject<void>();
 
@@ -94,6 +96,7 @@ export class UserProfileComponent {
     const userName = this.route.snapshot.paramMap.get('userName');
     forkJoin({
       currentUser: this.userService.userProfile(userName),
+      myComments: this.userService.getUsersRecensions(userName),
       usersRecipes: this.userService.usersRecipes(userName).pipe(takeUntil(this.destroy$)),
       favourites: this.userService.getFavourites().pipe(takeUntil(this.destroy$)),
       allImages: this.recipeService.getAllImages(),
@@ -102,6 +105,7 @@ export class UserProfileComponent {
       .pipe(takeUntil(this.destroy$))
       .subscribe(result => {
         this.user = result.currentUser;
+        this.recensions = result.myComments;
         this.ourListOfRecipes = result.usersRecipes;
         this.ourFavRecipes = result.favourites;
         this.imageDTO = result.allImages;

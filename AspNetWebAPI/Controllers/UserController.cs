@@ -43,6 +43,43 @@ namespace AspNetCoreAPI.Controllers
             return userik;
             
         }
+        [HttpGet("/clickedUserProfile/myRecensions/{userName}")]
+        public IEnumerable<RecensionDTO> MyWrittenRecensions([FromRoute] string userName)
+        {
+            if (userName == "undefined")
+            {
+                var moje = GetCurrentUser();
+                var komentariky = _context.Recensions.Where(x => x.UserName == GetCurrentUser().UserName);
+                return komentariky.Select(x => new RecensionDTO
+                {
+                    AmountOfDisslikes = x.AmountOfDisslikes,
+                    AmountOfLikes = x.AmountOfLikes,
+                    Datetime = x.Datetime,
+                    RecipesID = x.RecipeId,
+                    UserID = x.UserId,
+                    UserName = x.UserName,
+                    Content = x.Content,
+                    UserImage = x.UserImage,
+                });
+            }
+            else
+            {
+                var moje = _context.Users.Where(x => x.UserName == userName).FirstOrDefault();
+                var komentariky = _context.Recensions.Where(x => x.UserName == moje.UserName);
+                return komentariky.Select(x => new RecensionDTO
+                {
+                    AmountOfDisslikes = x.AmountOfDisslikes,
+                    AmountOfLikes = x.AmountOfLikes,
+                    Datetime = x.Datetime,
+                    RecipesID = x.RecipeId,
+                    UserID = x.UserId,
+                    UserName = x.UserName,
+                    Content = x.Content,
+                    UserImage = x.UserImage,
+                });
+            }
+
+        }
         
         [HttpGet("/clickedUserProfile/{userName}")]
         public GetUserDTO? returnClickedUser([FromRoute] string userName)

@@ -68,4 +68,26 @@
   </mat-card>
 </div>
 </div>
+<div class="comment-section">
+  <h2>My Comments</h2>
+</div>
+
+<div *ngFor="let recension of recensions; let i = index" class="comment" [routerLink]="['/RecipesDetails', recension.recipesID]">
+  <h3 >{{recension.userName}}</h3>
+  
+  <span>{{recension.datetime}}</span>
+  <p style="color: white;">{{recension.content}}</p>
+  <div class="matCardContainer">
+    
+    <!-- <mat-card id="matBug" [attr.id]="'like-card-' + i">
+      <mat-icon id="like" class="fa fa-thumbs-up" aria-hidden="false" ></mat-icon>
+      <p style="color: white" [textContent]="recension.amountOfLikes"></p>
+    </mat-card>
+    <mat-card [attr.id]="'dislike-card-' + i">
+      <mat-icon id="dislike" class="fa fa-thumbs-down" aria-hidden="false" ></mat-icon>
+      <p style="color: white" [textContent]="recension.amountOfDisslikes"></p>
+    </mat-card>
+     -->
+  </div>
+</div>
 </body>
