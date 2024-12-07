@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\AspNetWebAPI"
   ],
-  "SelectedNode": "\\AspNetWebAPI.sln",
+  "SelectedNode": "\\AspNetWebAPI\\AspNetCoreAPI.csproj",
   "PreviewInSolutionExplorer": false
 }
