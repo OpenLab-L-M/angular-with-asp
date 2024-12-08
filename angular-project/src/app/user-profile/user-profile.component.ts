@@ -19,7 +19,7 @@ import { MatFormField } from '@angular/material/form-field';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { RecipesDTO } from '../recipes/RecipesDTO';
 import { MatTableDataSource } from '@angular/material/table';
-import {forkJoin, Subject, takeUntil} from 'rxjs';
+import {forkJoin, Subject, take, takeUntil} from 'rxjs';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldControl } from '@angular/material/form-field';
@@ -54,8 +54,9 @@ export class UserProfileComponent {
   public recensions: RecensionsDTO[] = [];
   imageUploaded = false;
   private destroy$ = new Subject<void>();
-
+  currentUserUsername: string;
   animal: string;
+  public userName = this.route.snapshot.paramMap.get('userName');
   name: string;
 
   constructor(private userService: UserService, private recipesSevice: RecipesService, private httpClient: HttpClient, public dialog: MatDialog, private route: ActivatedRoute){}
@@ -93,11 +94,13 @@ export class UserProfileComponent {
 
   userImages: CreatorDTO[] = [];
   ngOnInit(): void{
-    const userName = this.route.snapshot.paramMap.get('userName');
+    this.userService.getCurrentUser()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(result => this.currentUserUsername = result.userName);
     forkJoin({
-      currentUser: this.userService.userProfile(userName),
-      myComments: this.userService.getUsersRecensions(userName),
-      usersRecipes: this.userService.usersRecipes(userName).pipe(takeUntil(this.destroy$)),
+      currentUser: this.userService.userProfile(this.userName),
+      myComments: this.userService.getUsersRecensions(this.userName),
+      usersRecipes: this.userService.usersRecipes(this.userName).pipe(takeUntil(this.destroy$)),
       favourites: this.userService.getFavourites().pipe(takeUntil(this.destroy$)),
       allImages: this.recipeService.getAllImages(),
       userCreators: this.userService.getAllCreatorImages()
@@ -139,10 +142,9 @@ export class DialogOverviewExampleDialog {
   imageDTO: ImageDTO[] = [];
 
   @Output() imageDeleted = new EventEmitter<void>();
-
+  
   user = signal<UserDTO>(undefined);
   imageUploaded = false;
-
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public data: UserDTO, private userService: UserService, private httpClient: HttpClient,private route: ActivatedRoute) {}
@@ -152,10 +154,9 @@ export class DialogOverviewExampleDialog {
   }
   recipeService = inject(RecipesService);
    
-
+  userName = this.route.snapshot.paramMap.get('userName');
   ngOnInit(): void{
-    const userName = this.route.snapshot.paramMap.get('userName');
-    this.userService.userProfile(userName)
+    this.userService.getCurrentUser()
    .subscribe(result => this.user.set(result));
 
    this.getImageSrc(this.user().pictureURL);

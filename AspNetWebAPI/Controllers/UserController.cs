@@ -48,7 +48,7 @@ namespace AspNetCoreAPI.Controllers
         {
             if (userName == "undefined")
             {
-                var moje = GetCurrentUser();
+                 var moje = GetCurrentUser();
                 var komentariky = _context.Recensions.Where(x => x.UserName == GetCurrentUser().UserName);
                 return komentariky.Select(x => new RecensionDTO
                 {
@@ -95,7 +95,7 @@ namespace AspNetCoreAPI.Controllers
                 return tentoUserik;
             }
             else {
-                var user = _context.Userik.Where(x => x.UserName == userName.ToString()).Single();
+                var user = _context.Userik.Where(x => x.UserName == userName).Single();
                 GetUserDTO userik = new GetUserDTO();
                 {
                     userik.UserName = user.UserName;

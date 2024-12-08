@@ -28,7 +28,6 @@ export class MainNavComponent {
   private router = inject(Router);
   private userService = inject(UserService);
   private route: ActivatedRoute;
- userName: string;
   private destroy$ = new Subject<void>();
   logout() {
     this.authService.logout();
@@ -37,11 +36,10 @@ export class MainNavComponent {
 
 
   getCurrentUserName(){
-    debugger;
     this.userService.getCurrentUser()
     .pipe(takeUntil(this.destroy$))
-    .subscribe(result => this.userName = result.userName);
-    console.log(this.userName);
+    .subscribe(result =>this.router.navigate(['/userProfile', result.userName]));
+
   }
   isActive(url: string): boolean {
     return this.router.url === url;
