@@ -24,12 +24,16 @@ export class FilterPipe implements PipeTransform {
 
     return items.filter(item => {
       if (item && item.difficulty) {
+        
         const difficultyMatches = difficultiesArray.includes(item.difficulty.toLowerCase());
-                                  const veganskeMatches = difficultiesArray.includes('vegan') && item.veganske === true;
-                                  const vegetarianskeMatches = difficultiesArray.includes('vegetarian') && item.vegetarianske === true;
-                                  const nizkoKalorickeMatches = difficultiesArray.includes('lowcalorie') && item.nizkoKaloricke === true;
-    
-        return difficultyMatches || veganskeMatches || vegetarianskeMatches || nizkoKalorickeMatches;
+
+        
+        const veganskeMatches = difficultiesArray.includes('vegan') && item.veganske === true;
+        const vegetarianskeMatches = difficultiesArray.includes('vegetarian') && item.vegetarianske === true;
+        const nizkoKalorickeMatches = difficultiesArray.includes('lowcalorie') && item.nizkoKaloricke === true;
+
+        
+        return difficultyMatches && veganskeMatches && vegetarianskeMatches && nizkoKalorickeMatches;
       }
       return false;
     });

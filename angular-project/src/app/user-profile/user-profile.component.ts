@@ -38,7 +38,7 @@ export interface DialogData {
   imports: [NgFor,
     NgIf, MatIconModule, MatIconAnchor, MatButtonModule, MatCardModule, RouterLink, MatDialogClose, MatFormField, MatTooltip],
   templateUrl: './user-profile.component.html',
-  styleUrl: './user-profile.component.css'
+  styleUrl: './user-profile.component.scss'
 })
 export class UserProfileComponent {
 
@@ -134,7 +134,7 @@ export class UserProfileComponent {
 @Component({
   selector: 'dialog-overview-example-dialog',
   templateUrl: 'dialog-content-example-dialog.html',
-  styleUrl: 'dialog-content-example-dialog.css',
+  styleUrl: 'dialog-content-example-dialog.scss',
   standalone: true,
   imports: [MatDialogClose, NgIf, MatFormField, MatButtonModule, MatInputModule, MatFormFieldModule],
 })

@@ -21,7 +21,7 @@ import { Subject, takeUntil } from 'rxjs';
     CommonModule
   ],
   templateUrl: './main-nav.component.html',
-  styleUrl: './main-nav.component.css'
+  styleUrl: './main-nav.component.scss'
 })
 export class MainNavComponent {
   authService = inject(AuthenticationService);

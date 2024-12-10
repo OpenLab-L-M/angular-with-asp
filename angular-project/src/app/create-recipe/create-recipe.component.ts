@@ -38,7 +38,7 @@ import {IngredientService} from "./IngredientService";
   imports: [RouterLink, ReactiveFormsModule, MatCard, MatSelectModule, MatInputModule, MatFormFieldModule, MatCardModule, MatButtonModule, MatSliderModule, FormsModule, MatIcon, MatTooltip, MatDialogClose, NgIf,
   ],
   templateUrl:'./create-recipe.component.html',
-  styleUrl: './create-recipe.component.css'
+  styleUrl: './create-recipe.component.scss'
 })
 export class CreateRecipeComponent {
 
@@ -200,7 +200,7 @@ export class CreateRecipeComponent {
 @Component({
   selector: 'dialog',
   templateUrl: 'dialog.html',
-  styleUrl: 'dialog.css',
+  styleUrl: 'dialog.scss',
   standalone: true,
   imports: [
     FormsModule,

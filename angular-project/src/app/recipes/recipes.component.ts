@@ -38,7 +38,7 @@ import { MatInput } from '@angular/material/input';
   ],
 
   templateUrl: './recipes.component.html',
-  styleUrl: './recipes.component.css'
+  styleUrl: './recipes.component.scss'
 })
 export class RecipesComponent {
   imageDTO: ImageDTO[] = [];

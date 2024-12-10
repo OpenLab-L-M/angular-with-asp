@@ -22,7 +22,7 @@ import { Router } from '@angular/router';
     MatButton
   ],
   templateUrl: './registration.component.html',
-  styleUrl: './registration.component.css'
+  styleUrl: './registration.component.scss'
 })
 export class RegistrationComponent implements OnInit {
   authService = inject(AuthenticationService);

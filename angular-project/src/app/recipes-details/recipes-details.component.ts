@@ -23,7 +23,7 @@ import { DataSource } from '@angular/cdk/collections';
   imports: [CommonModule, RouterLink, MatIconModule, MatIconAnchor, MatButtonModule, MatRadioModule, MatCardModule, ReactiveFormsModule, MatFormField, MatFormFieldModule, MatLabel, MatInput, MatInputModule, DatePipe],
   providers: [DatePipe],
   templateUrl: './recipes-details.component.html',
-  styleUrl: './recipes-details.component.css'
+  styleUrl: './recipes-details.component.scss'
 })
 export class RecipesDetailsComponent implements OnInit{
 
