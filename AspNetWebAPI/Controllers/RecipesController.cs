@@ -305,64 +305,112 @@ namespace AspNetCoreAPI.Controllers
         [HttpGet("/Homepage/returnRandomRecipe")]
         public IEnumerable<RecipesDTO> ReturnRandomRecipe()
         {
+            List<Recipe> filtrovany = new List<Recipe>();
             int pocet = _context.Recipes.Count();
-
-
-            if (pocet != 0) {
+            if (pocet != 0)
+            {
                 Random rng = new Random();
-                int dalsi = rng.Next(1, pocet);
-                List<Recipe> dbRecipes = _context.Recipes.Where(x => x.Id == dalsi).ToList();
-                int rng2;
+                List<Recipe> dbRecipes = _context.Recipes.ToList();
                 List<int> randomIds = new List<int>();
-                rng.Next(1, pocet);
-                for (int i = 0; i < pocet - (pocet / 2); i++)
+                int rng2;
+             for (int i = 0; i < pocet - pocet/2 ; i++)
+            {
+                rng2 = rng.Next(1, pocet);
+                if (randomIds.Contains(rng2))
                 {
-
-                    rng2 = rng.Next(1, pocet);
-                    if (randomIds.Contains(rng2))
-                    {
-                        continue;
-                    }
-
-
-                    else
-                    {
-                        var pridaj = _context.Recipes.Where(x => x.Id == rng2).Single<Recipe>();
-
-                        dbRecipes.Add(pridaj);
-                    }
-                    randomIds.Add(rng2);
-
+                    continue;
                 }
 
 
+                else
+                {
+                    filtrovany.Add(dbRecipes[rng2]);
 
+                }
+                randomIds.Add(rng2);
 
-                return dbRecipes.Select(dbRecipe =>
-                    new RecipesDTO
-                    {
-                        Id = dbRecipe.Id,
-                        Name = dbRecipe.Name,
-                        Postup = dbRecipe.Postup,
-                        Difficulty = dbRecipe.Difficulty,
-                        ImageURL = dbRecipe.ImageURL,
-                        CheckID = dbRecipe.CheckID,
-                        userID = dbRecipe.userID,
-                        Ingrediencie = dbRecipe.Ingrediencie,
-                        Veganske = dbRecipe.Veganske,
-                        Vegetarianske = dbRecipe.Vegetarianske,
-                        NizkoKaloricke = dbRecipe.NizkoKaloricke,
-                        Cas = dbRecipe.Cas,
-                        imageId = dbRecipe.ImageId
-                    }).Reverse();
             }
+
+
+
+
+            return filtrovany.Select(dbRecipe =>
+                new RecipesDTO
+                {
+                    Id = dbRecipe.Id,
+                    Name = dbRecipe.Name,
+                    Postup = dbRecipe.Postup,
+                    Difficulty = dbRecipe.Difficulty,
+                    ImageURL = dbRecipe.ImageURL,
+                    CheckID = dbRecipe.CheckID,
+                    userID = dbRecipe.userID,
+                    Ingrediencie = dbRecipe.Ingrediencie,
+                    Veganske = dbRecipe.Veganske,
+                    Vegetarianske = dbRecipe.Vegetarianske,
+                    NizkoKaloricke = dbRecipe.NizkoKaloricke,
+                    Cas = dbRecipe.Cas,
+                    imageId = dbRecipe.ImageId
+                }).Reverse();
+        }
             else {
                 return null;
                 }
 
+            }
+    /*int pocet = _context.Recipes.Count();
 
-            
+
+    if (pocet != 0) {
+        Random rng = new Random();
+        int dalsi = rng.Next(1, pocet);
+        List<Recipe> dbRecipes = _context.Recipes.Where(x => x.Id == dalsi).ToList();
+        int rng2;
+        List<int> randomIds = new List<int>();
+        rng.Next(1, pocet);
+        for (int i = 0; i < pocet - (pocet / 2); i++)
+        {
+
+            rng2 = rng.Next(1, pocet);
+            if (randomIds.Contains(rng2))
+            {
+                continue;
+            }
+
+
+            else
+            {
+                var pridaj = _context.Recipes.Where(x => x.Id == rng2).Single<Recipe>();
+
+                dbRecipes.Add(pridaj);
+            }
+            randomIds.Add(rng2);
+
         }
+
+
+
+
+        return dbRecipes.Select(dbRecipe =>
+            new RecipesDTO
+            {
+                Id = dbRecipe.Id,
+                Name = dbRecipe.Name,
+                Postup = dbRecipe.Postup,
+                Difficulty = dbRecipe.Difficulty,
+                ImageURL = dbRecipe.ImageURL,
+                CheckID = dbRecipe.CheckID,
+                userID = dbRecipe.userID,
+                Ingrediencie = dbRecipe.Ingrediencie,
+                Veganske = dbRecipe.Veganske,
+                Vegetarianske = dbRecipe.Vegetarianske,
+                NizkoKaloricke = dbRecipe.NizkoKaloricke,
+                Cas = dbRecipe.Cas,
+                imageId = dbRecipe.ImageId
+            }).Reverse();
+    }
+    else {
+        return null;
+        }*/
         [HttpPost("disslikeRecension/{id:int}")]
         public RecensionDTO DisslikeRecension([FromBody] int RecensionId)
         {
