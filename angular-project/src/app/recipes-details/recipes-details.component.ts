@@ -32,6 +32,7 @@ export class RecipesDetailsComponent implements OnInit{
   clicked = false;
   recipeService = inject(RecipesService);
   private destroy$ = new Subject<void>();
+  public recipe = signal<RecipesDTO>(undefined);
   //recipe: RecipesDTO;
   image: any[] = [];
   profileForm = new FormGroup({
@@ -50,6 +51,7 @@ export class RecipesDetailsComponent implements OnInit{
     this.recipeService.getClickedRecipes(id)
        .subscribe(result => {
         this.recipeService.chRecipe = result;
+        this.recipe.set(result);
         this.profileForm.patchValue({
           name: this.recipeService.chRecipe.name,
           ingrediencie: this.recipeService.chRecipe.ingrediencie,
@@ -103,7 +105,7 @@ submit(){
 
   })
   .pipe(takeUntil(this.destroy$))
-  .subscribe();
+  .subscribe(result => this.recipe.set(result));
   this.clicked=false;
   
 }

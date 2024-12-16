@@ -194,7 +194,7 @@ namespace AspNetCoreAPI.Controllers
            }
            */
         [HttpPut("Editujem")]
-        public IActionResult Edit(EditDTO receptik)
+        public RecipesDTO Edit(EditDTO receptik)
         {
             var nReceptik = _context.Recipes.FirstOrDefault(x => x.Id == receptik.Id);
 
@@ -203,8 +203,17 @@ namespace AspNetCoreAPI.Controllers
             nReceptik.Postup = receptik.Postup;
             nReceptik.ImageURL = receptik.ImgURL;
             nReceptik.Cas = receptik.Cas;
+            var neviemUz = new RecipesDTO()
+            {
+                Id = nReceptik.Id,
+                Name = nReceptik.Name,
+                Ingrediencie = nReceptik.Ingrediencie,
+                Postup = nReceptik.Postup,
+                ImageURL = nReceptik.ImageURL,
+                Cas = nReceptik.Cas
+            };
             _context.SaveChanges();
-            return Ok();
+            return neviemUz;
         }
         [HttpPost("PridajRecenziu")]
         public RecensionDTO AddRecension(RecensionDTO nRecenzia)

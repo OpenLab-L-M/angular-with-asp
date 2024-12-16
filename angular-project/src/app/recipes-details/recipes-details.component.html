@@ -41,7 +41,7 @@
   <ng-template #noCourses>
 
     <p class="detail_title" style="font-family: 'Times New Roman', Times, serif; font-style: italic;">
-      {{this.recipeService.chRecipe.name}}
+      {{this.recipe().name}}
     </p>
   <div style="display: flex; justify-content: center;">
     <!-- <p class="detail_title">
@@ -52,10 +52,10 @@
     </p> -->
     <mat-card>
       <mat-card-header>
-        <mat-card-subtitle style="color: white;">time: {{this.recipeService.chRecipe.cas}} min</mat-card-subtitle>
+        <mat-card-subtitle style="color: white;">time: {{this.recipe().cas}} min</mat-card-subtitle>
       </mat-card-header>
       <mat-card-header>
-        <mat-card-subtitle style="color: white;">Difficulty: {{this.recipeService.chRecipe.difficulty}}</mat-card-subtitle>
+        <mat-card-subtitle style="color: white;">Difficulty: {{this.recipe().difficulty}}</mat-card-subtitle>
         <!-- <mat-card-title>Rate this recipe</mat-card-title> -->
       </mat-card-header>
 
@@ -84,7 +84,7 @@
       <p class="detail_description">
         <mat-card-title>Ingredients:</mat-card-title>
 
-          {{this.recipeService.chRecipe.ingrediencie}}
+          {{this.recipe().ingrediencie}}
       </p>
     </mat-card-content>
     <br>
@@ -92,7 +92,7 @@
         <p class="detail_description">
           <mat-card-title>Description:</mat-card-title>
 
-           {{this.recipeService.chRecipe.postup}}
+           {{this.recipe().postup}}
         </p>
       </mat-card-content>
 
