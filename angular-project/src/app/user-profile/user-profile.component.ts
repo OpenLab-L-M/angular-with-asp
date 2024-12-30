@@ -5,7 +5,7 @@ import { NgIf } from '@angular/common';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgFor } from '@angular/common';
-import { NgModel } from '@angular/forms';
+import { NgModel, RequiredValidator, Validators } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { RecipesService } from 'src/services/recipes.service';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,7 +15,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogClose } from '@angular/material/dialog';
 import { MatIconAnchor } from '@angular/material/button';
-import { MatFormField } from '@angular/material/form-field';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { RecipesDTO } from '../recipes/RecipesDTO';
 import { MatTableDataSource } from '@angular/material/table';
@@ -26,6 +26,7 @@ import { MatFormFieldControl } from '@angular/material/form-field';
 import {ImageDTO} from "../recipes/ImageDTO";
 import {CreatorDTO} from "../recipes/CreatorDTO";
 import { RecensionsDTO } from '../recipes-details/recensions-dto';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 export interface DialogData {
   animal: string;
@@ -36,12 +37,17 @@ export interface DialogData {
   selector: 'app-user-profile',
   standalone: true,
   imports: [NgFor,
-    NgIf, MatIconModule, MatIconAnchor, MatButtonModule, MatCardModule, RouterLink, MatDialogClose, MatFormField, MatTooltip],
+    NgIf, MatIconModule, MatIconAnchor, MatButtonModule, MatCardModule, RouterLink, MatDialogClose, MatFormField, MatTooltip, ReactiveFormsModule, MatLabel],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss'
 })
 export class UserProfileComponent {
 
+  changePassword = new FormGroup({
+    oldPassword: new FormControl(''),
+    newPassword: new FormControl('', Validators.required),
+    confirm: new FormControl('', Validators.required),
+  });
  // ourListOfRecipes = signal<RecipesDTO[]>([]);
   ourListOfRecipes: RecipesDTO[] = [];
 
@@ -51,18 +57,42 @@ export class UserProfileComponent {
 //  user = signal<UserDTO>(undefined);
   user: UserDTO;
 // mine Written Comments
+  clicked = false;
   public recensions: RecensionsDTO[] = [];
   imageUploaded = false;
   private destroy$ = new Subject<void>();
   currentUserUsername: string;
   animal: string;
+  newPassword: string;
+  confirm: string;
   public userName = this.route.snapshot.paramMap.get('userName');
+
   name: string;
 
   constructor(private userService: UserService, private recipesSevice: RecipesService, private httpClient: HttpClient, public dialog: MatDialog, private route: ActivatedRoute){}
 
-
-
+  cancel(){
+    this.clicked = false;
+  }
+  submit(){
+    
+    this.newPassword = this.changePassword.controls["newPassword"].value;
+    this.confirm = this.changePassword.controls["confirm"].value;
+    if(this.newPassword == this.confirm){
+    this.userService.changePassword({
+      oldPassword: this.changePassword.controls["oldPassword"].value,
+      newPassword: this.changePassword.controls["newPassword"].value,
+      confirm: this.changePassword.controls["confirm"].value,
+    })
+    .pipe(takeUntil(this.destroy$))
+    .subscribe();
+    this.clicked = false;
+    alert("you have successfully changed your password!")
+  }
+  else{
+    alert("Your new password doesnt match the confirm password");
+  }
+  }
   ktoryRecept(id: number): void{
     
     const checkbox = document.getElementById('favourite') as HTMLInputElement;
@@ -72,6 +102,9 @@ export class UserProfileComponent {
       .pipe(takeUntil(this.destroy$))
       .subscribe();
     }
+    }
+    chPasswordClicked(){
+      this.clicked = true;
     }
      
   openDialog(): void {

@@ -1,6 +1,7 @@
 ﻿
 using AspNetCoreAPI.Data;
 using AspNetCoreAPI.Models;
+using AspNetCoreAPI.Registration.dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -22,12 +23,15 @@ namespace AspNetCoreAPI.Controllers
         private readonly ApplicationDbContext _context;
 
         private readonly IWebHostEnvironment _environment;
-        
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public UserController(ApplicationDbContext context, IWebHostEnvironment environment)
+
+        public UserController(ApplicationDbContext context, IWebHostEnvironment environment, 
+            UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _environment = environment;
+            _userManager = userManager;
         }
 
         [HttpGet("/userProfile")]
@@ -42,6 +46,17 @@ namespace AspNetCoreAPI.Controllers
             }
             return userik;
             
+        }
+        [HttpPost("/userProfile/changePassword")]
+        public async Task<IActionResult> ChangePassword(PasswordDTO newPassword)
+        {
+            var userik = _context.Users.Where(x => x.Id == GetCurrentUser().Id).FirstOrDefault();
+            var result = await _userManager.ChangePasswordAsync(userik, userik.PasswordHash, newPassword.NewPassword);
+            _context.SaveChanges();
+            
+            return StatusCode(201);
+
+             
         }
         [HttpGet("/clickedUserProfile/myRecensions/{userName}")]
         public IEnumerable<RecensionDTO> MyWrittenRecensions([FromRoute] string userName)

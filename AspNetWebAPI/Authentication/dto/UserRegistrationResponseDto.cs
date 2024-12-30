@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreAPI.Registration.dto
+﻿namespace AspNetCoreAPI.Authentication.dto
 {
     public class UserRegistrationResponseDto
     {

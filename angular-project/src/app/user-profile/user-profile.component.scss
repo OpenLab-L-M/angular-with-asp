@@ -411,4 +411,114 @@ font-size: 20px;
     font-size: 14px;
   
   }
+  $primary-color: #1e1e1e;
+  $secondary-color: #4caf50;
+  $input-background: #2a2a2a;
+  $input-border-color: #5c5c5c;
+  $button-background: #333;
+  $button-hover-background: #444;
+  $button-text-color: white;
+  $label-color: white;
+  $form-width: 400px;
+  $border-radius: 8px;
+  
+  // Body background and font settings
+ 
+  // Form container
+  .edit_form {
+    width: $form-width;
+    color: #dcdcdc;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: $primary-color;
+    border-radius: $border-radius;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    
+    h1 {
+      text-align: center;
+      color: $secondary-color;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  
+    mat-form-field {
+      width: 100%;
+      margin-bottom: 15px;
+      color: $label-color;
+  
+      mat-label {
+        font-size: 14px;
+        color: $label-color;
+        font-weight: bold;
+      }
+  
+      input {
+        background-color: $input-background;
+        color: $button-text-color;
+        border: 1px solid $input-border-color;
+        border-radius: $border-radius;
+        padding: 10px;
+        font-size: 14px;
+        width: 100%;
+  
+        &:focus {
+          border-color: $secondary-color;
+          outline: none;
+        }
+      }
+    }
+  }
+  
+  // Buttons
+  .edit_btn {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  
+    button {
+      width: 100px;
+      height: 50px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: $border-radius;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  
+      &.submit-btn {
+        background-color: $button-background;
+        color: $button-text-color;
+  
+        &:hover {
+          background-color: $button-hover-background;
+        }
+      }
+  
+      &.cancel-btn {
+        background-color: transparent;
+        border: 2px solid $secondary-color;
+        color: $secondary-color;
+  
+        &:hover {
+          background-color: $secondary-color;
+          color: #fff;
+        }
+      }
+    }
+  }
+  
+  // Responsive Design
+  @media (max-width: 768px) {
+    .edit_form {
+      width: 90%;
+    }
+  
+    .edit_btn {
+      flex-direction: column;
+  
+      button {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+  }
   

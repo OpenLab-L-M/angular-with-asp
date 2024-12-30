@@ -6,6 +6,8 @@ import { UserDTO } from 'src/app/user-profile/UserDTO';
 import { RecipesDTO } from 'src/app/recipes/RecipesDTO';
 import {CreatorDTO} from "../app/recipes/CreatorDTO";
 import { RecensionsDTO } from 'src/app/recipes-details/recensions-dto';
+import { PasswordDTO } from 'src/app/user-profile/PasswordDTO';
+import { Action } from 'rxjs/internal/scheduler/Action';
 
 
 @Injectable({
@@ -44,5 +46,8 @@ export class UserService {
   }
   getUsersRecensions(userName: string){
     return this.httpClient.get<RecensionsDTO[]>(this.clickedUserUrl + 'myRecensions/'+ userName);
+  }
+  changePassword(newPassword: PasswordDTO){
+    return this.httpClient.post<boolean>(this.userUrl + "/changePassword", newPassword)
   }
 }
