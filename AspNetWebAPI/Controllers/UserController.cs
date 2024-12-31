@@ -51,7 +51,7 @@ namespace AspNetCoreAPI.Controllers
         public async Task<IActionResult> ChangePassword(PasswordDTO newPassword)
         {
             var userik = _context.Users.Where(x => x.Id == GetCurrentUser().Id).FirstOrDefault();
-            var result = await _userManager.ChangePasswordAsync(userik, userik.PasswordHash, newPassword.NewPassword);
+            var result = await _userManager.ChangePasswordAsync(userik, newPassword.OldPassword, newPassword.NewPassword);
             _context.SaveChanges();
             
             return StatusCode(201);

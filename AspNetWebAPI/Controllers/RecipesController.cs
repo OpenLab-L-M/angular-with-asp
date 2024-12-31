@@ -322,45 +322,53 @@ namespace AspNetCoreAPI.Controllers
                 List<Recipe> dbRecipes = _context.Recipes.ToList();
                 List<int> randomIds = new List<int>();
                 int rng2;
-             for (int i = 0; i < pocet - pocet/2 ; i++)
-            {
-                rng2 = rng.Next(1, pocet);
-                if (randomIds.Contains(rng2))
-                {
-                    continue;
+                if( pocet -1 <= 0) {
+                    return null;
                 }
-
-
                 else
                 {
-                    filtrovany.Add(dbRecipes[rng2]);
+                    for (int i = 0; i < pocet - pocet / 2; i++)
+                    {
+                        rng2 = rng.Next(1, pocet);
+                        if (randomIds.Contains(rng2))
+                        {
+                            continue;
+                        }
+
+
+                        else
+                        {
+                            filtrovany.Add(dbRecipes[rng2]);
+
+                        }
+                        randomIds.Add(rng2);
+
+                    }
+
 
                 }
-                randomIds.Add(rng2);
-
             }
-
-
-
-
-            return filtrovany.Select(dbRecipe =>
-                new RecipesDTO
-                {
-                    Id = dbRecipe.Id,
-                    Name = dbRecipe.Name,
-                    Postup = dbRecipe.Postup,
-                    Difficulty = dbRecipe.Difficulty,
-                    ImageURL = dbRecipe.ImageURL,
-                    CheckID = dbRecipe.CheckID,
-                    userID = dbRecipe.userID,
-                    Ingrediencie = dbRecipe.Ingrediencie,
-                    Veganske = dbRecipe.Veganske,
-                    Vegetarianske = dbRecipe.Vegetarianske,
-                    NizkoKaloricke = dbRecipe.NizkoKaloricke,
-                    Cas = dbRecipe.Cas,
-                    imageId = dbRecipe.ImageId
-                }).Reverse();
-        }
+                
+            if (filtrovany.Count != 0)
+            {
+                return filtrovany.Select(dbRecipe =>
+               new RecipesDTO
+               {
+                   Id = dbRecipe.Id,
+                   Name = dbRecipe.Name,
+                   Postup = dbRecipe.Postup,
+                   Difficulty = dbRecipe.Difficulty,
+                   ImageURL = dbRecipe.ImageURL,
+                   CheckID = dbRecipe.CheckID,
+                   userID = dbRecipe.userID,
+                   Ingrediencie = dbRecipe.Ingrediencie,
+                   Veganske = dbRecipe.Veganske,
+                   Vegetarianske = dbRecipe.Vegetarianske,
+                   NizkoKaloricke = dbRecipe.NizkoKaloricke,
+                   Cas = dbRecipe.Cas,
+                   imageId = dbRecipe.ImageId
+               }).Reverse();
+            }
             else {
                 return null;
                 }

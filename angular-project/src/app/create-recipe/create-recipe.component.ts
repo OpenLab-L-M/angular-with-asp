@@ -31,17 +31,42 @@ import {UserDTO} from "../user-profile/UserDTO";
 import {UserService} from "../../services/user.service";
 import {IngredienceDTO} from "./IngredienceDTO";
 import {IngredientService} from "./IngredientService";
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+  CdkDrag,
+  CdkDropList,
+} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-create-recipe',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, MatCard, MatSelectModule, MatInputModule, MatFormFieldModule, MatCardModule, MatButtonModule, MatSliderModule, FormsModule, MatIcon, MatTooltip, MatDialogClose, NgIf,
+  imports: [RouterLink, ReactiveFormsModule, MatCard,
+     MatSelectModule, MatInputModule, MatFormFieldModule, MatCardModule, MatButtonModule,
+      MatSliderModule, FormsModule, MatIcon, MatTooltip, MatDialogClose, NgIf,CdkDrag,CdkDropList
   ],
   templateUrl:'./create-recipe.component.html',
   styleUrl: './create-recipe.component.scss'
 })
 export class CreateRecipeComponent {
 
+  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
+
+  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
+  }
   disabled = false;
   max = 300;
   min = 0;

@@ -6,16 +6,16 @@
 
 
     <mat-form-field>
-      <mat-label for="oldPassword">Old Password: </mat-label>
-    <input matInput id="oldPassword" type="text" formControlName="oldPassword" value="oldPassword">
+      <label for="oldPassword" style="color: white;">Old Password: </label>
+      <input matInput id="oldPassword" type="text" formControlName="oldPassword" >
     </mat-form-field>
     <mat-form-field>
-      <mat-label for="newPassword">New Password: </mat-label>
-    <input matInput id="newPassword" type="text" formControlName="newPassword" value="newPassword">
+      <label for="newPassword" style="color: white;">New Password: </label>
+    <input matInput id="newPassword" type="text" formControlName="newPassword" >
     </mat-form-field>
     <mat-form-field>
-      <mat-label for="confirm">Confirm new password: </mat-label>
-    <input matInput id="confirm" type="text" formControlName="confirm" value="confirm">
+      <label for="confirm" style="color: white;">Confirm new password: </label>
+       <input matInput id="confirm" type="text" formControlName="confirm" >
     </mat-form-field>
     <div class="edit_btn">
       <button type="button" (click)="submit()" style="width: 100px; height: 50px; font-size: 16px; font-weight: bold; font-family: system-ui; background-color: black; color: white; cursor: pointer;">Submit</button>
