@@ -61,11 +61,11 @@
             <div
               cdkDropList
               #doneList="cdkDropList"
-              [cdkDropListData]="done"
+              [cdkDropListData]="vybrane"
               [cdkDropListConnectedTo]="[todoList]"
               class="example-list"
               (cdkDropListDropped)="drop($event)">
-              @for (item of done; track item) {
+              @for (item of vybrane; track item) {
                 <div class="example-box" cdkDrag>{{item}}</div>
               }
             </div>
@@ -140,21 +140,7 @@
                 </p>
             </div>
           </div>
-          <div class="example-container">
-            <h2 style="color: darkgoldenrod; font-size: 25px; font-family: 'Times New Roman', Times, serif; font-weight: bold;">Ingredients:</h2>
-          
-            <div
-              cdkDropList
-              #todoList="cdkDropList"
-              [cdkDropListData]="todo"
-              [cdkDropListConnectedTo]="[doneList]"
-              class="example-list"
-              (cdkDropListDropped)="drop($event)">
-              @for (item of todo; track item) {
-                <div class="example-box" cdkDrag>{{item}}</div>
-              }
-            </div>
-          </div>
+         
             <br>
             <br>
             <label for="img" class="input-for-img" style="color: black; cursor: pointer; background: white; padding: 10px; border-radius: 10px">Vložiť obrázky</label>
@@ -191,6 +177,25 @@
 
             <br>
         </form>
+        <div class="example-container">
+          <h2 style="color: darkgoldenrod; font-size: 25px; font-family: 'Times New Roman', Times, serif; font-weight: bold;">Ingredients:</h2>
+          
+          <div
+            cdkDropList
+            #todoList="cdkDropList"
+            [cdkDropListData]="ingredients"
+            [cdkDropListConnectedTo]="[doneList]"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
+             <input type="text" [(ngModel)]="searchTerm"/>
+                <div *ngFor="let item of ingredients | ingredientsFilter : searchTerm">
+                  <div class="example-box" cdkDrag>{{item}}</div>
+                </div>
+            <!-- @for (item of ingredients; track item) {
+              <div class="example-box" cdkDrag>{{item}}</div>
+            } -->
+          </div>
+        </div>
   </div>
   
       </body>

@@ -26,7 +26,7 @@ import {
   MatDialogRef,
   MatDialogTitle
 } from "@angular/material/dialog";
-import {NgForOf, NgIf} from "@angular/common";
+import {CommonModule, NgFor, NgForOf, NgIf} from "@angular/common";
 import {UserDTO} from "../user-profile/UserDTO";
 import {UserService} from "../../services/user.service";
 import {IngredienceDTO} from "./IngredienceDTO";
@@ -38,22 +38,23 @@ import {
   CdkDrag,
   CdkDropList,
 } from '@angular/cdk/drag-drop';
+import { IngredientsFilterPipe } from './ingredients-filter.pipe';
 
 @Component({
   selector: 'app-create-recipe',
   standalone: true,
   imports: [RouterLink, ReactiveFormsModule, MatCard,
      MatSelectModule, MatInputModule, MatFormFieldModule, MatCardModule, MatButtonModule,
-      MatSliderModule, FormsModule, MatIcon, MatTooltip, MatDialogClose, NgIf,CdkDrag,CdkDropList
+      MatSliderModule, FormsModule, MatIcon, MatTooltip, MatDialogClose, NgIf,CdkDrag,CdkDropList, NgFor, IngredientsFilterPipe
   ],
   templateUrl:'./create-recipe.component.html',
   styleUrl: './create-recipe.component.scss'
 })
 export class CreateRecipeComponent {
+  
+  ingredients: Array<string> = ["múka", "vajíčka", "mlieko", "cukor", "maslo", "soľ", "orechy", "ovocie", "zelenina", "ryža", "cesnak", "cibuľa", "paprika", "kura", "hovädzina", "bravčová", "losos", "tuniak", "olivový olej", "ocet", "korenie", "cestoviny", "zemiaky", "mrkva", "brokolica", "karfiol", "špenát", "jablká", "hrušky", "banány", "pomaranče", "citróny", "jahody", "čučoriedky", "maliny", "čerešne", "broskyne", "marhule", "ananás", "kiwi", "mango", "avokádo", "paradajky", "uhorky", "zeler", "cícer", "sója", "lentičky", "fazuľa", "hrach", "jogurt", "smotana", "syr", "káva", "čaj", "kakao"];
 
-  todo = ["múka", "vajíčka", "mlieko", "cukor", "maslo", "soľ", "orechy", "ovocie", "zelenina", "ryža", "cesnak", "cibuľa", "paprika", "kura", "hovädzina", "bravčová", "losos", "tuniak", "olivový olej", "ocet", "korenie", "cestoviny", "zemiaky", "mrkva", "brokolica", "karfiol", "špenát", "jablká", "hrušky", "banány", "pomaranče", "citróny", "jahody", "čučoriedky", "maliny", "čerešne", "broskyne", "marhule", "ananás", "kiwi", "mango", "avokádo", "paradajky", "uhorky", "zeler", "cícer", "sója", "lentičky", "fazuľa", "hrach", "jogurt", "smotana", "syr", "káva", "čaj", "kakao"];
-
-  done = [''];
+  vybrane = [''];
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -67,6 +68,8 @@ export class CreateRecipeComponent {
       );
     }
   }
+
+  searchTerm: string  = '';
   disabled = false;
   max = 300;
   min = 0;
@@ -122,7 +125,7 @@ export class CreateRecipeComponent {
       postup: this.profileForm.controls['postup'].value,
       difficulty: this.profileForm.controls['diff'].value,
       imageURL: this.profileForm.controls['img'].value,
-      ingrediencie: this.done.join(),
+      ingrediencie: this.vybrane.join(),
       cas: this.profileForm.controls['cas'].value,
       veganske: this.profileForm.controls['veganske']?.value,
       vegetarianske: this.profileForm.controls['vegetarianske']?.value,

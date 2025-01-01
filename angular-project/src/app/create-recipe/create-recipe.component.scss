@@ -230,8 +230,12 @@ img {
   margin: 0 25px 25px 0;
   display: inline-block;
   vertical-align: top;
+  position:relative;
 }
-
+.example-container input{
+ position: absolute; 
+ width: 100%;
+}
 .example-list {
   border: solid 1px #ccc;
   min-height: 60px;
