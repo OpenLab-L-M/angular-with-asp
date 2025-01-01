@@ -41,18 +41,35 @@
             </mat-form-field>
 
           </div>
-                <button class="ingr_btn" (click)="openDialogis()">Add ingrediences</button>
-            <div class="set">
-              <mat-form-field class="Description_rcp">
+          <!-- <button class="ingr_btn" (click)="openDialogis()">Add ingrediences</button>
+          <div class="set">
+            <mat-form-field class="Description_rcp">
 
 
-                <mat-label class="centered-label" for="ingr">Recipe Ingredients: </mat-label>
-                <textarea [(ngModel)]="ingredientService.selectedIngredients" matInput id="ingr" formControlName="ingr"></textarea>
+              <mat-label class="centered-label" for="ingr">Recipe Ingredients: </mat-label>
+              <textarea [(ngModel)]="ingredientService.selectedIngredients" matInput id="ingr" formControlName="ingr"></textarea>
 
 
 
-              </mat-form-field>
+            </mat-form-field>
 
+          </div> -->
+
+          <div class="example-container">
+            <h2 style="color: darkgoldenrod; font-size: 25px; font-family: 'Times New Roman', Times, serif; font-weight: bold;">Chosen ingedients</h2>
+          
+            <div
+              cdkDropList
+              #doneList="cdkDropList"
+              [cdkDropListData]="done"
+              [cdkDropListConnectedTo]="[todoList]"
+              class="example-list"
+              (cdkDropListDropped)="drop($event)">
+              @for (item of done; track item) {
+                <div class="example-box" cdkDrag>{{item}}</div>
+              }
+            </div>
+          
             </div>
 
 
@@ -123,6 +140,21 @@
                 </p>
             </div>
           </div>
+          <div class="example-container">
+            <h2 style="color: darkgoldenrod; font-size: 25px; font-family: 'Times New Roman', Times, serif; font-weight: bold;">Ingredients:</h2>
+          
+            <div
+              cdkDropList
+              #todoList="cdkDropList"
+              [cdkDropListData]="todo"
+              [cdkDropListConnectedTo]="[doneList]"
+              class="example-list"
+              (cdkDropListDropped)="drop($event)">
+              @for (item of todo; track item) {
+                <div class="example-box" cdkDrag>{{item}}</div>
+              }
+            </div>
+          </div>
             <br>
             <br>
             <label for="img" class="input-for-img" style="color: black; cursor: pointer; background: white; padding: 10px; border-radius: 10px">Vložiť obrázky</label>
@@ -158,7 +190,7 @@
 
 
             <br>
-
         </form>
   </div>
+  
       </body>

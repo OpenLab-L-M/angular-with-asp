@@ -51,9 +51,9 @@ import {
 })
 export class CreateRecipeComponent {
 
-  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
+  todo = ["múka", "vajíčka", "mlieko", "cukor", "maslo", "soľ", "orechy", "ovocie", "zelenina", "ryža", "cesnak", "cibuľa", "paprika", "kura", "hovädzina", "bravčová", "losos", "tuniak", "olivový olej", "ocet", "korenie", "cestoviny", "zemiaky", "mrkva", "brokolica", "karfiol", "špenát", "jablká", "hrušky", "banány", "pomaranče", "citróny", "jahody", "čučoriedky", "maliny", "čerešne", "broskyne", "marhule", "ananás", "kiwi", "mango", "avokádo", "paradajky", "uhorky", "zeler", "cícer", "sója", "lentičky", "fazuľa", "hrach", "jogurt", "smotana", "syr", "káva", "čaj", "kakao"];
 
-  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
+  done = [''];
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -78,7 +78,7 @@ export class CreateRecipeComponent {
   profileForm = new FormGroup({
     name: new FormControl('', Validators.required),
     postup: new FormControl('', Validators.required),
-    ingr: new FormControl('', Validators.required),
+    ingr: new FormControl(''),
     cas: new FormControl(null),
     diff: new FormControl(''),
     veganske: new FormControl(null),
@@ -122,7 +122,7 @@ export class CreateRecipeComponent {
       postup: this.profileForm.controls['postup'].value,
       difficulty: this.profileForm.controls['diff'].value,
       imageURL: this.profileForm.controls['img'].value,
-      ingrediencie: this.ingredientService.selectedIngredients,
+      ingrediencie: this.done.join(),
       cas: this.profileForm.controls['cas'].value,
       veganske: this.profileForm.controls['veganske']?.value,
       vegetarianske: this.profileForm.controls['vegetarianske']?.value,
