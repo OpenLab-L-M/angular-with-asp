@@ -51,9 +51,36 @@ import { IngredientsFilterPipe } from './ingredients-filter.pipe';
   styleUrl: './create-recipe.component.scss'
 })
 export class CreateRecipeComponent {
-  
-  ingredients: Array<string> = ["múka", "vajíčka", "mlieko", "cukor", "maslo", "soľ", "orechy", "ovocie", "zelenina", "ryža", "cesnak", "cibuľa", "paprika", "kura", "hovädzina", "bravčová", "losos", "tuniak", "olivový olej", "ocet", "korenie", "cestoviny", "zemiaky", "mrkva", "brokolica", "karfiol", "špenát", "jablká", "hrušky", "banány", "pomaranče", "citróny", "jahody", "čučoriedky", "maliny", "čerešne", "broskyne", "marhule", "ananás", "kiwi", "mango", "avokádo", "paradajky", "uhorky", "zeler", "cícer", "sója", "lentičky", "fazuľa", "hrach", "jogurt", "smotana", "syr", "káva", "čaj", "kakao"];
+  private cdr = Inject(ChangeDetectorRef);
+  ingredience: IngredienceDTO = {Name: ''};
+  inputString: string = '';
+  ingredients: any = [];
+  //ingredients: Array<string>;//= ["múka", "vajíčka", "mlieko", "cukor", "maslo", "soľ", "orechy", "ovocie", "zelenina", "ryža", "cesnak", "cibuľa", "paprika", "kura", "hovädzina", "bravčová", "losos", "tuniak", "olivový olej", "ocet", "korenie", "cestoviny", "zemiaky", "mrkva", "brokolica", "karfiol", "špenát", "jablká", "hrušky", "banány", "pomaranče", "citróny", "jahody", "čučoriedky", "maliny", "čerešne", "broskyne", "marhule", "ananás", "kiwi", "mango", "avokádo", "paradajky", "uhorky", "zeler", "cícer", "sója", "lentičky", "fazuľa", "hrach", "jogurt", "smotana", "syr", "káva", "čaj", "kakao"];
 
+  sendIngredience() {
+    this.ingredients.Name = this.inputString;
+    this.httpClient.post('https://localhost:7186/ingredience/addIngredience', this.ingredients).subscribe(response => {
+        console.log(response);
+        // Add the new ingredient to the list without refreshing
+        this.ingredients.push({ name: this.ingredience.Name });
+        // Clear the input field
+        this.inputString = '';
+        // Trigger change detection
+        this.cdr.detectChanges();
+      }, error => {
+        console.error('Error adding ingredient:', error);
+      }
+    );
+  }
+  ngOnInit() {
+    this.setIngredients();
+    
+  }
+  setIngredients(){
+    this.recipesServíce.setIngredients()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(result => this.ingredients = result);
+  }
   vybrane = [''];
 
   drop(event: CdkDragDrop<string[]>) {
@@ -254,6 +281,7 @@ export class Dialog implements OnInit {
     this.httpClient.get<any>("https://localhost:7186/ingredience/getIngredience").subscribe(value =>
       this.ingrediences = value,
     )
+    
   }
   selectedIngredients: string = '';
 /*  onCheckboxChange(ingredient: any, event: any) {

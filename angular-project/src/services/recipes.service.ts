@@ -75,4 +75,7 @@ export class RecipesService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.delete<RecensionsDTO>(this.recipesURL + "removeRecension/" + recensionId, {headers});
   }
+  setIngredients(){
+    return this.http.get<string[]>(this.baseUrl + "/CreateRecipe/Ingredients")
+  }
 }

@@ -2,12 +2,12 @@
 
   <h1 mat-dialog-title>Add Ingrediences</h1>
   <div mat-dialog-content>
-    <h1>Ingredience List</h1>
+    <h1>Ingredients available</h1>
 
     <div class="container">
       <div class="row" *ngFor="let ingredience of ingrediences">
         <div class="column">
-          <input class="cyberpunk-checkbox" type="checkbox" (change)="onCheckboxChange(ingredience, $event)">
+          <!-- <input class="cyberpunk-checkbox" type="checkbox" (change)="onCheckboxChange(ingredience, $event)"> -->
           <label>{{ ingredience.name }}</label>
         </div>
       </div>

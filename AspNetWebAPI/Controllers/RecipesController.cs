@@ -70,6 +70,12 @@ namespace AspNetCoreAPI.Controllers
             };
            
         }
+        [HttpGet("/CreateRecipe/Ingredients")]
+        public IEnumerable<string> ReturnIngredients()
+        {
+            IEnumerable<string> ingredients = _context.Ingredience.Select(x => x.Name);
+            return ingredients;
+        }
 
         [HttpGet("/getImage/{id:int}")]
         public ImagesDTO GetImage(int id)
