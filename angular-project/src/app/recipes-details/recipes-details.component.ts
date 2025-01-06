@@ -17,10 +17,12 @@ import { RecensionsDTO } from './recensions-dto';
 
 import {CreatorDTO} from 'src/app/recipes/CreatorDTO';
 import { DataSource } from '@angular/cdk/collections';
+import { MatPseudoCheckbox } from '@angular/material/core';
 @Component({
   selector: 'app-recipes-details',
   standalone: true,
-  imports: [CommonModule, RouterLink, MatIconModule, MatIconAnchor, MatButtonModule, MatRadioModule, MatCardModule, ReactiveFormsModule, MatFormField, MatFormFieldModule, MatLabel, MatInput, MatInputModule, DatePipe],
+  imports: [CommonModule, RouterLink, MatIconModule, MatIconAnchor, MatButtonModule, 
+    MatRadioModule, MatCardModule, ReactiveFormsModule, MatFormField, MatFormFieldModule, MatLabel, MatInput, MatInputModule, DatePipe, MatPseudoCheckbox],
   providers: [DatePipe],
   templateUrl: './recipes-details.component.html',
   styleUrl: './recipes-details.component.scss'

@@ -304,49 +304,30 @@ mat-card {
 /*RatingDesign*/
 
 
-#liked {
-  position: relative;
-  visibility: visible;
-  z-index: 3;
-  width: 20px;
-  height: 20px;
-  margin-left: 10px;
-  opacity: 0;
-  padding-top: 5px;
-}
-#like {
-  position: absolute;
-  visibility: visible;
-  left: 0;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  color: #fff;
-  margin-left: 8px;
-}
-#dislike {
-  position: absolute;
-  visibility: visible;
-  left: 0;
-  color: #fff;
-  margin-left: 8px;
-}
-#dissliked {
-  position: relative;
-  visibility: visible;
-  z-index: 3;
-  width: 20px;
-  height: 20px;
-  margin-left: 10px;
-  opacity: 0;
+.like-dislike-container {
+  display: flex;
+  justify-content: flex-end; /* Align to the right */
+  margin-top: 10px; /* Add spacing from the comment */
 }
 
-#like, #dislike {
-  color: #fff;
-  font-size: 20px;
-  transition: color 0.3s ease;
-  padding-bottom: 5px;
+.like-button,
+.dislike-button {
+  display: flex;
+  align-items: center; /* Center icon and count vertically */
+  margin-left: 5px; /* Add spacing between buttons */
 }
 
+.like-button mat-icon,
+.dislike-button mat-icon {
+  color: white;
+  font-size: 18px;
+}
+
+.like-count,
+.dislike-count {
+  color: white;
+  margin-left: 2px; /* Add spacing between icon and count */
+}
 #matBug p {
   visibility: visible;
   font-size: large;

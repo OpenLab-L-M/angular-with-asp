@@ -151,12 +151,19 @@ namespace AspNetCoreAPI.Controllers
             _context.SaveChanges();
             for (int i = 0; i < recept.Postupicky.Count; i++)
             {
-                var Postup = new Postupy
+                if (recept.Postupicky[i] != "")
                 {
-                    postupy = recept.Postupicky[i],
-                    RecipesId = nReceptik.Id,
-                };
-                _context.Postupiky.Add(Postup);
+                    var Postup = new Postupy
+                    {
+                        postupy = recept.Postupicky[i],
+                        RecipesId = nReceptik.Id,
+                    };
+                    _context.Postupiky.Add(Postup);
+                }
+                else
+                {
+                    continue;
+                }
             }
             _context.SaveChanges();
             return receptik;

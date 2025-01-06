@@ -198,6 +198,7 @@
         </div>
         <button class="ingr_btn" (click)="openDialogis()">Add ingrediences</button>
         <div class="formaNaPostup">
+          <h1>Napíš svoj postup</h1>
           <form [formGroup]="postupForm">
             <div formArrayName="postupy" *ngFor="let postup of postupy.controls; let i = index">
               <input type="text" [formControlName]="i" placeholder="Postup">

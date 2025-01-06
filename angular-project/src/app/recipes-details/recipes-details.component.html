@@ -98,7 +98,7 @@
       <br>
       <mat-card-content>
         <ul class="detail_description">
-          <mat-card-title>Postupy:</mat-card-title>
+          <mat-card-title>Postup:</mat-card-title>
           <li *ngFor="let postup of recipe().postupicky">{{ postup }}</li>
         </ul>
           
@@ -143,7 +143,7 @@
   
   <span>{{recension.datetime}}</span>
   <p style="color: white;">{{recension.content}}</p>
-  <div class="matCardContainer">
+  <!-- <div class="matCardContainer">
     
     <mat-card id="matBug" [attr.id]="'like-card-' + i">
       <input id="liked" type="checkbox" (change)="likeRecension(recension.id)" matTooltip="Add to Favourite">
@@ -156,6 +156,16 @@
       <p style="color: white" [textContent]="recension.amountOfDisslikes"></p>
     </mat-card>
     
+  </div> -->
+  <div class="like-dislike-container">
+    <div class="like-button">
+      <mat-icon class="fa fa-thumbs-up" (click)="likeRecension(recension.id)"></mat-icon>
+      <span class="like-count" [textContent]="recension.amountOfLikes"></span>
+    </div>
+    <div class="dislike-button">
+      <mat-icon class="fa fa-thumbs-down" (click)="disslikeRecension(recension.id)"></mat-icon>
+      <span class="dislike-count" [textContent]="recension.amountOfDisslikes"></span>
+    </div>
   </div>
   <div *ngIf="recension.userID == recension.checkID">
   <span class="delete-link"  (click)="Vymaz(recension.id)">Delete </span>
