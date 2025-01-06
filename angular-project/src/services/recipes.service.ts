@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { EditDTO } from 'src/app/recipes-details/recipes-details.component';
 import {ImageDTO} from "../app/recipes/ImageDTO";
 import { RecensionsDTO } from 'src/app/recipes-details/recensions-dto';
+import { FormArray } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,7 @@ export class RecipesService {
   CreateRecipe(RecipesDTO: {
     difficulty: string;
     ingrediencie: string;
+    postupicky?: FormArray;
     imageId: Number;
     cas: any;
     veganske: any;

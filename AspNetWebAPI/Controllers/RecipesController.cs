@@ -3,6 +3,7 @@ using AspNetCoreAPI.Migrations;
 using AspNetCoreAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Expressions;
 using System.Security.Claims;
@@ -29,7 +30,9 @@ namespace AspNetCoreAPI.Controllers
         public IEnumerable<RecipesDTO> GetRecipesList()
         {
             IEnumerable<Recipe> dbRecipes = _context.Recipes;
-
+            List<string> postupiky;
+            
+            IEnumerable<Postupy> dbPostupy = _context.Postupiky;
             return dbRecipes.Select(dbRecipe =>
                 new RecipesDTO
                 {
@@ -44,9 +47,17 @@ namespace AspNetCoreAPI.Controllers
                     Veganske = dbRecipe.Veganske,
                     Vegetarianske = dbRecipe.Vegetarianske,
                     NizkoKaloricke = dbRecipe.NizkoKaloricke,
+                    Postupicky = mapToPostupyStrings(dbRecipe.Id).ToList(),
                     Cas = dbRecipe.Cas,
                     imageId = dbRecipe.ImageId
-                });
+                }); 
+        }
+        public IEnumerable<string> mapToPostupyStrings( int recipesID)
+        {
+            var dbPostupy = _context.Postupiky.Where(x => x.RecipesId == recipesID).ToList();
+            List<string> postupyContext = dbPostupy.Select(x => x.postupy).ToList();
+            return postupyContext;
+
         }
         [HttpGet("{id:int}")]
         public RecipesDTO GetRecipes(int id)
@@ -61,6 +72,7 @@ namespace AspNetCoreAPI.Controllers
                 ImageURL = recipe.ImageURL,
                 CheckID = recipe.CheckID,
                 userID = GetCurrentUser().Id,
+                Postupicky = mapToPostupyStrings(recipe.Id).ToList(),
                 Ingrediencie = recipe.Ingrediencie,
                 Veganske = recipe.Veganske,
                 Vegetarianske = recipe.Vegetarianske,
@@ -110,7 +122,12 @@ namespace AspNetCoreAPI.Controllers
         public RecipesDTO CreateRecipe(RecipesDTO receptik)
         {
             var user = GetCurrentUser();
-
+            RecipesDTO recept = new RecipesDTO();
+            recept = receptik;
+            
+            
+           
+            
             var nReceptik = new Recipe()
             {
                 Id = receptik.Id,
@@ -129,7 +146,18 @@ namespace AspNetCoreAPI.Controllers
 
             };
             nReceptik.CheckID = user?.Id;
+            
             _context.Add(nReceptik);
+            _context.SaveChanges();
+            for (int i = 0; i < recept.Postupicky.Count; i++)
+            {
+                var Postup = new Postupy
+                {
+                    postupy = recept.Postupicky[i],
+                    RecipesId = nReceptik.Id,
+                };
+                _context.Postupiky.Add(Postup);
+            }
             _context.SaveChanges();
             return receptik;
         }

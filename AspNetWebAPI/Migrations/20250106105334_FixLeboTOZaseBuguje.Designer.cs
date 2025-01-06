@@ -4,6 +4,7 @@ using AspNetCoreAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AspNetCoreAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250106105334_FixLeboTOZaseBuguje")]
+    partial class FixLeboTOZaseBuguje
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -169,30 +172,6 @@ namespace AspNetCoreAPI.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("LikeRecensions");
-                });
-
-            modelBuilder.Entity("AspNetCoreAPI.Models.Postupy", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("RecipeId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("RecipesId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("postupy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RecipeId");
-
-                    b.ToTable("Postupiky");
                 });
 
             modelBuilder.Entity("AspNetCoreAPI.Models.Recensions", b =>
@@ -463,13 +442,6 @@ namespace AspNetCoreAPI.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("AspNetCoreAPI.Models.Postupy", b =>
-                {
-                    b.HasOne("AspNetCoreAPI.Models.Recipe", null)
-                        .WithMany("Postupies")
-                        .HasForeignKey("RecipeId");
-                });
-
             modelBuilder.Entity("AspNetCoreAPI.Models.Recensions", b =>
                 {
                     b.HasOne("AspNetCoreAPI.Models.Recipe", "recept")
@@ -553,11 +525,6 @@ namespace AspNetCoreAPI.Migrations
                 {
                     b.Navigation("Recipe")
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("AspNetCoreAPI.Models.Recipe", b =>
-                {
-                    b.Navigation("Postupies");
                 });
 #pragma warning restore 612, 618
         }

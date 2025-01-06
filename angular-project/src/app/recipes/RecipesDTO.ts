@@ -2,6 +2,7 @@ export class RecipesDTO{
     id: number;
     name?: string;
     postup?: string;
+    postupicky?: Array<string>;
     ingrediencie?: string;
     difficulty?: string;
     imageURL?: string;

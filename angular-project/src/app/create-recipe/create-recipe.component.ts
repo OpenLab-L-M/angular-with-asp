@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
-import {FormGroup, FormControl, ReactiveFormsModule, Validators, FormsModule} from '@angular/forms';
+import {FormGroup, FormControl, ReactiveFormsModule, Validators, FormsModule, FormArray} from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatSliderModule } from '@angular/material/slider';
@@ -72,10 +72,12 @@ export class CreateRecipeComponent {
       }
     );
   }
+  
   ngOnInit() {
     this.setIngredients();
     
   }
+
   setIngredients(){
     this.recipesServíce.setIngredients()
     .pipe(takeUntil(this.destroy$))
@@ -105,6 +107,19 @@ export class CreateRecipeComponent {
   thumbLabel = false;
   value = 0;
 
+  postupForm = new FormGroup({
+    postupy: new FormArray([], Validators.required)
+  });
+  get postupy() {
+    return this.postupForm.get('postupy') as FormArray;
+    console.log(this.postupy);
+  }
+
+  pridajPostup() {
+    const postup = new FormControl('');
+    this.postupy.push(postup);
+  }
+
   profileForm = new FormGroup({
     name: new FormControl('', Validators.required),
     postup: new FormControl('', Validators.required),
@@ -116,6 +131,10 @@ export class CreateRecipeComponent {
     nizkoKaloricke: new FormControl(null),
     img: new FormControl(''),
   });
+
+
+
+
   private destroy$ = new Subject<void>();
   newRecipe = signal<createRecipe>(undefined);
   constructor(private httpClient: HttpClient, private recipesServíce: RecipesService, private router: Router, private dialog: MatDialog, protected ingredientService: IngredientService){}
@@ -157,6 +176,7 @@ export class CreateRecipeComponent {
       veganske: this.profileForm.controls['veganske']?.value,
       vegetarianske: this.profileForm.controls['vegetarianske']?.value,
       nizkoKaloricke: this.profileForm.controls['nizkoKaloricke']?.value,
+      postupicky: (this.postupForm.get('postupy') as FormArray).value,
       imageId: value
     }).pipe(takeUntil(this.destroy$))
     .subscribe(() => this.router.navigate(['/Recipes']));

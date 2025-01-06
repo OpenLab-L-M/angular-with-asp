@@ -16,6 +16,7 @@ namespace AspNetCoreAPI
         public bool? Vegetarianske { get; set; }
         public bool? NizkoKaloricke { get; set; }
         public string? userID {  get; set; }
+        public List<string>? Postupicky { get; set; }
 
         public int? imageId { get; set; }   
 

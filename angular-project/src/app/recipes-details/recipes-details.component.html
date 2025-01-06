@@ -43,7 +43,7 @@
     <p class="detail_title" style="font-family: 'Times New Roman', Times, serif; font-style: italic;">
       {{this.recipe().name}}
     </p>
-  <div style="display: flex; justify-content: center;">
+  <div style="display: flex; justify-content: center; overflow: auto;">
     <!-- <p class="detail_title">
       {{this.recipeService.chRecipe.name}}
     </p> -->
@@ -94,6 +94,15 @@
 
            {{this.recipe().postup}}
         </p>
+      </mat-card-content>
+      <br>
+      <mat-card-content>
+        <ul class="detail_description">
+          <mat-card-title>Postupy:</mat-card-title>
+          <li *ngFor="let postup of recipe().postupicky">{{ postup }}</li>
+        </ul>
+          
+
       </mat-card-content>
 
 

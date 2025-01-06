@@ -4,6 +4,7 @@ using AspNetCoreAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AspNetCoreAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250106111639_FixLeboTOZaseBuguje5")]
+    partial class FixLeboTOZaseBuguje5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -179,20 +182,38 @@ namespace AspNetCoreAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("RecipeId")
+                    b.Property<int?>("PostupyRecipesId")
                         .HasColumnType("int");
-
-                    b.Property<int?>("RecipesId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("postupy")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RecipeId");
+                    b.HasIndex("PostupyRecipesId");
 
                     b.ToTable("Postupiky");
+                });
+
+            modelBuilder.Entity("AspNetCoreAPI.Models.PostupyRecipes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("PostupyId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RecipesID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("iRecipeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("iRecipeId");
+
+                    b.ToTable("PostupikyRecipe");
                 });
 
             modelBuilder.Entity("AspNetCoreAPI.Models.Recensions", b =>
@@ -465,9 +486,18 @@ namespace AspNetCoreAPI.Migrations
 
             modelBuilder.Entity("AspNetCoreAPI.Models.Postupy", b =>
                 {
-                    b.HasOne("AspNetCoreAPI.Models.Recipe", null)
-                        .WithMany("Postupies")
-                        .HasForeignKey("RecipeId");
+                    b.HasOne("AspNetCoreAPI.Models.PostupyRecipes", null)
+                        .WithMany("iPostupy")
+                        .HasForeignKey("PostupyRecipesId");
+                });
+
+            modelBuilder.Entity("AspNetCoreAPI.Models.PostupyRecipes", b =>
+                {
+                    b.HasOne("AspNetCoreAPI.Models.Recipe", "iRecipe")
+                        .WithMany()
+                        .HasForeignKey("iRecipeId");
+
+                    b.Navigation("iRecipe");
                 });
 
             modelBuilder.Entity("AspNetCoreAPI.Models.Recensions", b =>
@@ -555,9 +585,9 @@ namespace AspNetCoreAPI.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("AspNetCoreAPI.Models.Recipe", b =>
+            modelBuilder.Entity("AspNetCoreAPI.Models.PostupyRecipes", b =>
                 {
-                    b.Navigation("Postupies");
+                    b.Navigation("iPostupy");
                 });
 #pragma warning restore 612, 618
         }

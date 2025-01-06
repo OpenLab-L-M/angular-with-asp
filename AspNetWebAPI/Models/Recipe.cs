@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -16,6 +17,8 @@ namespace AspNetCoreAPI.Models
         public string? CheckID { get; set; }
         public string? Ingrediencie {  get; set; }
         public int? Cas {  get; set; }
+        
+        public ICollection<Postupy>? Postupies { get; set; }
         public bool? Veganske { get; set; }
         public bool? Vegetarianske { get; set; }
         public bool? NizkoKaloricke { get; set; }
