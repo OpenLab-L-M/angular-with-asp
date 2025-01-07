@@ -135,6 +135,7 @@ submit(){
         this.recensions.update(data => data.map(recension => recension.id === id ?
           { recipesID: value.recipesID,
             content: value.content,
+            datetime: value.datetime,
             id: value.id, 
             amountOfLikes: value.amountOfLikes, 
             userName: value.userName,
@@ -153,6 +154,7 @@ disslikeRecension(id: number){
   .subscribe(value => {
     this.recensions.update(data => data.map(recension => recension.id === id ?
       { recipesID: value.recipesID,
+        datetime: value.datetime,
         content: value.content,
         id: value.id, 
         amountOfLikes: value.amountOfLikes, 

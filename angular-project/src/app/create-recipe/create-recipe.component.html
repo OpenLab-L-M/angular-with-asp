@@ -196,7 +196,7 @@
             } -->
           </div>
         </div>
-        <button class="ingr_btn" (click)="openDialogis()">Add ingrediences</button>
+        <button class="ingr_btn" (click)="openDialogis()" (childEmitter)="getDataFromChild($event)">Add ingrediences</button>
         <div class="formaNaPostup">
           <h1>Napíš svoj postup</h1>
           <form [formGroup]="postupForm">

@@ -346,7 +346,10 @@ namespace AspNetCoreAPI.Controllers
                 RecipesID = dLike.RecipeId,
                 UserName = dLike.UserName,
                 Content = dLike.Content,
+                Datetime = dLike.Datetime,
                 Id = dLike.Id,
+                UserID = dLike.UserId,
+                CheckID = GetCurrentUser().Id,
                 AmountOfLikes = dLike.AmountOfLikes,
                 AmountOfDisslikes = dLike.AmountOfDisslikes
             };
@@ -415,60 +418,6 @@ namespace AspNetCoreAPI.Controllers
                 }
 
             }
-    /*int pocet = _context.Recipes.Count();
-
-
-    if (pocet != 0) {
-        Random rng = new Random();
-        int dalsi = rng.Next(1, pocet);
-        List<Recipe> dbRecipes = _context.Recipes.Where(x => x.Id == dalsi).ToList();
-        int rng2;
-        List<int> randomIds = new List<int>();
-        rng.Next(1, pocet);
-        for (int i = 0; i < pocet - (pocet / 2); i++)
-        {
-
-            rng2 = rng.Next(1, pocet);
-            if (randomIds.Contains(rng2))
-            {
-                continue;
-            }
-
-
-            else
-            {
-                var pridaj = _context.Recipes.Where(x => x.Id == rng2).Single<Recipe>();
-
-                dbRecipes.Add(pridaj);
-            }
-            randomIds.Add(rng2);
-
-        }
-
-
-
-
-        return dbRecipes.Select(dbRecipe =>
-            new RecipesDTO
-            {
-                Id = dbRecipe.Id,
-                Name = dbRecipe.Name,
-                Postup = dbRecipe.Postup,
-                Difficulty = dbRecipe.Difficulty,
-                ImageURL = dbRecipe.ImageURL,
-                CheckID = dbRecipe.CheckID,
-                userID = dbRecipe.userID,
-                Ingrediencie = dbRecipe.Ingrediencie,
-                Veganske = dbRecipe.Veganske,
-                Vegetarianske = dbRecipe.Vegetarianske,
-                NizkoKaloricke = dbRecipe.NizkoKaloricke,
-                Cas = dbRecipe.Cas,
-                imageId = dbRecipe.ImageId
-            }).Reverse();
-    }
-    else {
-        return null;
-        }*/
         [HttpPost("disslikeRecension/{id:int}")]
         public RecensionDTO DisslikeRecension([FromBody] int RecensionId)
         {
@@ -517,6 +466,9 @@ namespace AspNetCoreAPI.Controllers
                 UserName = dLike.UserName,
                 Content = dLike.Content,
                 Id = dLike.Id,
+                UserID = dLike.UserId,
+                Datetime = dLike.Datetime,
+                CheckID = GetCurrentUser().Id,
                 AmountOfLikes = dLike.AmountOfLikes,
                 AmountOfDisslikes = dLike.AmountOfDisslikes
             };

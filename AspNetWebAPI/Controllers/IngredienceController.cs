@@ -35,6 +35,22 @@ namespace AspNetCoreAPI.Controllers
 
             return Ok(ingredience1);
         }
+        [Route("addIngredienceDragAndDrop")]
+        [HttpPost]
+        public string AddIngredience(string ingredience)
+        {
+            var ingredience1 = new Ingredience()
+            {
+
+                Name = ingredience
+
+            };
+
+            _context.Add(ingredience1);
+            _context.SaveChanges();
+
+            return ingredience1.Name;
+        }
 
 
         [Route("getIngredience")]
