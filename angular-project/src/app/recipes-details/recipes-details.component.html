@@ -17,8 +17,8 @@
       <input matInput id="ingrediencie" type="text" formControlName="ingrediencie" value="ingrediencie">
       </mat-form-field>
       <mat-form-field>
-        <mat-label for="postup">postup: </mat-label>
-      <input matInput id="postup" type="text" formControlName="postup" value="postup">
+        <mat-label for="description">popis: </mat-label>
+      <input matInput id="description" type="text" formControlName="description" value="description">
       </mat-form-field>
       <!-- <mat-form-field>
         <mat-label for="imgURL">image URL: </mat-label>
@@ -28,6 +28,9 @@
         <mat-label for="cas">cas: </mat-label>
       <input matInput id="cas" type="text" formControlName="cas" value="cas">
       </mat-form-field>
+      <!-- <div formArrayName="postupicky" *ngFor="let postup of recipe().postupicky; let i = index">
+              <input type="text" [formControlName]="i" placeholder="Postup" value="i">
+            </div> -->
 
       <div class="edit_btn">
         <button (click)="submit()" style="width: 100px; height: 50px; font-size: 16px; font-weight: bold; font-family: system-ui; background-color: black; color: white; cursor: pointer;">Submit</button>
@@ -92,7 +95,7 @@
         <p class="detail_description">
           <mat-card-title>Description:</mat-card-title>
 
-           {{this.recipe().postup}}
+           {{this.recipe().description}}
         </p>
       </mat-card-content>
       <br>

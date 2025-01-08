@@ -38,7 +38,7 @@ namespace AspNetCoreAPI.Controllers
                 {
                     Id = dbRecipe.Id,
                     Name = dbRecipe.Name,
-                    Postup = dbRecipe.Postup,
+                    Description = dbRecipe.Description,
                     Difficulty = dbRecipe.Difficulty,
                     ImageURL = dbRecipe.ImageURL,
                     CheckID = dbRecipe.CheckID,
@@ -67,7 +67,7 @@ namespace AspNetCoreAPI.Controllers
             {
                 Id = recipe.Id,
                 Name = recipe.Name,
-                Postup = recipe.Postup,
+                Description = recipe.Description,
                 Difficulty = recipe.Difficulty,
                 ImageURL = recipe.ImageURL,
                 CheckID = recipe.CheckID,
@@ -132,7 +132,7 @@ namespace AspNetCoreAPI.Controllers
             {
                 Id = receptik.Id,
                 Name = receptik.Name,
-                Postup = receptik.Postup,
+                Description = receptik.Description,
                 Difficulty = receptik.Difficulty,
                 ImageURL = receptik.ImageURL,
                 CheckID = receptik.CheckID,
@@ -238,10 +238,15 @@ namespace AspNetCoreAPI.Controllers
         public RecipesDTO Edit(EditDTO receptik)
         {
             var nReceptik = _context.Recipes.FirstOrDefault(x => x.Id == receptik.Id);
-
+            var postupicky = _context.Postupiky.Where(x=> x.RecipesId == receptik.Id).ToList();
+            /*for (int i = 0; i < postupicky.Count - 1; i++)
+            {
+                postupicky[i].postupy = receptik.Postupicky[i];
+            }*/
             nReceptik.Name = receptik.Name;
+            
             nReceptik.Ingrediencie = receptik.Ingrediencie;
-            nReceptik.Postup = receptik.Postup;
+            nReceptik.Description = receptik.Description;
             nReceptik.ImageURL = receptik.ImgURL;
             nReceptik.Cas = receptik.Cas;
             var neviemUz = new RecipesDTO()
@@ -249,8 +254,9 @@ namespace AspNetCoreAPI.Controllers
                 Id = nReceptik.Id,
                 Name = nReceptik.Name,
                 Ingrediencie = nReceptik.Ingrediencie,
-                Postup = nReceptik.Postup,
+                Description = nReceptik.Description,
                 ImageURL = nReceptik.ImageURL,
+                Postupicky = mapToPostupyStrings(nReceptik.Id).ToList(),
                 Cas = nReceptik.Cas
             };
             _context.SaveChanges();
@@ -400,7 +406,7 @@ namespace AspNetCoreAPI.Controllers
                {
                    Id = dbRecipe.Id,
                    Name = dbRecipe.Name,
-                   Postup = dbRecipe.Postup,
+                   Description = dbRecipe.Description,
                    Difficulty = dbRecipe.Difficulty,
                    ImageURL = dbRecipe.ImageURL,
                    CheckID = dbRecipe.CheckID,

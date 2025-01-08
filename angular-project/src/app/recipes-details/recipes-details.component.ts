@@ -11,7 +11,7 @@ import { MatIconAnchor } from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormField, MatFormFieldModule, MatLabel} from '@angular/material/form-field';
 import { CommonModule, DatePipe } from '@angular/common';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatInput, MatInputModule } from '@angular/material/input';
 import { RecensionsDTO } from './recensions-dto';
 
@@ -40,9 +40,10 @@ export class RecipesDetailsComponent implements OnInit{
   profileForm = new FormGroup({
     name: new FormControl(''),
     ingrediencie: new FormControl(''),
-    postup: new FormControl(''),
+    description: new FormControl(''),
     imgURL: new FormControl(''),
     cas: new FormControl(null),
+    postupicky: new FormArray([]),
   });
   
   constructor(private route: ActivatedRoute, private router: Router, private datePipe: DatePipe) { }
@@ -57,7 +58,7 @@ export class RecipesDetailsComponent implements OnInit{
         this.profileForm.patchValue({
           name: this.recipeService.chRecipe.name,
           ingrediencie: this.recipeService.chRecipe.ingrediencie,
-        postup: this.recipeService.chRecipe.postup,
+          description: this.recipeService.chRecipe.description,
         imgURL: this.recipeService.chRecipe.imageURL,
         cas: this.recipeService.chRecipe.cas,
         }
@@ -92,18 +93,21 @@ export class RecipesDetailsComponent implements OnInit{
 
   }
   edit(){
+    
   this.clicked = true;
 
 }
 submit(){
+  debugger
   const id = parseInt(this.route.snapshot.paramMap.get('id'));
   this.recipeService.edit({
     id: parseInt(this.route.snapshot.paramMap.get('id')),
     name: this.profileForm.controls['name']?.value,
     ingrediencie: this.profileForm.controls['ingrediencie']?.value,
-      postup: this.profileForm.controls['postup']?.value,
+    description: this.profileForm.controls['description']?.value,
       imgURL: this.profileForm.controls['imgURL']?.value,
       cas: this.profileForm.controls['cas']?.value,
+      postupicky: (this.profileForm.get('postupicky') as FormArray)?.value
 
   })
   .pipe(takeUntil(this.destroy$))
@@ -167,7 +171,10 @@ disslikeRecension(id: number){
 
   );
 }
-
+get postupicky() {
+  return this.profileForm.get('postupicky') as FormArray;
+  
+}
 
 scrollToBottom() {
   window.scrollTo({
@@ -191,7 +198,8 @@ export class EditDTO{
   id?:number;
   name?: string;
   ingrediencie?: string;
-  postup?: string;
+  description?: string;
   imgURL?: string;
   cas?: number;
+  postupicky?: string[];
 }

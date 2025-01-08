@@ -113,7 +113,7 @@ export class CreateRecipeComponent {
 
   profileForm = new FormGroup({
     name: new FormControl('', Validators.required),
-    postup: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
     ingr: new FormControl(''),
     cas: new FormControl(null),
     diff: new FormControl(''),
@@ -159,7 +159,7 @@ export class CreateRecipeComponent {
   private createRecipe(value: Number) {
     this.recipesServíce.CreateRecipe({
       name: this.profileForm.controls['name'].value,
-      postup: this.profileForm.controls['postup'].value,
+      description: this.profileForm.controls['description'].value,
       difficulty: this.profileForm.controls['diff'].value,
       imageURL: this.profileForm.controls['img'].value,
       ingrediencie: this.vybrane.join(),

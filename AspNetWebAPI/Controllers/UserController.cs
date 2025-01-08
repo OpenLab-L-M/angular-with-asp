@@ -207,7 +207,7 @@ namespace AspNetCoreAPI.Controllers
                 {
                     Id = dbRecipe.Id,
                     Name = dbRecipe.Name,
-                    Postup = dbRecipe.Postup,
+                    Description = dbRecipe.Description,
                     Difficulty = dbRecipe.Difficulty,
                     ImageURL = dbRecipe.ImageURL,
                     CheckID = dbRecipe.CheckID,
