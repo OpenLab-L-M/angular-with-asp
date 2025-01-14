@@ -143,7 +143,7 @@
          
             <br>
             <br>
-            <label for="img" class="input-for-img" style="color: black; cursor: pointer; background: white; padding: 10px; border-radius: 10px">Vložiť obrázky</label>
+            <label for="img" class="beautyBtn">Add an image</label>
             <input
               id="img"
               class="form-control"
@@ -187,7 +187,7 @@
             [cdkDropListConnectedTo]="[doneList]"
             class="example-list"
             (cdkDropListDropped)="drop($event)">
-             <input type="text" [(ngModel)]="searchTerm"/>
+             <input type="text" [(ngModel)]="searchTerm" placeholder="Find an ingredience" class="findInput"/>
                 <div *ngFor="let item of ingredients | ingredientsFilter : searchTerm">
                   <div class="example-box" cdkDrag>{{item}}</div>
                 </div>
@@ -196,17 +196,20 @@
             } -->
           </div>
         </div>
-        <button class="ingr_btn" (click)="openDialogis()" (childEmitter)="getDataFromChild($event)">Add ingrediences</button>
+        <button class="beautyBtn" (click)="openDialogis()" (childEmitter)="getDataFromChild($event)">Add ingrediences</button>
+        <br>
+        <br>
         <div class="formaNaPostup">
           <h1>Napíš svoj postup</h1>
-          <form [formGroup]="postupForm">
+          <form [formGroup]="postupForm" class="postupForm">
             <div formArrayName="postupy" *ngFor="let postup of postupy.controls; let i = index">
               <input type="text" [formControlName]="i" placeholder="Postup">
             </div>
-            <button type="button" (click)="pridajPostup()">Pridať postup</button>
+            <button  class="beautyBtn" (click)="pridajPostup()">Pridať postup</button>
           </form>
           
       </div>
+      <br>
   </div>
   
       </body>
