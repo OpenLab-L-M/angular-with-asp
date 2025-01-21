@@ -1,6 +1,7 @@
 <body>
 
-<div *ngIf="clicked == true; else noCourses">
+<div *ngIf="clicked == true; else noCourses" class="sameAsBackground">
+  <img id="backgroundos" src="../../assets/backgroundos_recipes.png">
   <h1>ChangePassword</h1>
   <form class="edit_form" [formGroup]="changePassword" style="color: aliceblue;">
 

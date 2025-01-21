@@ -6,6 +6,14 @@ body #backgroundos{
   z-index: -2;
 }
 
+.sameAsBackground{
+  width: 100%;
+  height: 100%;
+}
+.sameAsBackground h1{
+  text-align: center;
+}
+
 /* body {
   animation: grow 1s;
 }
@@ -445,6 +453,7 @@ font-size: 20px;
       width: 100%;
       margin-bottom: 15px;
       color: $label-color;
+      background-color: rgb(41,41,41);
   
       mat-label {
         font-size: 14px;
@@ -453,7 +462,7 @@ font-size: 20px;
       }
   
       input {
-        background-color: $input-background;
+        background-color: rgb(41,41,41);
         color: white;
         border: 1px solid $input-border-color;
         border-radius: $border-radius;

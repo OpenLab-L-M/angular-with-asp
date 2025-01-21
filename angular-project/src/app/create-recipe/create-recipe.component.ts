@@ -314,6 +314,7 @@ export class Dialog implements OnInit {
 
 
   sendIngredience() {
+    debugger
     this.ingredience.Name = this.inputString;
     this.httpClient.post('https://localhost:7186/ingredience/addIngredience', this.ingredience).subscribe(response => {
         console.log(response);
