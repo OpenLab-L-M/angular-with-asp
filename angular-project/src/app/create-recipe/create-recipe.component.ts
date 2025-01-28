@@ -16,7 +16,8 @@ import { MatCardModule } from '@angular/material/card';
 import {MatIcon} from "@angular/material/icon";
 import { MatCard } from '@angular/material/card';
 import {MatTooltip} from "@angular/material/tooltip";
-import {DialogOverviewExampleDialog} from "../user-profile/user-profile.component";
+import { DialogOverviewExampleDialog } from "../user-profile/user-profile.component";
+import { DialogisComponent } from "./dialogis/dialogis.component";
 import { ChangeDetectorRef } from '@angular/core'; // Import ChangeDetectorRef
 import {
   MAT_DIALOG_DATA,
@@ -39,13 +40,15 @@ import {
   CdkDropList,
 } from '@angular/cdk/drag-drop';
 import { IngredientsFilterPipe } from './ingredients-filter.pipe';
+import { Dialog } from '@angular/cdk/dialog';
+
 
 @Component({
   selector: 'app-create-recipe',
   standalone: true,
   imports: [RouterLink, ReactiveFormsModule, MatCard,
      MatSelectModule, MatInputModule, MatFormFieldModule, MatCardModule, MatButtonModule,
-      MatSliderModule, FormsModule, MatIcon, MatTooltip, MatDialogClose, NgIf,CdkDrag,CdkDropList, NgFor, IngredientsFilterPipe
+      MatSliderModule, FormsModule, MatIcon, MatTooltip, MatDialogClose, NgIf,CdkDrag,CdkDropList, NgFor, IngredientsFilterPipe, 
   ],
   templateUrl:'./create-recipe.component.html',
   styleUrl: './create-recipe.component.scss'
@@ -176,13 +179,13 @@ export class CreateRecipeComponent {
 
 
   openDialogis(): void {
-    const dialogRef = this.dialog.open(Dialog, {
+    const dialogRef = this.dialog.open(DialogisComponent, {
       width: '500px',
     });
 
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      this.ingredients.push(result.data);
 
     });
 
@@ -263,85 +266,7 @@ export class CreateRecipeComponent {
 }
 
 
-@Component({
-  selector: 'dialog',
-  templateUrl: 'dialog.html',
-  styleUrl: 'dialog.scss',
-  standalone: true,
-  imports: [
-    FormsModule,
-    MatDialogTitle,
-    MatDialogContent,
-    NgForOf,
-    MatButtonModule,
-    MatLabel
-  ]
-})
-export class Dialog implements OnInit {
-  ingredience: IngredienceDTO = {Name: ''};
-  inputString: string = '';
-  ingrediences: any = [];
 
-  @Output() newItemEvent = new EventEmitter<string>();
-  constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: UserDTO, private userService: UserService, private httpClient: HttpClient, private ingredientService: IngredientService, private cdr: ChangeDetectorRef) {
-  }
-
-  ngOnInit() {
-    this.httpClient.get<any>("https://localhost:7186/ingredience/getIngredience").subscribe(value =>
-      this.ingrediences = value,
-    )
-    
-  }
-  selectedIngredients: string = '';
-/*  onCheckboxChange(ingredient: any, event: any) {
-    if (event.target.checked) {
-      this.selectedIngredients += ingredient.name + ', ';
-    } else {
-      this.selectedIngredients = this.selectedIngredients.replace(ingredient.name + ', ', '');
-    }
-    console.log(this.selectedIngredients)
-  }*/
-
-  onCheckboxChange(ingredient: any, event: any) {
-    if (event.target.checked) {
-      this.ingredientService.selectedIngredients += ingredient.name + ', ';
-    } else {
-      this.ingredientService.selectedIngredients = this.ingredientService.selectedIngredients.replace(ingredient.name + ', ', '');
-    }
-  }
-
-
-  sendIngredience() {
-    debugger
-    this.ingredience.Name = this.inputString;
-    this.httpClient.post('https://localhost:7186/ingredience/addIngredience', this.ingredience).subscribe(response => {
-        console.log(response);
-        // Add the new ingredient to the list without refreshing
-        this.ingrediences.push({ name: this.ingredience.Name });
-        this.newItemEvent.emit(this.inputString);
-        // Clear the input field
-        this.inputString = '';
-        // Trigger change detection
-        this.cdr.detectChanges();
-      }, error => {
-        console.error('Error adding ingredient:', error);
-      }
-    );
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  addIngredience($event: any) {
-    this.ingrediences.add($event);
-  }
-
-
-
-}
 
 
 

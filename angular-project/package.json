@@ -9,7 +9,8 @@
     "test": "ng test",
     "main-profile": "ng g c main-profile",
     "homepage": "ng g c homepage",
-    "angularis": "ng update @angular/core@18 @angular/cli@18"
+    "angularis": "ng update @angular/core@18 @angular/cli@18",
+    "dialogis": "ng g c dialogis"
   },
   "private": true,
   "dependencies": {
