@@ -1,60 +1,25 @@
 <body>
-  
   <img id="backgroundos" src="../../assets/backgroundos_recipes.png">
 
-    <!-- <img src="https://media.istockphoto.com/id/1129153331/photo/food-for-the-family.jpg?s=612x612&w=0&k=20&c=Kf_Oz3ur1ECW3R9qclOYzUXYfyQQ1wzKwnQUA4ZXB-0=" alt=""/>
-    <div class="black">
-      <img src="https://th.bing.com/th/id/R.75b7633177977a276cd781b0e0520a92?rik=EpfN3HQQ7%2fOhcw&riu=http%3a%2f%2fwww.solidbackgrounds.com%2fimages%2f5120x2880%2f5120x2880-black-solid-color-background.jpg&ehk=AqB9SoEXUPu7BGaVH7M32l2%2b1UZ%2foIlkcd8MnplO62E%3d&risl=&pid=ImgRaw&r=0" alt=""/>
-    </div> -->
-
-
-
-
   <div class="container">
-
         <form [formGroup]="profileForm">
           <header>
-            <h1 style="font-family: 'Times New Roman', Times, serif; font-size: 30px; font-weight: bold;">Create your recipe</h1>
+            <h1 style="font-family: 'Times New Roman', Times, serif; font-size: 30px; font-weight: bold; width: 100%;">Create your recipe</h1>
             <div class="form-container">
               <div class="column">
           <div class="set">
             <mat-form-field class="Name_rcp">
-
-
                   <mat-label class="centered-label" for="name">Name of recipe: </mat-label>
                   <input matInput id="name" formControlName="name">
-
-
-
             </mat-form-field>
-
           </div>
 
           <div class="set">
             <mat-form-field class="Description_rcp">
-
-
                   <mat-label class="centered-label" for="description">Recipe description: </mat-label>
                   <textarea matInput id="description" formControlName="description"></textarea>
-
-
-
             </mat-form-field>
-
           </div>
-          <!-- <button class="ingr_btn" (click)="openDialogis()">Add ingrediences</button>
-          <div class="set">
-            <mat-form-field class="Description_rcp">
-
-
-              <mat-label class="centered-label" for="ingr">Recipe Ingredients: </mat-label>
-              <textarea [(ngModel)]="ingredientService.selectedIngredients" matInput id="ingr" formControlName="ingr"></textarea>
-
-
-
-            </mat-form-field>
-
-          </div> -->
 
           <div class="example-container">
             <h2 style="color: darkgoldenrod; font-size: 25px; font-family: 'Times New Roman', Times, serif; font-weight: bold;">Chosen ingedients</h2>
@@ -70,14 +35,11 @@
                 <div class="example-box" cdkDrag>{{item}}</div>
               }
             </div>
-          
-            </div>
-
+          </div>
 
           <div class="set">
             <mat-card class="example-result-card">
               <mat-card-content>
-
                 <div class="example-label-container">
                   <label for="cas" id="example-name-label" class="example-name-label">Time: </label>
                   <label class="example-value-label">{{slider.value}}</label>
@@ -96,28 +58,23 @@
                 </mat-slider>
               </mat-card-content>
             </mat-card>
-
           </div>
         </div>
           <div class="column">
+            <div class="set">
+              <label id="ch_diff" style="color: darkgoldenrod; font-size: 25px; font-family: 'Times New Roman', Times, serif; font-weight: bold;">Choose a difficulty:</label> 
+              <br>
+              <br>
+              <div class="diff_radio">
+                <p>
+                    <input id="diff" type="radio" formControlName="diff" value="Easy" [checked]="true">
+                    <label id="diff_1" for="diff">Easy</label>
 
+                    <input id="diff2" type="radio" formControlName="diff" value="Medium">
+                    <label for="diff2">Medium</label>
 
-          <div class="set">
-            <label id="ch_diff" style="color: darkgoldenrod; font-size: 25px; font-family: 'Times New Roman', Times, serif; font-weight: bold;">Choose a difficulty:</label> 
-            <br>
-            <br>
-            <div class="diff_radio">
-              <p>
-
-                  <input id="diff" type="radio" formControlName="diff" value="Easy" [checked]="true">
-
-                  <label id="diff_1" for="diff">Easy</label>
-                  <input id="diff2" type="radio" formControlName="diff" value="Medium">
-
-                  <label for="diff2">Medium</label>
-                  <input id="diff3" type="radio" formControlName="diff" value="Hard">
-
-                  <label for="diff3">Hard</label>
+                    <input id="diff3" type="radio" formControlName="diff" value="Hard">
+                    <label for="diff3">Hard</label>
                 </p>
             </div>
           </div>
@@ -129,7 +86,6 @@
             <br>
             <div class="diff_radio">
               <p>
-
                   <input id="jVeganske" type="checkbox" formControlName="veganske" [value]="true">
                   <label for="jVeganske">vegan</label>
 
@@ -142,25 +98,25 @@
             </div>
           </div>
          
+          <br>
+          <br>
+          <label for="img" class="beautyBtn">Add an image</label>
+          <input
+            id="img"
+            class="form-control"
+            type="file"
+            style="
+              box-shadow: 7px 7px 17px;
+              border-width: 0;
+              margin-bottom: 43px;
+              display: none;
+            "
+            (change)="onImageUpload($event)"
+            accept="image/*"
+            title = "Žiadne fotografie nie sú vložené"
+          />
             <br>
-            <br>
-            <label for="img" class="beautyBtn">Add an image</label>
-            <input
-              id="img"
-              class="form-control"
-              type="file"
-              style="
-                box-shadow: 7px 7px 17px;
-                border-width: 0;
-                margin-bottom: 43px;
-                display: none;
-              "
-              (change)="onImageUpload($event)"
-              accept="image/*"
-              title = "Žiadne fotografie nie sú vložené"
-            />
-             <br>
-            <br><br>
+          <br><br>
 
             <img [src]="this.liveDemo"  alt=""/>
         </div>
@@ -170,17 +126,14 @@
 
       </header>
 
-
-
-              <button mat-raised-button id="make" type="submit" [disabled]="!profileForm.valid"  (click)="imageUploadAction()">Create</button>
-              <button mat-raised-button id="back" [routerLink]="['/Recipes']">Back</button>
-
-
+      <button mat-raised-button id="make" type="submit" [disabled]="!profileForm.valid"  (click)="imageUploadAction()">Create</button>
+      <button mat-raised-button id="back" [routerLink]="['/Recipes']">Back</button>
             <br>
         </form>
+  <div class="bothOfThem">
         <div class="example-container">
           <h2 style="color: darkgoldenrod; font-size: 25px; font-family: 'Times New Roman', Times, serif; font-weight: bold;">Ingredients:</h2>
-          
+
           <div
             cdkDropList
             #todoList="cdkDropList"
@@ -192,25 +145,25 @@
                 <div *ngFor="let item of ingredients | ingredientsFilter : searchTerm">
                   <div class="example-box" cdkDrag>{{item}}</div>
                 </div>
-            <!-- @for (item of ingredients; track item) {
-              <div class="example-box" cdkDrag>{{item}}</div>
-            } -->
           </div>
+          <br>
+          <br>
+          <button class="beautyBtn" (click)="openDialogis()" (childEmitter)="getDataFromChild($event)">Add ingrediences</button>
         </div>
-        <button class="beautyBtn" (click)="openDialogis()" (childEmitter)="getDataFromChild($event)">Add ingrediences</button>
-        <br>
-        <br>
+
+        
+        
+
         <div class="formaNaPostup">
-          <h1 style="font-size: 25px; font-family: 'Times New Roman', Times, serif; font-weight: bold;">Napíš svoj postup</h1>
+          <h2 style="color: darkgoldenrod; font-size: 25px; font-family: 'Times New Roman', Times, serif; font-weight: bold;">Napíš svoj postup</h2>
           <form [formGroup]="postupForm" class="postupForm">
             <div formArrayName="postupy" *ngFor="let postup of postupy.controls; let i = index">
               <input class="postupBlock" type="text" [formControlName]="i" placeholder="Postup">
             </div>
             <button  class="beautyBtn" (click)="pridajPostup()">Pridať postup</button>
           </form>
-          
       </div>
+  </div>
       <br>
   </div>
-  
-      </body>
+</body>

@@ -8,6 +8,12 @@ body {
   overflow: auto;
 }
 
+.container {
+  background-color: rgb(41, 41, 41);;
+  height: 100%;
+  overflow: auto;
+  border-radius: 1%;
+}
 
 body #backgroundos{
   width: 100%;
@@ -138,6 +144,7 @@ h1 {
   font-size: 20px;
   font-weight: 800;
   font-family: Eina01,sans-serif;
+  width: 100%;
 }
 
 .diff_radio {
@@ -236,6 +243,8 @@ h1 {
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   position: relative;
+  flex-direction: column;  /* Stack inputs vertically */
+  justify-content: flex-start;
 }
 
 .formaNaPostup h1 {
@@ -259,6 +268,7 @@ h1 {
   border: none;
   border-radius: 3px;
   cursor: pointer;
+  align-self: flex-start;
 }
 
 .postupForm{
@@ -294,12 +304,14 @@ form {
 }
 
 .container {
-  width: 100%;
+  width: 47%;
   height: 100%;
+  margin-left: 30%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  border: 50%;
 }
 
 img {
@@ -311,12 +323,15 @@ img {
   width: 400px;
   max-width: 100%;
   margin: 0 25px 25px 0;
-  display: inline-block;
+  display: inline;
   vertical-align: top;
   position:relative;
+  border: 1px solid #b89023;
+  border-radius: 5px;
+  padding: 20px;
 }
 .example-container input{
- position: absolute; 
+ //position: absolute; 
  width: 100%;
 }
 .example-list {
@@ -325,7 +340,7 @@ img {
   background: rgb(41, 41, 41);
   border-radius: 4px;
   overflow-y: auto; /* Enable vertical scrolling */
-  max-height: 200px; /* Set a maximum height for the list */
+  max-height: 330px; /* Set a maximum height for the list */
   display: block;
 }
 
@@ -520,4 +535,8 @@ img {
   opacity: .24;
 }
 
-
+.bothOfThem {
+  display: flex;
+  justify-content: space-between; /* Add space between the two sections */
+  gap: 20px; /* Adds space between the two sections */
+}

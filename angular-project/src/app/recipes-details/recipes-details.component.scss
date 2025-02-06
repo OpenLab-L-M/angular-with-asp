@@ -286,9 +286,9 @@ h1 {
 }
 
 mat-card {
-  width: 70%;
-  min-width: 70%;
-  max-width: 70%; /* Optional, can be adjusted based on design needs */
+  width: 100%;
+  min-width: 900px;
+  max-width: 900px;
   overflow-wrap: break-word; /* Ensures text wraps within the card */
   word-wrap: break-word; /* Fallback for older browsers */
   word-break: break-word; /* Additional support for word breaking */
