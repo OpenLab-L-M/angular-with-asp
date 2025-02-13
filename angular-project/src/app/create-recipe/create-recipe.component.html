@@ -1,5 +1,5 @@
 <body>
-  <img id="backgroundos" src="../../assets/backgroundos_recipes.png">
+  <img id="backgroundos" src="../../assets/white_bgd.png">
 
   <div class="container">
         <form [formGroup]="profileForm">
@@ -160,7 +160,8 @@
             <div formArrayName="postupy" *ngFor="let postup of postupy.controls; let i = index">
               <input class="postupBlock" type="text" [formControlName]="i" placeholder="Postup">
             </div>
-            <button  class="beautyBtn" (click)="pridajPostup()">Pridať postup</button>
+            <!-- <button  class="beautyBtn" (click)="pridajPostup()">Pridať postup</button> -->
+            <label (click)="pridajPostup()" class="beautyBtn">Add an image</label>
           </form>
       </div>
   </div>

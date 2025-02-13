@@ -1,5 +1,9 @@
 <body>
-  <img id="backgroundos" src="../../assets/backgroundos_recipes.png">
+  <img id="backgroundos" src="../../assets/white_bgd.png">
+   <!-- //<img id="backgroundos"> -->
+  <div id="backgroundosCover"></div>
+
+  <h1>Check some created recipes!</h1>
   <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side">
           <input class="cyberpunk-checkbox" id="diff" type="checkbox" value="Easy" [ngModel]="easyChecked" (ngModelChange)="easyChecked = $event" (click)="filterRecipesByDifficulty('Easy')">
@@ -36,7 +40,7 @@
 
 
 
-
+    
 
     <div class="recipes-container">
       <mat-card class="recipes-items" *ngFor="let recipe of realRecipes | filter : sSearchRecept">
@@ -56,15 +60,17 @@
             <mat-card-subtitle *ngIf="recipe.vegetarianske">Vegetarian</mat-card-subtitle>
             <mat-card-subtitle *ngIf="recipe.nizkoKaloricke">Low calorie</mat-card-subtitle>
           </div>
+          <input id="favourite" type="checkbox" (change)="ktoryRecept(recipe.id)" matTooltip="Add to favourite">
+          <mat-icon id="like" >favorite</mat-icon>
         </mat-card-header>
 
           <img mat-card-image [src]="this.getImage(recipe.id)" class="recipes-images" matTooltip="Details of {{recipe.name}}" [routerLink]="['/RecipesDetails', recipe.id]"/>
 
 
-        <mat-card-footer>
+        <!-- <mat-card-footer>
           <input id="favourite" type="checkbox" (change)="ktoryRecept(recipe.id)" matTooltip="Add to favourite">
           <mat-icon id="like" >favorite</mat-icon>
-        </mat-card-footer>
+        </mat-card-footer> -->
 
 
       </mat-card>

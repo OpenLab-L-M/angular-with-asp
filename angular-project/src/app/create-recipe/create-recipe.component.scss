@@ -9,7 +9,10 @@ body {
 }
 
 .container {
-  background-color: rgb(41, 41, 41);;
+  //background-color: rgb(41, 41, 41);;
+  //background-image: url("https://static.vecteezy.com/system/resources/previews/003/126/086/large_2x/abstract-black-and-gray-gradient-stripe-diagonal-line-background-vector.jpg");
+  background-color: transparent;
+  background-size: contain;
   height: 100%;
   overflow: auto;
   border-radius: 1%;
@@ -111,11 +114,12 @@ mat-form-field {
   align-items: center;
   justify-content: center;
   display: block;
-  background-color: rgb(41, 41, 41);
+  //background-color: rgb(41, 41, 41);
 }
 
 .set .Name-rcp input{
-  background-color: rgb(41, 41, 41);
+  //background-color: rgb(41, 41, 41);
+  border: 1px solid black;
 }
 
 mat-label .centered-label {
@@ -299,7 +303,7 @@ h1 {
 form {
   height: min-content;
   width: auto;
-  background: rgb(41, 41, 41);
+  background: transparent;
   border-radius: 10px;
 }
 
@@ -433,7 +437,7 @@ img {
   background-image: none;
   border-style: none;
   box-sizing: border-box;
-  color: #fff;
+  color: black;
   cursor: pointer;
   display: inline-block;
   flex-direction: row;
@@ -488,7 +492,7 @@ img {
 
 .beautyBtn:after {
   background-color: initial;
-  background-image: linear-gradient(#541a0f 0, #0c0d0d 100%);
+  background-image: linear-gradient(#ffffff 0, #696969 100%);
   bottom: 4px;
   content: "";
   display: block;
@@ -503,6 +507,7 @@ img {
 
 .beautyBtn:hover:not(:disabled):before {
   background: linear-gradient(92.83deg, rgb(184, 152, 11) 0%, darkgoldenrod 100%);
+  color: white;
 }
 
 .beautyBtn:hover:not(:disabled):after {
