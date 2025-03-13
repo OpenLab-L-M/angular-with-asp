@@ -153,10 +153,6 @@ h1, h2, h3 {
   border-color: rgb(41,41,41);
   color: white;
   margin: 10px 10px;
-  /* padding-top: 10px;
-  padding-bottom: 20px;
-  padding-left: 10px;
-  padding-right: 10px; */
   border: transparent;
   transition: transform 0.3s;
 }
@@ -190,10 +186,6 @@ border:3px solid rgb(190, 190, 190);
   padding-top: 5px;
 }
 
-/* .recipes-name, .recipes-difficulty {
-color: black;
-} */
-
 .recipes-difficulty mat-icon {
 font-size: 20px;
 }
@@ -206,19 +198,6 @@ font-size: 20px;
     margin-left: 10px;
     opacity: 0;
   }
-
-  /* #like-false {
-    position: absolute;
-    left: 0;
-    margin-left: 8px;
-  }
-
-  #like-true {
-    position: absolute;
-    left: 0;
-    margin-left: 8px;
-    color: red;
-  } */
 
   h2 {
     padding-top: 15px;
@@ -292,10 +271,6 @@ font-size: 20px;
       border-color: rgb(41,41,41);
       color: white;
       margin: 10px 10px;
-      /* padding-top: 10px;
-      padding-bottom: 20px;
-      padding-left: 10px;
-      padding-right: 10px; */
       border: transparent;
       transition: transform 0.3s;
       transition: 0.75s;
@@ -371,15 +346,12 @@ font-size: 20px;
     align-items: center;
     margin-left: 10px;
     margin-bottom: 20px;
-    
   }
   
   .comment-section {
-    
     margin-left:50px;
     margin-bottom: 40px;
     margin-top: 50px;
-  
   }
   .comment-section h2{
     font-size: 32px;
@@ -430,9 +402,6 @@ font-size: 20px;
   $form-width: 400px;
   $border-radius: 8px;
   
-  // Body background and font settings
- 
-  // Form container
   .edit_form {
     width: $form-width;
     color: #dcdcdc;
@@ -478,7 +447,6 @@ font-size: 20px;
     }
   }
   
-  // Buttons
   .edit_btn {
     display: flex;
     justify-content: space-between;
@@ -515,7 +483,6 @@ font-size: 20px;
     }
   }
   
-  // Responsive Design
   @media (max-width: 768px) {
     .edit_form {
       width: 90%;

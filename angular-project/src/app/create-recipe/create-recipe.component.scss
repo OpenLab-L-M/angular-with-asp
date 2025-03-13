@@ -6,10 +6,11 @@
 
 body {
   overflow: auto;
+  background-color: #ffffff;
 }
 
 .container {
-  //background-color: rgb(41, 41, 41);;
+  background-color: #ccc;;
   //background-image: url("https://static.vecteezy.com/system/resources/previews/003/126/086/large_2x/abstract-black-and-gray-gradient-stripe-diagonal-line-background-vector.jpg");
   background-color: transparent;
   background-size: contain;
@@ -141,8 +142,8 @@ h1 {
   padding: 5px 0 20px 0;
   border-bottom: 1px solid silver;
   /*background-color: rgb(232, 0, 0);*/
-  background-color: darkgoldenrod;
-  color: linear-gradient(#541a0f 0, #0c0d0d 100%);
+  background-color: rgb(11, 100, 184);
+  color: white;
   padding-top: 15px;
   border-radius: 10px;
   font-size: 20px;
@@ -202,8 +203,6 @@ h1 {
   opacity: 80%;
   box-shadow: rgba(0, 0, 0, 0.23) 0px -4px 1px 0px inset, rgba(255, 255, 255, 0.17) 0px -1px 1px 0px, rgba(0, 0, 0, 0.17) 0px 2px 4px 1px;
 }
-
-
 .diff_radio input[type="checkbox"] {
   display: none;
 

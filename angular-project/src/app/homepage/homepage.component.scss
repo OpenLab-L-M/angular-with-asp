@@ -6,6 +6,10 @@ body #backgroundos {
   z-index: -2;
 }
 
+body{
+  background-color: #ccc;
+}
+
 .logo {
   position: absolute; /* Ensure it's positioned absolutely relative to the nearest positioned ancestor */
   left: 50%; /* Move the element to the center of the parent element */
@@ -34,7 +38,7 @@ body #backgroundos {
   }
 
   .slogan h2 {
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     font-size: 80px;
     line-height: 1.5;
     font-family: "Times New Roman", Times, serif;
@@ -111,7 +115,7 @@ body #backgroundos {
 }
 
 .recipes-items mat-card-subtitle {
-  color: white;
+  color: black;
   
 }
 

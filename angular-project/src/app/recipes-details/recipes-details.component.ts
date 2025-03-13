@@ -115,8 +115,8 @@ submit(){
   this.clicked=false;
   
 }
- addComment(){
-  
+
+addComment(){
   var inputValue = (<HTMLInputElement>document.getElementById("koment")).value;
   const id = parseInt(this.route.snapshot.paramMap.get('id'));
   var date = this.datePipe.transform(new Date(), 'yyyy, MMM d, h:mm a');
@@ -127,31 +127,27 @@ submit(){
     this.recensions.update(actualRecension => [...actualRecension, value])} );
    
     this.scrollToBottom();
-    
-
 }
 
-  likeRecension(id: number) {
-    
-    this.recipeService.likeRecension(id)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(value => {
-        this.recensions.update(data => data.map(recension => recension.id === id ?
-          { recipesID: value.recipesID,
-            content: value.content,
-            datetime: value.datetime,
-            id: value.id, 
-            amountOfLikes: value.amountOfLikes, 
-            userName: value.userName,
-            amountOfDisslikes: value.amountOfDisslikes,
-            userID: value.userID,
-            checkID: value.checkID } : recension))
-        console.log(value);
-      }
+likeRecension(id: number) {
+  this.recipeService.likeRecension(id)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(value => {
+      this.recensions.update(data => data.map(recension => recension.id === id ?
+        { recipesID: value.recipesID,
+          content: value.content,
+          datetime: value.datetime,
+          id: value.id, 
+          amountOfLikes: value.amountOfLikes, 
+          userName: value.userName,
+          amountOfDisslikes: value.amountOfDisslikes,
+          userID: value.userID,
+          checkID: value.checkID } : recension))
+      console.log(value);
+    }
+  );
+}
 
-      );
-
-  }
 disslikeRecension(id: number){
   this.recipeService.disslikeRecension(id)
   .pipe(takeUntil(this.destroy$))

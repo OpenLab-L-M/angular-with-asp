@@ -23,10 +23,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     MatRowDef,
     MatHeaderRowDef,
     MatHeaderRow,
-    MatRow
+    
   ],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnInit {
   private testService = inject(TestService);

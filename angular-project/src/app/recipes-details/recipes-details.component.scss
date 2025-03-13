@@ -291,11 +291,11 @@ mat-card {
   min-width: 1100px;
   width: 100%;
   display: inline-block;
-  max-width: 1100px; /* Optional, can be adjusted based on design needs */
-  overflow-wrap: break-word; /* Ensures text wraps within the card */
-  word-wrap: break-word; /* Fallback for older browsers */
-  word-break: break-word; /* Additional support for word breaking */
-  margin: auto; /* Center the card horizontally */
+  max-width: 1100px;
+  overflow-wrap: break-word;
+  word-wrap: break-word; 
+  word-break: break-word; 
+  margin: auto; 
   background-color: rgb(41, 41, 41);
   background-image: url("https://static.vecteezy.com/system/resources/previews/003/126/086/large_2x/abstract-black-and-gray-gradient-stripe-diagonal-line-background-vector.jpg");
   background-size: cover;

@@ -6,11 +6,16 @@ body #backgroundos{
   z-index: -2;
 }
 
+body{
+  background-color: #ccc;
+}
+
 form {
   padding-top: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #ffffff;
 }
 
 h1 {
